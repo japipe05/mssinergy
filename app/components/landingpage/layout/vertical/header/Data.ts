@@ -63,6 +63,18 @@ const appsLink: appsLinkType[] = [
     title: "Servicios de consultoría",
     subtext: "",
     avatar: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/svgs/msicon-sv-cl.svg`,
+  },
+  {
+    href: "/cotizacion",
+    title: "Cotización",
+    subtext: "",
+    avatar: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/svgs/icon-phone.svg`,
+  },
+  {
+    href: "/pqrs",
+    title: "PQRS",
+    subtext: "",
+    avatar: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/svgs/icon-dd-cart.svg`,
   }
 ];
 
