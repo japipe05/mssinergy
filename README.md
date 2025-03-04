@@ -14,6 +14,11 @@ desplegar en hositnger
 > npm run build
 
 
+mails
+npm install @emailjs/browser
+https://dashboard.emailjs.com/admin/templates/mf51egn
+
+
 # url .svg
 https://www.svgviewer.dev/s/465619/chemical-experiment-lab-laboratory-microscope-research
 
