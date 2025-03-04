@@ -102,7 +102,7 @@ const cotizacion = () => {
                 type="text"
                 sizing="md"
                 className="form-control"
-                value={formData[field.id]}
+                value={formData[field.id as keyof typeof formData]}
                 onChange={handleChange}
                 required
               />
