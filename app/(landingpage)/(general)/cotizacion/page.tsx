@@ -5,7 +5,7 @@ import {
   TextInput,
   Button,
 } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useState, ChangeEvent } from "react";
 import TitleCard from "../../../components/shared/TitleBorderCard";
 import { HiInformationCircle } from "react-icons/hi";
 import emailjs from "@emailjs/browser";
