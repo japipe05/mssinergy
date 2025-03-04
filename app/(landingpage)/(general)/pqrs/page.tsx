@@ -56,6 +56,7 @@ const pqrs = () => {
       await emailjs.send(serviceId, templateId, templateParams, userId);
       alert("Correo enviado correctamente");
       setFormData({
+        from_name: "",
         area: "",
         solicitud: "",
         motivo: "",

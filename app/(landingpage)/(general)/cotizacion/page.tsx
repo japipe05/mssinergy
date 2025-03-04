@@ -54,7 +54,7 @@ const cotizacion = () => {
       await emailjs.send(serviceId, templateId, templateParams, userId);
       alert("Correo enviado correctamente");
       setFormData({
-        from_name: `${formData.nombre} ${formData.apellido}`,
+        from_name: "",
         nombre: "",
         apellido: "",
         email: "",
