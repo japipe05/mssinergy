@@ -12,6 +12,7 @@ import emailjs from "@emailjs/browser";
 
 const cotizacion = () => {
   const [formData, setFormData] = useState({
+    from_name :"",
     nombre: "",
     apellido: "",
     email: "",
