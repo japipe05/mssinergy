@@ -30,7 +30,7 @@ const pqrs = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)  => {
     e.preventDefault();
 
     const serviceId = "service_tl7chls";
