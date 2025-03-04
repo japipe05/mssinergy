@@ -15,6 +15,7 @@ import emailjs from "@emailjs/browser";
 
 const pqrs = () => {
   const [formData, setFormData] = useState({
+    from_name :"",
     area: "",
     solicitud: "",
     motivo: "",
