@@ -28,7 +28,7 @@
     "dotenv": "^16.4.5",
     "flowbite": "2.3.0",
     "flowbite-react": "0.10.1",
-    "framer-motion": "^11.3.24",
+    "framer-motion": "^11.11.17",
     "i18next": "^23.15.2",
     "lodash": "4.17.21",
     "moment": "2.29.4",
