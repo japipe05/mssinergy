@@ -4,6 +4,7 @@ import banner from "/public/images/landingpage/background/business-woman-checkin
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import '../../../../utils/i18n';
 const Ticket = () => {
   const { t } = useTranslation();
   return (

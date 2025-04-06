@@ -29,7 +29,7 @@ export interface TableType {
   duracion?: string;
 }
 
-const basicTableData: TableType[] =[
+const pressureTableData: TableType[] =[
     {
       "item": 1,
       "codigo": "DG8",
@@ -145,4 +145,4 @@ const basicTableData: TableType[] =[
   ];
   
 
-export { basicTableData };
+export { pressureTableData };

@@ -1,13 +1,13 @@
 "use client";
 import { Badge, Table } from "flowbite-react";
 import React from "react";
-import * as datasvcalib from "../mstabladatasvcalibra";
+import {pressureTableData} from "../mstabladatasvcalibra";
 import Image from "next/image";
 import CardBox from "@/app/components/shared/CardBox";
 import ProductDesc from "@/app/components/apps/servicios/productDetail/ProductDesc";
 
 const BasicTable1 = () => {
-  console.log(datasvcalib)
+
   return (
     <>
 
@@ -57,7 +57,7 @@ const BasicTable1 = () => {
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y divide-border dark:divide-darkborder ">
-            {datasvcalib.basicTableData.map((item, index) => (
+            {pressureTableData.map((item, index) => (
               <Table.Row key={index}>
                 <Table.Cell className="whitespace-nowrap">
                   <p className="text-bodyclr dark:text-darkmuted text-base">{item.item}</p>

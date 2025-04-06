@@ -9,9 +9,9 @@ const ListingTabChangeCode = () => {
     import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/react";
     import React from "react";
 
-    <TabGroup onChange={(index) => {
-            console.log("Changed selected tab to:", index);
-          }}>
+     <TabGroup onChange={(index) => {
+       // console.log("Changed selected tab to:", index);
+    }}>
           <TabList className="flex gap-3">
             <Tab className="rounded-md py-2 px-4 text-sm font-semibold text-ld focus:outline-none data-[selected]:bg-primary data-[hover]:text-white data-[selected]:text-white data-[hover]:bg-primary data-[selected]:data-[hover]:bg-primary data-[focus]:outline-1 data-[focus]:outline-primary">
               Tab 1

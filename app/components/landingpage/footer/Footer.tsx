@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-
+import '../../../../utils/i18n';
 const Footer = () => {
   const { t } = useTranslation();
   return (

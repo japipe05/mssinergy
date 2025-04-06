@@ -14,6 +14,7 @@ import AllFeatures from "@/app/components/landingpage/features/AllFeatures";
 import Ticket from "@/app/components/landingpage/ticket/Ticket";
 import Footer from "@/app/components/landingpage/footer/Footer";
 import AppsDemos from "@/app/components/landingpage/productdemos/AppsDemos";
+//import '../../utils/i18n';
 
 export default function page()  {
   

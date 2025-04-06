@@ -8,7 +8,7 @@ import { IconChevronDown, IconHelp } from "@tabler/icons-react";
 import Quicklinks from "@/app/DashboardLayout/layout/vertical/header/Quicklinks";
 import { Button, Dropdown } from "flowbite-react";
 import { useTranslation } from "react-i18next";
-  
+import '../../../../utils/i18n';
 const ServicioMenu = () => {
   const { t } = useTranslation();
   return (

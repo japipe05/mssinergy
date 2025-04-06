@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import * as QuicklinksData from "./Data";
 import { useTranslation } from "react-i18next";
+import '../../../../../../utils/i18n';
 const Quicklinks = () => {
   const { t } = useTranslation();
   return (

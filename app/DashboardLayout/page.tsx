@@ -19,7 +19,7 @@ import MyContact from '../components/Dashboards/Analytical/MyContact';
 import Feeds from '../components/Dashboards/Analytical/Feed';
 import RecentComments from '../components/Dashboards/Analytical/RecentComments';
 import RecentChat from '../components/Dashboards/Analytical/RecentChat';
-
+//import '../../utils/i18n';
 
 export const metadata: Metadata = {
   title: "Analytical Dashboard",

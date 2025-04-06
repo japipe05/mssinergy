@@ -43,7 +43,7 @@ const index = () => {
             <Table.HeadCell className="text-base font-semibold py-3"></Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y divide-border dark:divide-darkborder ">
-            {basicTable5.basicTableData5.map((item, index) => (
+            {basicTable5.authorTableData.map((item, index) => (
               <Table.Row key={index}>
                 <Table.Cell className="whitespace-nowrap">
                   <div className="flex gap-3 items-center">

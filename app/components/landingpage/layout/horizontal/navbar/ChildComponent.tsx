@@ -4,6 +4,7 @@ import { IconChevronDown } from '@tabler/icons-react';
 import { usePathname } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { useTranslation } from 'react-i18next';
+import '../../../../../../utils/i18n';
 const ChildComponent = ({ item, isActive, handleMouseEnter, handleMouseLeave, onClick }: any) => {
     const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 

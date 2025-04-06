@@ -11,7 +11,7 @@ import DemosMenu from "./DemosMenu";
 import DarkModeToggle from "./DarkModeToggle";
 import { Language } from "../../../DashboardLayout/layout/vertical/header/Language";
 import { useTranslation } from "react-i18next";
-
+import '../../../../utils/i18n';
 const Header = () => {
   const { t } = useTranslation();
   return (

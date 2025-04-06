@@ -93,7 +93,7 @@ function CategoryTaskList({ id }: any) {
         });
         handleCloseModal();
         setNewTaskData("Task added successfully");
-        console.log("Task added successfully:", response.data);
+        //console.log("Task added successfully:", response.data);
       } else {
         throw new Error("Failed to add task");
       }
