@@ -27,7 +27,7 @@ const BasicTable1 = () => {
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y divide-border dark:divide-darkborder ">
-            {basicTable.basicTableData.map((item, index) => (
+            {basicTable.pressureTableData.map((item, index) => (
               <Table.Row key={index}>
                 <Table.Cell className="whitespace-nowrap">
                   <div className="flex gap-3 items-center">

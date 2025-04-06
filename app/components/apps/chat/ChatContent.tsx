@@ -18,7 +18,7 @@ type Props = {
 };
 const ChatContent = ({ onClickMobile }: Props) => {
   const { selectedChat }: any = useContext(ChatContext);
-  console.log(selectedChat);
+  //console.log(selectedChat);
 
   const [isRightSide, setIsRightSide] = useState(true);
   const handleButtonClick = () => {

@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { MobileRightSidebar } from "../components/Dashboards/minimal/MobileRightSidebar";
 import { CustomizerContext } from "../context/customizerContext";
 import RightSidebar from "../components/Dashboards/minimal/RightSidebar";
-
+//import '../../utils/i18n';
 
 export default function Layout({
   children,

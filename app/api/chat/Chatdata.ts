@@ -519,7 +519,7 @@ mock.onGet('/api/data/chat/ChatData').reply(() => {
 });
 
 mock.onPost('/api/sendMessage').reply((config) => {
-    console.log('Request data:', config.data); // Log the request data
+    //console.log('Request data:', config.data); // Log the request data
   
     try {
       const { chatId, message } = JSON.parse(config.data);

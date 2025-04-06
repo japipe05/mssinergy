@@ -14,7 +14,7 @@ const ListingForChangeTab = () => {
         </div>
         <TabGroup
           onChange={(index) => {
-            console.log("Changed selected tab to:", index);
+            //console.log("Changed selected tab to:", index);
           }}
         >
           <TabList className="flex gap-3">

@@ -43,7 +43,7 @@ const InputValidationOne = () => {
       email: "",
       password: "",
     };
-    console.log(formValues);
+    //console.log(formValues);
     if (!formValues.first) {
       error.name = "Firstname is required";
     } else if (formValues.first.length < 10) {

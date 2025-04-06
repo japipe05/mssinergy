@@ -43,7 +43,7 @@ export const BlogProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         const fetchPosts = async () => {
             try {
                 const response = await axios.get('/api/data/blog/BlogPosts');
-                console.log(response);
+               
                 setPosts(response.data);
                 setLoading(false);
             } catch (error) {

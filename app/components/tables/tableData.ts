@@ -33,7 +33,7 @@ export interface TableType {
 
 
 
-const basicTableData: TableType[] = [
+const pressureTableData : TableType[] = [
   {
     avatar: img1,
     name: "Sunil Joshi",
@@ -150,7 +150,7 @@ export interface TableType2 {
   budget?: string;
 }
 
-const basicTableData2: TableType2[] = [
+const teamTableData : TableType2[] = [
   {
       avatar: img4,
       name: 'Olivia Rhye',
@@ -279,7 +279,7 @@ export interface TableType3 {
 }
 
 /*Basic Table 3*/
-const basicTableData3: TableType3[] = [
+const adminTableData : TableType3[] = [
   {
       avatar: img4,
       name: 'Olivia Rhye',
@@ -401,7 +401,7 @@ export interface TableType4 {
 }
 
 /*Basic Table 4*/
-const basicTableData4: TableType4[] = [
+const invoiceTableData : TableType4[] = [
   {
       invoice: 'INV-3066',
       status: 'paid',
@@ -478,7 +478,7 @@ export interface TableType5 {
 }
 
 /*Basic Table 3*/
-const basicTableData5: TableType5[] = [
+const authorTableData : TableType5[] = [
   {
     avatar: authimg1,
     name: 'Top Authors',
@@ -555,4 +555,4 @@ const basicTableData5: TableType5[] = [
 
 
 
-export { basicTableData,basicTableData2,basicTableData3,basicTableData4,basicTableData5 };
+export { pressureTableData, teamTableData, adminTableData, invoiceTableData, authorTableData };

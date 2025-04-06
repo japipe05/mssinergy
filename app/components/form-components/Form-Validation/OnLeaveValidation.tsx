@@ -42,7 +42,7 @@ const OnLeaveValidation = () => {
       email: "",
       password: "",
     };
-    console.log(formValues);
+    //console.log(formValues);
     if (!formValues.email) {
       error.email = "Email is required";
     } else {

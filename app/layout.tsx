@@ -7,7 +7,7 @@ import { Flowbite, ThemeModeScript } from "flowbite-react";
 import customTheme from "@/utils/theme/custom-theme";
 import { CustomizerContextProvider } from "./context/customizerContext";
 import "./api/index"
-import '../utils/i18n';
+//import '../utils/i18n';
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

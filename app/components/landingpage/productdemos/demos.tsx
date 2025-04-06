@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import bannerWidget1 from "/public/images/landingpage/background/mision.jpg";
 import { useTranslation } from "react-i18next";
-
+import '../../../../utils/i18n';
 const ProductDemos = () => {
   const { t } = useTranslation();
   return (

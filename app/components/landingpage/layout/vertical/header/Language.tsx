@@ -4,7 +4,7 @@ import { Dropdown } from "flowbite-react";
 import Image from "next/image";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
+import '../../../../../../utils/i18n';
 const Languages = [
   {
     flagname: "Español",

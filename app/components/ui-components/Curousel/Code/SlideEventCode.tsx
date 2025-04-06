@@ -10,7 +10,9 @@ const SlideEventCode = () => {
     import { Carousel } from "flowbite-react";
 
     <div className="h-56 sm:h-64 xl:h-60">
-        <Carousel onSlideChange={(index) => console.log('onSlideChange()', index)}>
+        <Carousel 
+ 
+      >
             <div className="flex h-full items-center justify-center bg-muted text-lg font-semibold text-dark dark:bg-dark dark:text-white">
                 Slide 1
             </div>

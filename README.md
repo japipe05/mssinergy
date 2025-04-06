@@ -9,11 +9,12 @@ npm warn deprecated react-jvectormap@0.0.16: This package is deprecated. Please 
 
 #1C2833
 #49B158
-
+ventas@mssinergy.com
+felipehuchija@gmail.com
 desplegar en hositnger
 > npm run build
 
-
+produeccion
 mails
 npm install @emailjs/browser
 https://dashboard.emailjs.com/admin/templates/mf51egn

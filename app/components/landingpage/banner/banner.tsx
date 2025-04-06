@@ -8,6 +8,7 @@ import bannerWidget5 from "/public/images/landingpage/background/banner-widget-a
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import '../../../../utils/i18n'
 const banner = () => {
 
   const [showVideo, setShowVideo] = useState(false);
