@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MenuitemsType } from "../Sidebaritems";
 import { useTranslation } from "react-i18next";
-import '../../../../../../utils/i18n';
+import '../../../../../../../utils/i18n';
 interface NavItemsProps {
   item: MenuitemsType;
 }
