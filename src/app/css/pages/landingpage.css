@@ -1,6 +1,6 @@
 body .landingpage .banner:before {
   content: "";
-  background: url("../../../public/images/landingpage/background/banner-bg.png");
+  background: url("../../../../public/images/landingpage/background/banner-bg.png");
   position: absolute;
   top: -110px;
   width: 100%;
@@ -21,7 +21,7 @@ body .landingpage .text-primary-grediant {
 }
  .banner {
   position: relative;
-  background: url("../../../public/images/landingpage/background/animation.svg");
+  background: url("../../../../public/images/landingpage/background/animation.svg");
   max-height: 820px;
   padding-top: 30px;
   background-position: top 100px left 0;

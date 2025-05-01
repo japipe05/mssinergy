@@ -10,7 +10,7 @@ import { twMerge } from "tailwind-merge";
 import { MenuitemsType } from "../Sidebaritems";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import '../../../../../../utils/i18n';
+import '../../../../../../../utils/i18n';
 interface NavCollapseProps {
   item: MenuitemsType;
 }
