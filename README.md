@@ -1,3 +1,8 @@
+ojo rdto va en crear en local el build 
+.json
+//"type": "module",
+
+
 validar
 npm warn deprecated react-jvectormap@0.0.16: This package is deprecated. Please start using @react-jvectormap/core instead
 
