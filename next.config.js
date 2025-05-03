@@ -1,4 +1,4 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').NextConfig} 
 const nextConfig = {
     reactStrictMode: false,
     output: 'export',
@@ -6,14 +6,14 @@ const nextConfig = {
       unoptimized: true,
     },
   };
-  
+  */
   export default nextConfig;
   
   
 /**
 * @type {import('next').NextConfig}
 
-
+*/
 const nextConfig = {
     basePath: process.env.NEXT_PUBLIC_BASE_PATH||'',
     //output: 'export',
@@ -23,4 +23,3 @@ const nextConfig = {
     }
 }
 module.exports = nextConfig
-*/
