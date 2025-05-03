@@ -38,8 +38,7 @@ const Header = () => {
             <Language />
             <Navbar.Link
               as={Link}
-              href="#prueba"
-              /*href="/auth/auth1/login"*/
+              href="/auth/auth2/login"
               className="bg-primary text-white text-sm hover:text-white dark:hover:text-white hover:bg-primaryemphasis py-2 px-5"
             >
               {t("Iniciar/Registro")}

@@ -26,7 +26,7 @@ const BoxedLogin = () => {
             <div className="mx-auto mb-4">
               <FullLogo />
             </div>
-            <SocialButtons title="or sign up with" />
+            
             <AuthRegister />
             <div className="flex gap-2 text-base text-dark dark:text-white font-medium mt-6 items-center justify-center">
               <p>Already have an Account?</p>
