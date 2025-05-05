@@ -24,7 +24,7 @@
     "axios-mock-adapter": "1.22.0",
     "chance": "1.1.11",
     "date-fns": "2.30.0",
-    "devextreme": "22.2.6",
+    "devextreme": "22.2.14",
     "devextreme-react": "22.2.6",
     "dotenv": "^16.4.5",
     "flowbite": "2.3.0",
