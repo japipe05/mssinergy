@@ -15,7 +15,7 @@
 /dist/
 # production
 /build
-.env.desarrollo
+.env
 
 # misc
 .DS_Store
