@@ -106,3 +106,6 @@ const nextConfig = {
     }
 }
 module.exports = nextConfig
+
+
+docker build -t adminpro-nextjs .
