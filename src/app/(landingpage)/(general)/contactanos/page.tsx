@@ -32,7 +32,7 @@ const contactanos = () => {
     const userId = "0hlLNFNigpf22GmEk";
 
     const templateParams = {
-      from_name: formData.nombre,
+      
       titulo: formData.titulo,
       mail: formData.mail,
       descripcion: formData.descripcion,
