@@ -3,7 +3,7 @@ auditar vulnerabilidadesnpm audit
 arreglar
 npm audit fix --force
 
-
+a
 
 producción
 
