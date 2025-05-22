@@ -9,7 +9,7 @@ import Status from "@/app/components/apps/ecommerce/addProduct/Status";
 import ProductData from "@/app/components/apps/ecommerce/addProduct/ProductData";
 import Producttemplate from "@/app/components/apps/ecommerce/addProduct/ProductTemplate";
 import { Metadata } from "next";
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Add Product",

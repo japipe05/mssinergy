@@ -1,5 +1,5 @@
 
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 import UserProfileApp from "@/app/components/apps/userprofile/profile";
 import type { Metadata } from "next";
 export const metadata: Metadata = {

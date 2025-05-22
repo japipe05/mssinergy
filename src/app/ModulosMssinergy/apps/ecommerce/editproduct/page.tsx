@@ -11,7 +11,7 @@ import Producttemplate from "@/app/components/apps/ecommerce/editProduct/Product
 import ProductrChart from "@/app/components/apps/ecommerce/editProduct/ProductrChart";
 import CustomerReviews from "@/app/components/apps/ecommerce/editProduct/CustomerReviews";
 import { Metadata } from "next";
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 
 
 export const metadata: Metadata = {
