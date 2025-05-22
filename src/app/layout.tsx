@@ -19,15 +19,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <ThemeModeScript />
-      
+    <html lang="en" className={montserrat.className}>
+      <head>
+        <ThemeModeScript />
+      </head>
+      <body>
         <Flowbite theme={{ theme: customTheme }}>
           <CustomizerContextProvider>
             {children}
           </CustomizerContextProvider>
         </Flowbite>
-      
-    </>
+      </body>
+    </html>
   );
 }
