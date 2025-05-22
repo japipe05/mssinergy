@@ -1,3 +1,10 @@
+auditar vulnerabilidadesnpm audit
+> npm audit     
+arreglar
+npm audit fix --force
+
+
+
 producción
 
 
