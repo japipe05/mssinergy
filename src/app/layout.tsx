@@ -1,4 +1,3 @@
-
 import React from "react";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
@@ -6,8 +5,6 @@ import "./css/globals.css";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import customTheme from "@/utils/theme/custom-theme";
 import { CustomizerContextProvider } from "./context/customizerContext";
-//import "./api/index"
-//import '../utils/i18n';
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -22,18 +19,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    
-      <html lang="es">
-        <head>
-          <ThemeModeScript />
-        </head>
-        <body className={`${montserrat.className}`} >
+    <>
+      <ThemeModeScript />
+      <main className={montserrat.className}>
         <Flowbite theme={{ theme: customTheme }}>
           <CustomizerContextProvider>
-              {children}
+            {children}
           </CustomizerContextProvider>
-          </Flowbite>
-        </body>
-      </html>
+        </Flowbite>
+      </main>
+    </>
   );
 }
