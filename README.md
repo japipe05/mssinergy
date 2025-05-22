@@ -1,3 +1,9 @@
+producción
+
+
+https://adminpro-nextjs-main.vercel.app/
+
+
 ojo rdto va en crear en local el build 
 .json
 //"type": "module",
