@@ -17,34 +17,41 @@ export const metadata: Metadata = {
 const BoxedLogin = () => {
   return (
     <>
-      <div className="relative overflow-hidden h-screen bg-lightsubtle dark:bg-dark">
-      <div className="absolute start-0 bottom-0 z-1 md:block hidden">
-            <Image src={leftBgimg} alt="img"/>
-      </div>
-        <div className="flex h-full justify-center items-center px-4">
+      <div className="relative min-h-screen overflow-y-auto bg-lightsubtle dark:bg-dark">
+        {/* Imagen izquierda */}
+        <div className="absolute start-0 bottom-0 z-1 md:block hidden">
+          <Image src={leftBgimg} alt="img" />
+        </div>
+
+        {/* Contenido centrado */}
+        <div className="flex min-h-screen justify-center items-center px-4">
           <CardBox className="md:w-[450px] w-full border-none">
             <div className="mx-auto mb-4">
               <FullLogo />
             </div>
-            
+
             <AuthRegister />
+
             <div className="flex gap-2 text-base text-dark dark:text-white font-medium mt-6 items-center justify-center">
-              <p>Already have an Account?</p>
+              <p>Ya tienes una cuenta?</p>
               <Link
                 href={"/auth/auth2/login"}
                 className="text-primary text-sm font-medium"
               >
-                Sign In
+                Iniciar Sesión
               </Link>
             </div>
           </CardBox>
         </div>
+
+        {/* Imagen derecha */}
         <div className="absolute end-0 bottom-0 z-1 md:block hidden">
-            <Image src={rightBgimg} alt="img"/>
-      </div>
+          <Image src={rightBgimg} alt="img" />
+        </div>
       </div>
     </>
   );
 };
+
 
 export default BoxedLogin;
