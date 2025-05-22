@@ -4,7 +4,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import InvoiceList from '@/app/components/apps/invoice/Invoice-list/index'
 import { InvoiceProvider } from '@/app/context/InvoiceContext/index';
 import type { Metadata } from "next";
-import ThemeBreadcrumb from '@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb';
+import ThemeBreadcrumb from '@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb';
 export const metadata: Metadata = {
   title: "Invoice List App",
 };

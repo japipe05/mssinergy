@@ -3,7 +3,7 @@ import BlogDetailData from '@/app/components/apps/blog/detail';
 import React from 'react'
 import { BlogProvider } from '@/app/context/BlogContext/index';
 import type { Metadata } from "next";
-import ThemeBreadcrumb from '@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb';
+import ThemeBreadcrumb from '@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb';
 
 interface Product {
   id: number; // Or string, depending on your API structure

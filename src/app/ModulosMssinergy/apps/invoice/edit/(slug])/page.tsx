@@ -3,7 +3,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import EditInvoicePage from '@/app/components/apps/invoice/Edit-invoice/index';
 import { InvoiceProvider } from '@/app/context/InvoiceContext/index';
 import type { Metadata } from "next";
-import ThemeBreadcrumb from '@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb';
+import ThemeBreadcrumb from '@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb';
 interface Product {
     id: number; // Or string, depending on your API structure
   }

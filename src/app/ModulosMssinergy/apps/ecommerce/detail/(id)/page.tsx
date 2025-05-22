@@ -6,7 +6,7 @@ import ProductDesc from "@/app/components/apps/ecommerce/productDetail/ProductDe
 import ProductDetail from "@/app/components/apps/ecommerce/productDetail";
 import ProductRelated from "@/app/components/apps/ecommerce/productDetail/ProductRelated";
 import { ProductProvider } from '@/app/context/Ecommercecontext/index';
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 
 interface Product {
   id: number; // Or string, depending on your API structure

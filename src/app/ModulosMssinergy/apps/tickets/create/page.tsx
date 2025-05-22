@@ -1,7 +1,7 @@
 import CreateTicketForm from "@/app/components/apps/tickets/CreateTicketForm";
 import type { Metadata } from "next";
 import { TicketProvider } from '@/app/context/TicketContext/index'
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 
 
 export const metadata: Metadata = {

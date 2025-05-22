@@ -1,5 +1,5 @@
 
-import ThemeBreadcrumb from "@/app/DashboardLayout/layout/shared/breadcrumb/ThemeBreadcrumb";
+import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 import EcommerceShop from "@/app/components/apps/ecommerce/productGrid";
 import { Metadata } from "next";
 export const metadata: Metadata = {
