@@ -21,13 +21,13 @@ export default function RootLayout({
   return (
     <>
       <ThemeModeScript />
-      <main className={montserrat.className}>
+      
         <Flowbite theme={{ theme: customTheme }}>
           <CustomizerContextProvider>
             {children}
           </CustomizerContextProvider>
         </Flowbite>
-      </main>
+      
     </>
   );
 }
