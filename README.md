@@ -1,16 +1,3 @@
-auditar vulnerabilidadesnpm audit
-> npm audit     
-arreglar
-npm audit fix --force
-
-aaaaa
-
-producción
-
-
-https://adminpro-nextjs-main.vercel.app/
-
-
 ojo rdto va en crear en local el build 
 .json
 //"type": "module",
@@ -45,7 +32,6 @@ https://www.svgviewer.dev/s/465619/chemical-experiment-lab-laboratory-microscope
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-npx create-next-app@latest --example with-jest login-registro-nextjs
 
 ## Getting Started
 
@@ -120,6 +106,3 @@ const nextConfig = {
     }
 }
 module.exports = nextConfig
-
-
-docker build -t adminpro-nextjs .
