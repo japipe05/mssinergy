@@ -2,7 +2,6 @@
   "name": "adminpro-nextjs-pro",
   "version": "1.0.0",
   "private": true,
-  
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -17,7 +16,7 @@
     "@iconify/react": "4.1.1",
     "@react-jvectormap/core": "^1.0.4",
     "@reduxjs/toolkit": "1.9.7",
-    "@tabler/icons-react": "3.5.0",
+    "@tabler/icons-react": "^3.5.0",
     "aos": "2.3.4",
     "apexcharts": "3.49.1",
     "axios": "1.5.1",
