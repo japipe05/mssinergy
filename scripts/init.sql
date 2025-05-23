@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
     usr_codigo_pais VARCHAR(100) NOT NULL,
     usr_celular VARCHAR(100) NOT NULL,
     usr_credencial VARCHAR(255) NOT NULL,
+    usr_estado VARCHAR(255) default 'ACTIVO',
+    usr_ROL VARCHAR(255) default 'USER',
     usr_fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -19,6 +21,8 @@ CREATE TABLE IF NOT EXISTS usuarios_aud (
     usr_codigo_pais VARCHAR(100)   ,
     usr_celular VARCHAR(100)   ,
     usr_credencial VARCHAR(255)  ,
+    usr_estado VARCHAR(255),
+    usr_ROL VARCHAR(255),
     usr_fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

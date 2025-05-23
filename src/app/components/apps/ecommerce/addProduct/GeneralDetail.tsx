@@ -4,8 +4,7 @@ import { Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 
 import dynamic from "next/dynamic";
-import "quill/dist/quill.snow.css"; // ✅ Esta es la ruta correcta con react-quill v2+
-
+import "react-quill/dist/quill.snow.css";
 const ReactQuill: any = dynamic(
   async () => {
     const { default: RQ } = await import("react-quill");

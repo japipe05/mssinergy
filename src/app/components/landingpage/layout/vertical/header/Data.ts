@@ -75,12 +75,6 @@ const appsLink: appsLinkType[] = [
     title: "PQRS",
     subtext: "",
     avatar: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/svgs/icon-dd-cart.svg`,
-  },
-  {
-    href: "/contactanos",
-    title: "Contactanos",
-    subtext: "",
-    avatar: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/svgs/msicon-sv-cb.svg`,
   }
 ];
 
