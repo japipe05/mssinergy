@@ -24,9 +24,9 @@ export default function RootLayout({
   return (
     
       <html lang="es">
-        <head>
+  
           <ThemeModeScript />
-        </head>
+    
         <body className={`${montserrat.className}`} >
         <Flowbite theme={{ theme: customTheme }}>
           <CustomizerContextProvider>
