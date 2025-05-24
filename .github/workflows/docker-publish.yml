@@ -3,7 +3,7 @@ name: Build and Push to Docker Hub
 on:
   push:
     branches:
-      - main  # o la rama que uses
+      - master  # o la rama que uses
 
 jobs:
   build-and-push:
