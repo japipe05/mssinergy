@@ -1,5 +1,9 @@
 npm install --legacy-peer-deps
 
+docker build -t mssinergy-nextjs-dock .
+docker run -p 3000:3000 mssinergy-nextjs-dock
+
+
 
 auditar vulnerabilidadesnpm audit
 > npm audit     
