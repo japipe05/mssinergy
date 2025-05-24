@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: tu_usuario/nextjs-app:latest
+          tags: japipe05/mssinergy-nextjs-dock:latest
