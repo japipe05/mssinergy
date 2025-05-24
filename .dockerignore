@@ -4,3 +4,8 @@ Dockerfile
 .dockerignore
 npm-debug.log
 .env
+.git
+.gitignore
+.github
+.vscode
+*.md
