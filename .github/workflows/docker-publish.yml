@@ -3,7 +3,7 @@ name: Build and Push to Docker Hub
 on:
   push:
     branches:
-      - master  # o la rama que uses
+      - master
 
 jobs:
   build-and-push:
@@ -22,10 +22,14 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push
+      - name: Build and push with cache
         uses: docker/build-push-action@v5
         with:
           context: .
           file: ./Dockerfile
           push: true
-          tags: japipe05/mssinergy-nextjs-dock:latest
+          tags: |
+            japipe05/mssinergy-nextjs-dock:latest
+            japipe05/mssinergy-nextjs-dock:v1.0.${{ github.run_number }}
+          cache-from: type=registry,ref=japipe05/mssinergy-nextjs-dock:buildcache
+          cache-to: type=registry,ref=japipe05/mssinergy-nextjs-dock:buildcache,mode=max
