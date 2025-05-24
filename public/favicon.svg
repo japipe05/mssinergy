@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <!-- Fondo transparente -->
+  <rect width="100" height="100" fill="none"/>
+  
+  <!-- Texto "MS" en verde -->
+  <text x="10" y="70" font-family="Arial" font-size="70" font-weight="bold" fill="#4CAF50">MS</text>
+</svg>

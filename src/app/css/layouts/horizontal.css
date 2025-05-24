@@ -1,0 +1,4 @@
+.horizontal-nav ul li .active{
+    background-color:var(--color-lightprimary);
+    color: var(--color-primary);
+}

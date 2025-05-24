@@ -1,0 +1,90 @@
+.brand-logo {
+    min-height: 72px;
+    width: 240px;
+    transition: width 0.3s ease-in-out;
+}
+
+@media (min-width: 1199px){
+  [data-sidebar-type="mini-sidebar"] .brand-logo{
+    width: 50px;
+  }
+}
+
+/*******************
+Notify
+*******************/
+
+.notify {
+    position: relative;
+    top: -20px;
+    right: -8px;
+  
+    .heartbit {
+      position: absolute;
+      top: -5px;
+      right: -2px;
+      height: 18px;
+      width: 18px;
+      z-index: 10;
+      border: 2px solid var(--color-error);
+      border-radius: 70px;
+      animation: heartbit 1s ease-out;
+      -moz-animation: heartbit 1s ease-out;
+      -moz-animation-iteration-count: infinite;
+      -o-animation: heartbit 1s ease-out;
+      -o-animation-iteration-count: infinite;
+      -webkit-animation: heartbit 1s ease-out;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+  
+    .point {
+      width: 4px;
+      height: 4px;
+      border-radius: 30px;
+      position: absolute;
+      right: 5px;
+      top: 2px;
+      background-color: var(--color-error);
+      position: absolute;
+    }
+  }
+
+
+  .mobile-header-menu{
+    height: 0px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  .mobile-header-menu.active{
+    min-height: 72px;
+    overflow: visible;
+  }
+
+  
+  @keyframes heartbit {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  
+    25% {
+      transform: scale(0.1);
+      opacity: 0.1;
+    }
+  
+    50% {
+      transform: scale(0.5);
+      opacity: 0.3;
+    }
+  
+    75% {
+      transform: scale(0.8);
+      opacity: 0.5;
+    }
+  
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
