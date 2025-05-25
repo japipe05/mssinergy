@@ -8,33 +8,33 @@ import '../../../../../utils/i18n';
 const Languages = [
   {
     flagname: "Español",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-es.svg`,
+    icon: '/images/flag/icon-flag-es.svg`,
     value: "es",
   },
   {
     flagname: "Inglés",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-en.svg`,
+    icon: '/images/flag/icon-flag-en.svg`,
     value: "en",
   },
   {
     flagname: "Portugués",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-pt.svg`,
+    icon: '/images/flag/icon-flag-pt.svg`,
     value: "pt",
   },
   {
     flagname: "Chinese",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-cn.svg`,
+    icon: '/images/flag/icon-flag-cn.svg`,
     value: "ch",
   },
   {
     flagname: "French",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-fr.svg`,
+    icon: '/images/flag/icon-flag-fr.svg`,
     value: "fr",
   },
 
   {
     flagname: "Arabic",
-    icon: `${process.env.NEXT_PUBLIC_BASE_PATH||''}/images/flag/icon-flag-sa.svg`,
+    icon: '/images/flag/icon-flag-sa.svg`,
     value: "ar",
   },
 ];
