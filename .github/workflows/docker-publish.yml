@@ -31,5 +31,16 @@ jobs:
           tags: |
             japipe05/mssinergy-nextjs-dock:latest
             japipe05/mssinergy-nextjs-dock:v1.0.${{ github.run_number }}
+          build-args: |
+            NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
+            NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
+            JWT_SECRET=${{ secrets.JWT_SECRET }}
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE_KEY }}
+            RECAPTCHA_SECRET_KEY=${{ secrets.RECAPTCHA_SECRET_KEY }}
           cache-from: type=registry,ref=japipe05/mssinergy-nextjs-dock:buildcache
           cache-to: type=registry,ref=japipe05/mssinergy-nextjs-dock:buildcache,mode=max
+
