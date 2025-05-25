@@ -71,3 +71,18 @@
 {"level":30,"time":"2025-05-25 00:26","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
 {"level":30,"time":"2025-05-25 00:26","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
 {"level":30,"time":"2025-05-25 00:26","msg":"✅ Usuario autenticado correctamente: 1@h.com <6> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:43","msg":"🛠️ Conectando a MySQL... <1> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:43","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:43","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:43","msg":"✅ Usuario autenticado correctamente: 1@h.com <6> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:08","msg":"🛠️ Conectando a MySQL... <1> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:08","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:08","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:08","msg":"✅ Usuario autenticado correctamente: 1@h.com <6> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:16","msg":"🛠️ Conectando a MySQL... <1> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:16","msg":"🔐 Password hasheado <2> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:16","msg":"✅ Usuario insertado <3> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:17","msg":"🛠️ Conectando a MySQL... <1> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:17","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:17","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 01:17","msg":"✅ Usuario autenticado correctamente: feliperodriguez96@hotmail.com <6> src\\services\\authService.ts"}

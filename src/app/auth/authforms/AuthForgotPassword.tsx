@@ -18,7 +18,7 @@ const AuthForgotPassword = () => {
           />
         </div>
         <Button color={"primary"} className="rounded-full bg-primary text-white hover:bg-primaryemphasis w-full">
-          Forgot Password
+          Olvide contraseña
         </Button>
 
        

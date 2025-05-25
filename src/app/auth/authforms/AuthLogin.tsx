@@ -96,7 +96,7 @@ setMessage({ text: 'Login exitoso', type: 'success' });
               Recordar usuario
             </Label>
           </div>
-          <Link href={"/auth/auth1/forgot-password"} className="text-primary text-sm font-medium">
+          <Link href={"/auth/auth2/forgot-password"} className="text-primary text-sm font-medium">
             Alvide la Contraseña ?
           </Link>
         </div>
