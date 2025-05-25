@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import "flowbite";
-import {Navbar } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
 import PagesMenu from "./Pagesmenu";
 import ServicioMenu from './servicios';
@@ -20,29 +20,30 @@ const Header = () => {
       >
         <Navbar className="fluid py-8 px-0 bg-transparent dark:bg-dark">
           <FullLogo />
-          <MobileDrawer/>
+          <MobileDrawer />
           <Navbar.Collapse className="xl:block hidden">
             {/*<DemosMenu />
             <PagesMenu />*/}
             <Navbar.Link as={Link} href="#Inicio" >
-            {t("Quíenes somos")}
+              {t("Quíenes somos")}
             </Navbar.Link>
             <Navbar.Link as={Link} href="#Inicio" >
-            {t("Metrología")}
+              {t("Metrología")}
             </Navbar.Link>
             <Navbar.Link as={Link} href="#prueba">
-            {t("Solicita tú Servicio")}
+              {t("Solicita tú Servicio")}
             </Navbar.Link>
             <ServicioMenu />
-            <DarkModeToggle/>
+            <DarkModeToggle />
             <Language />
+
             <Navbar.Link
-              as={Link}
               href="/auth/auth2/login"
               className="bg-primary text-white text-sm hover:text-white dark:hover:text-white hover:bg-primaryemphasis py-2 px-5"
             >
               {t("Iniciar/Registro")}
             </Navbar.Link>
+
           </Navbar.Collapse>
         </Navbar>
       </header>
