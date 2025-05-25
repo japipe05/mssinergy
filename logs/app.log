@@ -67,3 +67,7 @@
 {"level":30,"time":"2025-05-23 23:00","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
 {"level":30,"time":"2025-05-23 23:00","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
 {"level":30,"time":"2025-05-23 23:00","msg":"✅ Usuario autenticado correctamente: 1@h.com <6> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:26","msg":"🛠️ Conectando a MySQL... <1> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:26","msg":"🛠️ Validando correo <2> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:26","msg":"🛠️ Validando credenciales hash MySQL... <4> src\\services\\authService.ts"}
+{"level":30,"time":"2025-05-25 00:26","msg":"✅ Usuario autenticado correctamente: 1@h.com <6> src\\services\\authService.ts"}

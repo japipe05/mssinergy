@@ -1,8 +1,9 @@
---Docker
+--Docker manual ya el github actisc actualiza
 docker login
-docker build -t japipe05/mssinergy-nextjs-dock:1.0.0 .
-docker push japipe05/mssinergy-nextjs-dock:1.0.0
+docker build -t japipe05/mssinergy-nextjs-dock:latest .
+docker push japipe05/mssinergy-nextjs-dock:latest
 
+docker-compose up --build -d
 
 
 npm install --legacy-peer-deps
