@@ -30,11 +30,11 @@ const BoxedForgotpwd = () => {
                 <FullLogo/>
                 </div>
                  <p className="text-bodyclr dark:text-darkmuted text-center text-sm font-medium">
-                 Please enter the email address associated with your account and We will email you a link to reset your password.
+                 Ingrese el Email para recuperar contraseña
                  </p>
                  <AuthForgotPassword />
                  <Link href='/auth/auth2/login' className="rounded-full bg-lightprimary text-center font-medium block text-primary mt-3 py-2 px-4 hover:bg-primary hover:text-white w-full">
-          Back to login
+          Regresar a iniciar sesión
         </Link>
                </div>
           </CardBox>
