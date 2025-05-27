@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const { title, content, category, coverImg, author } = await req.json();
 
     const [result] = await pool.execute(
-      `INSERT INTO blog_posts (title, content, category, coverImg, author)
+      `INSERT INTO blogs (title, content, category, coverImg, author)
        VALUES (?, ?, ?, ?, ?)`,
       [title, content, category, coverImg, author]
     );
