@@ -11,7 +11,7 @@ const page = () => {
     <>
       <ThemeBreadcrumb title="Tabler Icons" />
       <CardBox>
-        <iframe
+       <iframe
           src="https://tabler-icons.io/"
           title="Inline Frame Example"
           width="100%"

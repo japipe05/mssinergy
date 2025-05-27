@@ -30,7 +30,7 @@ const Profile = () => {
       >
         <div className=" px-7">
           <h3 className="mb-0 text-lg font-semibold text-dark dark:text-white">
-            User Profile
+            User Profile1
           </h3>
 
           <div className="flex items-center gap-6 pb-5 border-b dark:border-darkborder mt-5 mb-3">

@@ -1,3 +1,8 @@
+
+
+
+
+
 --Docker manual ya el github actisc actualiza
 docker login
 docker build -t japipe05/mssinergy-nextjs-dock:latest .

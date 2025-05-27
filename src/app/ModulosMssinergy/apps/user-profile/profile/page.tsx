@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const UserProfile = () => {
   return (
     <>
-      <ThemeBreadcrumb title="User Profile" />
+      <ThemeBreadcrumb title="Perfil Usuario" />
       <UserProfileApp />
     </>
   );

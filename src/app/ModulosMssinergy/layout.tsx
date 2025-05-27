@@ -34,7 +34,7 @@ export default function Layout({
             {children}
             </div>
             </div>
-          <Customizer />
+          
           <MobileRightSidebar />
           {url==="/dashboards/minimal" ? <RightSidebar/> : null }
         </div>

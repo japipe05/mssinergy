@@ -21,7 +21,7 @@ const SidebarLayout = () => {
   const Profile_Navitems = [
     {
       key:'profile',
-      title:"My perfil",
+      title:"Mi perfil",
       href:"/ModulosMssinergy/apps/user-profile/profile"
     },
   ]
