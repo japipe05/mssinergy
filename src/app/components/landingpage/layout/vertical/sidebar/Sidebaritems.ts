@@ -126,7 +126,7 @@ const SidebarContent: MenuitemsType[] = [
         },
         {
           id: uniqueId(),
-          title: "Blog Post2",
+          title: "Blog Post23",
           href: "/apps/blog/post",
           icon: "solar:stop-circle-line-duotone",
           dropdownItem:true

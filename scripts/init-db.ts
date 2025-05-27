@@ -10,7 +10,8 @@ async function initDB() {
   try {
     console.log("ingresando a la base de datos...");
     const sql = await fs.readFile('scripts/init.sql', 'utf-8');
-
+    console.log("process.env.DB_HOST" , process.env.DB_HOST);
+    console.log("process.env.DB_NAME" , process.env.DB_NAME);
     const connection = await mysql.createConnection({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
@@ -31,3 +32,4 @@ async function initDB() {
 initDB();
 
 //> npx tsx .\scripts\init-db.ts
+//npx tsx scripts/init-db.ts  gitpod

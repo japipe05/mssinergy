@@ -50,27 +50,26 @@ CREATE TABLE IF NOT EXISTS accesos_aud (
   usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE IF NOT EXISTS blogs (
-  blo_id INT AUTO_INCREMENT PRIMARY KEY,
-  blo_title VARCHAR(255) NOT NULL,
-  blo_content TEXT NOT NULL,
-  blo_category VARCHAR(100),
-  blo_coverImg TEXT,
-  blo_author VARCHAR(100),
-  blo_view INT DEFAULT 0,
-  blo_createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+  blg_id INT AUTO_INCREMENT PRIMARY KEY,
+  blg_title VARCHAR(255) NOT NULL,
+  blg_content LONGTEXT NOT NULL,
+  blg_category VARCHAR(100),
+  blg_coverImg VARCHAR(255),
+  blg_author VARCHAR(100),
+  blg_videoUrl VARCHAR(255),
+  blg_createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE IF NOT EXISTS blogs_aud (
   aud_id INT AUTO_INCREMENT PRIMARY KEY,
-  blo_id INT,
-  blo_title VARCHAR(255) ,
-  blo_content TEXT,
-  blo_category VARCHAR(100),
-  blo_coverImg TEXT,
-  blo_author VARCHAR(100),
-  blo_view INT DEFAULT 0,
-  blo_createdAt DATETIME
+  blg_id INT,
+  blg_title VARCHAR(255) ,
+  blg_content LONGTEXT ,
+  blg_category VARCHAR(100),
+  blg_coverImg VARCHAR(255),
+  blg_author VARCHAR(100),
+  blg_videoUrl VARCHAR(255),
+  blg_createdAt TIMESTAMP
 );

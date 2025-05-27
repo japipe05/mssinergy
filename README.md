@@ -144,3 +144,11 @@ module.exports = nextConfig
 
 
 docker build -t adminpro-nextjs .
+
+
+
+# librerias
+npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-text-align @tiptap/extension-underline @tiptap/extension-text-style
+
+git config --global user.name "japipe05"
+git config --global user.email "felipehuchija@gmail.com"

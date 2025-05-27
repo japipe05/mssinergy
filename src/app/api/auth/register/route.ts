@@ -3,8 +3,9 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import fsPromises from 'fs/promises';
 import path from 'path';
-
+import logger from '@/utils/logger';
 export async function POST(req: Request) {
+  const seg = 'src\\app\\api\\auth\\register\\route.ts';
   const formData = await req.formData();
 
   const usr_nombre = formData.get('usr_nombre') as string;
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
   let filePath = '';
 
   if (file && file.size > 0) {
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'registro');
 
     if (!fs.existsSync(uploadDir)) {
       await fsPromises.mkdir(uploadDir, { recursive: true });
@@ -48,7 +49,7 @@ export async function POST(req: Request) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
     const fileName = `${Date.now()}-${file.name}`;
-    filePath = `/uploads/${fileName}`;
+    filePath = `/uploads/registro/${fileName}`;
 
     await fsPromises.writeFile(path.join(uploadDir, fileName), buffer);
   }
@@ -67,9 +68,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Usuario registrado correctamente' });
   } catch (error: unknown) {
     console.error('Error en registro:', error);
-
+    logger.info(`❌ Error... <1> ${seg} ${error.message}`);
     if (error instanceof Error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
+      return NextResponse.json({ error: "Error Conexion" }, { status: 400 });
     }
 
     return NextResponse.json({ error: 'Ocurrió un error inesperado' }, { status: 500 });

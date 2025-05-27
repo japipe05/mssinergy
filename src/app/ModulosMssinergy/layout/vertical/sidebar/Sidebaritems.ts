@@ -38,7 +38,7 @@ const SidebarContent: MenuitemsType[] = [
         {
           id: uniqueId(),
           title: "Crear publicación",
-          href: "/ModulosMssinergy/apps/blog/detail",
+          href: "/ModulosMssinergy/apps/blog/crear",
           icon: "solar:stop-circle-line-duotone",
           dropdownItem:true
         },
