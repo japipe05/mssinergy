@@ -1,10 +1,12 @@
 import { loginUser } from '@/services/authService';
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-
+import logger from '@/utils/logger';
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_dev';
 
 export async function POST(req: Request) {
+  const seg = 'src\\app\\api\\auth\\login\\route.ts';
+  
   const { usr_correo, usr_credencial} = await req.json();
 
   try {
@@ -31,6 +33,9 @@ export async function POST(req: Request) {
     return response;
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Error desconocido';
-    return NextResponse.json({ error: message }, { status: 401 });
+    logger.info(`❌ Error... <1> ${seg} ${message}`);
+
+    return NextResponse.json({ error: "Error Conexion" }, { status: 401 });
   }
 }
+
