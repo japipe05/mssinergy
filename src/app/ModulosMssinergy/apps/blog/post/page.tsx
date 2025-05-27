@@ -4,7 +4,7 @@ import BlogPost from "@/app/components/apps/blog/BlogPost";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Post",
+  title: "Blog Post2",
 };
 const Blog = () => {
   return (

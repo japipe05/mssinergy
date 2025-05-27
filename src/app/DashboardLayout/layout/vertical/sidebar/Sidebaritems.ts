@@ -140,7 +140,7 @@ const SidebarContent: MenuitemsType[] = [
       href: "/apps/chats",
     },
     {
-      title: "User Profile",
+      title: "User Profile1",
       id: uniqueId(),
       icon: "solar:shield-user-outline",
       children: [

@@ -37,7 +37,7 @@ const BoxedLogin = () => {
               href={"/auth/auth2/register"}
               className="text-primary text-sm font-medium"
             >
-              Create an account
+              Create una Cuenta
             </Link>
           </div>
         </CardBox>

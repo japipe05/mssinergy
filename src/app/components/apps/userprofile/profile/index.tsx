@@ -15,21 +15,8 @@ const UserProfileApp = () => {
           <div className="col-span-12">
             <ProfileBanner />
           </div>
-          <div className="lg:col-span-4 col-span-12">
-            <div className="grid grid-cols-12 ">
-              {/* Introduction */}
-              <div className="col-span-12 mb-30px">
-                <Introduction />
-              </div>
-              {/* Photos */}
-              <div className="col-span-12 mb-30px">
-                <Photos />
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-8 col-span-12">
-            <Post />
-          </div>
+        
+         
         </div>
       </UserDataProvider>
     </>

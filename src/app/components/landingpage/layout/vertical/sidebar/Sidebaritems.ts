@@ -119,7 +119,14 @@ const SidebarContent: MenuitemsType[] = [
       children: [
         {
           id: uniqueId(),
-          title: "Blog Post",
+          title: "Blog Post1",
+          href: "/apps/blog/post",
+          icon: "solar:stop-circle-line-duotone",
+          dropdownItem:true
+        },
+        {
+          id: uniqueId(),
+          title: "Blog Post2",
           href: "/apps/blog/post",
           icon: "solar:stop-circle-line-duotone",
           dropdownItem:true
@@ -140,7 +147,7 @@ const SidebarContent: MenuitemsType[] = [
       href: "/apps/chats",
     },
     {
-      title: "User Profile",
+      title: "User Profile1",
       id: uniqueId(),
       icon: "solar:shield-user-outline",
       children: [

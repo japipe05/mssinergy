@@ -97,7 +97,7 @@ const Menuitems = [
       },
       {
         id: uniqueId(),
-        title: 'User Profile',
+        title: 'User Profile1',
         icon: 'solar:shield-user-outline',
         href: '',
         children: [

@@ -18,8 +18,8 @@ const ThemeBreadcrumb = ({
           <h6 className="text-lg font-medium">{title}</h6>
           </div>
           <Breadcrumb aria-label="Solid background breadcrumb example" className="bg-transparent p-0 dark:bg-transparent">
-            <Breadcrumb.Item href="/">
-              <span className="text-primary" >Home</span>
+            <Breadcrumb.Item href="/ModulosMssinergy">
+              <span className="text-primary" >Inicio</span>
             </Breadcrumb.Item>
             <Breadcrumb.Item >{title}</Breadcrumb.Item>
           </Breadcrumb>

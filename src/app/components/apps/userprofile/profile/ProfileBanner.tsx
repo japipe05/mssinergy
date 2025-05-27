@@ -1,12 +1,14 @@
-import React from "react";
+'use client';
+import React, { useEffect, useState } from "react";
 import {
   IconBrandDribbble,
   IconBrandFacebook,
-  IconBrandTwitter,
   IconBrandYoutube,
-  IconFileDescription,
-  IconUserCheck,
-  IconUserCircle,
+  IconMail,
+  IconPhone,
+  IconFlag,
+  IconUserShield,
+  IconCalendarTime,
 } from "@tabler/icons-react";
 import CardBox from "@/app/components/shared/CardBox";
 import Image from "next/image";
@@ -14,74 +16,87 @@ import Banner from "/public/images/backgrounds/profilebg.jpg";
 import Link from "next/link";
 import { Button } from "flowbite-react";
 import ProfileTab from "./ProfileTab";
+import axios from "axios";
+
+interface User {
+  usr_nombre: string;
+  usr_correo: string;
+  usr_fotografia: string;
+  usr_codigo_pais: string;
+  usr_celular: string;
+  usr_estado: string;
+  usr_ROL: string;
+  usr_fecha_creacion: string;
+}
 
 const ProfileBanner = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+  axios.get('/api/auth/me')
+    .then(res => {
+      setUser(res.data.user);
+    })
+    .catch(err => {
+      console.error('❌ No autenticado:', err);
+    });
+}, []);
+
+
+  if (!user) return <p className="text-center py-10">Cargando perfil...</p>;
+
   return (
-    <>
-      <CardBox className="p-0 overflow-hidden">
-        <Image
-          src={Banner}
-          alt="priofile banner"
-          className="w-full"
-          height={330}
-        />
-        <div className="bg-white dark:bg-dark p-6 -mt-2">
-          <div className="grid grid-cols-12 gap-3">
-            <div className="lg:col-span-4 col-span-12 lg:order-1 order-2">
-              <div className="flex gap-6 items-center justify-around lg:py-0 py-4">
-                <div className="text-center">
-                  <IconFileDescription
-                    className="block mx-auto text-ld opacity-50 "
-                    width="20"
-                  />
-                  <h4 className="text-xl">938</h4>
-                  <p className="text-bodyclr dark:text-darkmuted text-sm">Posts</p>
-                </div>
-                <div className="text-center">
-                  <IconUserCircle
-                    className="block mx-auto text-ld opacity-50"
-                    width="20"
-                  />
-                  <h4 className="text-xl">3,586</h4>
-                  <p className="text-bodyclr dark:text-darkmuted text-sm">Followers</p>
-                </div>
-                <div className="text-center">
-                  <IconUserCheck
-                    className="block mx-auto text-ld opacity-50"
-                    width="20"
-                  />
-                  <h4 className="text-xl">2,659</h4>
-                  <p className="text-bodyclr dark:text-darkmuted text-sm">Following</p>
-                </div>
+    <CardBox className="p-0 overflow-hidden">
+      <Image
+        src={Banner}
+        alt="profile banner"
+        className="w-full"
+        height={330}
+      />
+      <div className="bg-white dark:bg-dark p-6 -mt-2">
+        <div className="grid grid-cols-12 gap-6">
+          <div className="lg:col-span-4 col-span-12 flex flex-col items-center">
+            <Image
+              src={user.usr_fotografia || "/images/profile/default.jpg"}
+              alt="profile"
+              height={100}
+              width={100}
+              className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
+            />
+            <h5 className="text-lg mt-3 font-semibold">{user.usr_nombre}</h5>
+            
+        
+          </div>
+
+          <div className="lg:col-span-8 col-span-12">
+            <div className="grid grid-cols-2 gap-4 text-sm text-gray-700 dark:text-gray-300">
+              <div className="flex items-center gap-2">
+                <IconMail size={18} className="text-primary" />
+                <span>{user.usr_correo}</span>
               </div>
-            </div>
-            <div className="lg:col-span-4 col-span-12 lg:order-2 order-1">
-              <div className="text-center -mt-20">
-                <Image
-                  src="/images/profile/user-1.jpg"
-                  alt="profile"
-                  height="100"
-                  width="100"
-                  className="rounded-full mx-auto border-4 border-white dark:border-darkborder"
-                />
-                <h5 className="text-lg mt-3">Jonathan Deo</h5>
-                <p className="text-bodyclr dark:text-darkmuted">Designer</p>
+              <div className="flex items-center gap-2">
+                <IconFlag size={18} className="text-primary" />
+                <span>{user.usr_ROL}</span>
               </div>
-            </div>
-            <div className="lg:col-span-4 col-span-12 lg:order-3 order-3">
-              <div className="flex items-center gap-3.5 lg:justify-end justify-center h-full xl:pe-4">
-                <Button as={Link} href={''} className="h-9 w-9 rounded-full p-0" color={'primary'}><IconBrandFacebook size={20} /></Button>
-                <Button as={Link} href={''} className="h-9 w-9 rounded-full p-0" color={'secondary'}><IconBrandDribbble size={20} /></Button>
-                <Button as={Link} href={''} className="h-9 w-9 rounded-full p-0" color={'error'}><IconBrandYoutube size={20} /></Button>
-                <Button color={'primary'}>Add To Story</Button>
+              <div className="flex items-center gap-2">
+                <IconPhone size={18} className="text-primary" />
+                <span>{user.usr_codigo_pais} {user.usr_celular}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <IconUserShield size={18} className="text-primary" />
+                <span>{user.usr_estado}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <IconCalendarTime size={18} className="text-primary" />
+                <span>{new Date(user.usr_fecha_creacion).toLocaleString()}</span>
               </div>
             </div>
           </div>
         </div>
-        {/* Profile Tabs */}
-        <ProfileTab />
-      </CardBox>
-    </>
+      </div>
+
+  
+    </CardBox>
   );
 };
 

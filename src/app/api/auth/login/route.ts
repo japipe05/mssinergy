@@ -6,7 +6,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'secreto_dev';
 
 export async function POST(req: Request) {
   const { usr_correo, usr_credencial} = await req.json();
-console.log("api auth login")
+
   try {
     const user = await loginUser(usr_correo, usr_credencial);
 

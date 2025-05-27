@@ -69,7 +69,7 @@ const [showTerms, setShowTerms] = useState(false);
     formData.append('captchaToken', captchaToken);
 
     try {
-      console.log("AuthRegister.tsx ingresa");
+      //console.log("AuthRegister.tsx ingresa");
       await axios.post('/api/auth/register', formData);
 
       setMessage({ text: 'Usuario registrado', type: 'success' });
