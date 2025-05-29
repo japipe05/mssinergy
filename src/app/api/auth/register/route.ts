@@ -68,8 +68,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ message: 'Usuario registrado correctamente' });
   } catch (error: unknown) {
     console.error('Error en registro:', error);
-    logger.info(`❌ Error... <1> ${seg} ${error.message}`);
     if (error instanceof Error) {
+      logger.info(`❌ Error... <1> ${seg} ${error.message}`);
       return NextResponse.json({ error: "Error Conexion" }, { status: 400 });
     }
 
