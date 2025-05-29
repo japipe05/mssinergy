@@ -20,7 +20,9 @@ type Blog = {
 };
 
 const BlogDetailPage = async ({ params }: Props) => {
-  const blog: Blog | null = await getBlogById(params.id);
+  const result = await getBlogById(params.id);
+const blog = Array.isArray(result) ? (result[0] as Blog) : null;
+
 
   if (!blog) return notFound();
 
