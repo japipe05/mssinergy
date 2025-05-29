@@ -20,11 +20,18 @@ type Blog = {
 };
 
 const BlogDetailPage = async ({ params }: Props) => {
-  const result = await getBlogById(params.id);
-const blog = Array.isArray(result) ? (result[0] as Blog) : null;
+const result = await getBlogById(params.id);
+const blog = result as Blog; // o valida si `result` existe directamente
+
+//console.log("params.id:", params.id);
+//console.log("result:", result);
 
 
-  if (!blog) return notFound();
+  if (!blog) {
+  console.log("⚠️ blog es null o undefined, haciendo notFound()");
+  return notFound();
+}
+
 
   return (
     <div className="max-w-3xl mx-auto p-6">

@@ -30,7 +30,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 
 const Blog = () => {
 
-   const uploadFile = async (file: File) => {
+  const uploadFile = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
     const res = await fetch('/api/upload', {
@@ -41,7 +41,7 @@ const Blog = () => {
     return data.url;
   };
 
-  
+
   const router = useRouter();
   const [form, setForm] = useState({
     title: '',
@@ -87,18 +87,18 @@ const Blog = () => {
 
 
   const handleSubmit = async () => {
-  const res = await fetch('/api/blog', {
-    method: 'POST',
-    body: JSON.stringify(form),
-    headers: { 'Content-Type': 'application/json' },
-  });
+    const res = await fetch('/api/blog', {
+      method: 'POST',
+      body: JSON.stringify(form),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  const data = await res.json();
+    const data = await res.json();
 
-  if (res.ok && data?.id) {
-    router.push(`/ModulosMssinergy/apps/blog/${data.id}`); // Redirige al detalle del blog
-  }
-};
+    if (res.ok && data?.id) {
+      router.push(`/ModulosMssinergy/apps/blog/${data.id}`); // Redirige al detalle del blog
+    }
+  };
 
 
   return (
@@ -136,42 +136,30 @@ const Blog = () => {
       <div className="mb-3">
         <label className="block font-medium mb-1">Imagen de portada</label>
 
-      {/* URL manual */}
-<input
-  type="text"
-  name="coverImg"
-  value={form.coverImg}
-  onChange={handleChange}
-  placeholder="URL Imagen (o sube una imagen abajo)"
-  className="w-full mb-2 p-2 border rounded"
-/>
+        {/* URL manual */}
+        <input
+          type="text"
+          name="coverImg"
+          value={form.coverImg}
+          onChange={handleChange}
+          placeholder="URL Imagen (o sube una imagen abajo)"
+          className="w-full mb-2 p-2 border rounded"
+        />
 
-{/* Subida local */}
-<input
-  type="file"
-  accept="image/*"
-  onChange={async (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = await uploadFile(file); // Subida a /api/upload
-      setForm((prev) => ({ ...prev, coverImg: url }));
-    }
-  }}
-  className="mb-2"
-/>
+        {/* Subida local */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const url = await uploadFile(file); // Subida a /api/upload
+              setForm((prev) => ({ ...prev, coverImg: url }));
+            }
+          }}
+          className="mb-2"
+        />
 
-{form.coverImg && (
-  <img
-    src={form.coverImg}
-    alt="Vista previa"
-    className="max-w-full h-auto border rounded shadow"
-/>
-)}
-
-
-       
-
-        {/* Vista previa */}
         {form.coverImg && (
           <img
             src={form.coverImg}
@@ -179,59 +167,63 @@ const Blog = () => {
             className="max-w-full h-auto border rounded shadow"
           />
         )}
+
+
+
+
       </div>
 
       <div className="mb-3">
         <label className="block font-medium mb-1">Video</label>
 
         {/* URL manual */}
-<input
-  type="text"
-  name="videoUrl"
-  value={form.videoUrl}
-  onChange={handleChange}
-  placeholder="URL del video (YouTube, Vimeo o MP4)"
-  className="w-full mb-2 p-2 border rounded"
-/>
+        <input
+          type="text"
+          name="videoUrl"
+          value={form.videoUrl}
+          onChange={handleChange}
+          placeholder="URL del video (YouTube, Vimeo o MP4)"
+          className="w-full mb-2 p-2 border rounded"
+        />
 
-{/* Subida local */}
-<input
-  type="file"
-  accept="video/*"
-  onChange={async (e) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = await uploadFile(file);
-      setForm((prev) => ({ ...prev, videoUrl: url }));
-    }
-  }}
-  className="mb-2"
-/>
+        {/* Subida local */}
+        <input
+          type="file"
+          accept="video/*"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const url = await uploadFile(file);
+              setForm((prev) => ({ ...prev, videoUrl: url }));
+            }
+          }}
+          className="mb-2"
+        />
 
-{form.videoUrl && (
-  <>
-    {form.videoUrl.includes('youtube.com') || form.videoUrl.includes('youtu.be') ? (
-      <iframe
-        src={`https://www.youtube.com/embed/${extractYouTubeId(form.videoUrl)}`}
-        className="w-full aspect-video rounded border"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    ) : (
-      <video
-        controls
-        src={form.videoUrl}
-        className="w-full h-auto rounded border"
-      />
-    )}
-  </>
-)}
+        {form.videoUrl && (
+          <>
+            {form.videoUrl.includes('youtube.com') || form.videoUrl.includes('youtu.be') ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${extractYouTubeId(form.videoUrl)}`}
+                className="w-full aspect-video rounded border"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : (
+              <video
+                controls
+                src={form.videoUrl}
+                className="w-full h-auto rounded border"
+              />
+            )}
+          </>
+        )}
 
 
-       
+
       </div>
 
-   
+
 
 
 
