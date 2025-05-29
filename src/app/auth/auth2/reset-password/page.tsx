@@ -1,4 +1,4 @@
-
+'use client';
 import Logo from "@/app/DashboardLayout/layout/shared/logo/Logo";
 import CardBox from "@/app/components/shared/CardBox";
 import React from "react";
