@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import rightBgimg from "/public/images/backgrounds/leaf-right.png"
 import leftBgimg from "/public/images/backgrounds/leaf-left.png"
 import Image from "next/image";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import AuthResetPassword from "../../authforms/AuthResetPassword";
 
 
