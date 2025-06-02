@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Badge, Button, Table } from "flowbite-react";
 import { format, isValid, parseISO } from "date-fns";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 
 const InvoiceDetail = () => {
   const { invoices } = useContext(InvoiceContext);

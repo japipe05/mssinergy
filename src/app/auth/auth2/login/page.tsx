@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/app/DashboardLayout/layout/shared/logo/Logo";
+import Logo from "@/app/ModulosMssinergy/layout/shared/logo/Logo";
 import CardBox from "@/app/components/shared/CardBox";
 import React, { useEffect } from "react";
 import SocialButtons from "../../authforms/SocialButtons";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import rightBgimg from "/public/images/backgrounds/leaf-right.png";
 import leftBgimg from "/public/images/backgrounds/leaf-left.png";
 import Image from "next/image";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import { useRouter } from "next/navigation";
 
 const BoxedLogin = () => {

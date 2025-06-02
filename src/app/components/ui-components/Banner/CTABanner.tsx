@@ -1,6 +1,6 @@
 import React from "react";
 import CardBox from "../../shared/CardBox";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import { Banner, Button } from "flowbite-react";
 import { HiX } from "react-icons/hi";
 const CTABanner = () => {

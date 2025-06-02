@@ -1,7 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import React, { useState, useContext, useEffect } from "react";
-import { NotesType } from "../../../DashboardLayout/types/apps/notes";
+import { NotesType } from "../../../ModulosMssinergy/types/apps/notes";
 import { Alert, Button, TextInput, Tooltip } from "flowbite-react";
 import { NotesContext } from '@/app/context/NotesContext/index';
 

@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useState, useEffect } from 'react';
 import axios from '@/utils/axios';
-import { PostType, profiledataType } from '@/app/DashboardLayout/types/apps/userProfile';
+import { PostType, profiledataType } from '@/app/ModulosMssinergy/types/apps/userProfile';
 
 // Define context type
 export type UserDataContextType = {

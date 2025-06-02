@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
 import axios from '@/utils/axios';
-import { MessageType, ChatsType } from '../../DashboardLayout/types/apps/chat';
+import { MessageType, ChatsType } from '../../ModulosMssinergy/types/apps/chat';
 
 // Define context props interface
 export interface ChatContextProps {

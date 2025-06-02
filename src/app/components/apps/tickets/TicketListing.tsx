@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { useContext, useState } from 'react';
-import { TicketType } from '@/app/DashboardLayout/types/apps/ticket';
+import { TicketType } from '@/app/ModulosMssinergy/types/apps/ticket';
 import { Avatar, Badge, Button, Table, TextInput, Tooltip } from 'flowbite-react';
 import { format } from 'date-fns';
 import { Icon } from '@iconify/react/dist/iconify.js';

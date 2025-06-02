@@ -2,7 +2,7 @@
 
 import React, { createContext, useState, useEffect } from 'react';
 import axios from '@/utils/axios';
-import { ProductType } from '@/app/DashboardLayout/types/apps/eCommerce';
+import { ProductType } from '@/app/ModulosMssinergy/types/apps/eCommerce';
 
 // Define ProductContextType based on imported types
 interface ProductContextType {

@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useState, useEffect } from 'react';
 import axios from '@/utils/axios';
-import { NotesType } from '@/app/DashboardLayout/types/apps/notes';
+import { NotesType } from '@/app/ModulosMssinergy/types/apps/notes';
 
 // Define context type
 interface NotesContextType {

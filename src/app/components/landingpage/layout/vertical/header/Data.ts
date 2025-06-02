@@ -82,6 +82,13 @@ const appsLink: appsLinkType[] = [
     subtext: "",
     avatar: `/images/svgs/msicon-sv-cb.svg`,
   }
+  ,
+  {
+    href: "/blog",
+    title: "Blog",
+    subtext: "",
+    avatar: `/images/svgs/icon-connect.svg`,
+  }
 ];
 
 interface LinkType {

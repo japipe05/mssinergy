@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Navbar } from 'flowbite-react';
 import Link from 'next/link';
-import Menuitems from '@/app/DashboardLayout/layout/horizontal/MenuData';
+import Menuitems from '@/app/ModulosMssinergy/layout/horizontal/MenuData';
 import { IconChevronDown } from '@tabler/icons-react';
 import ChildComponent from './ChildComponent';
 import { Icon } from "@iconify/react";

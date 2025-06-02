@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { ProductContext } from '@/app/context/Servicios/index';
 import { useParams, usePathname } from "next/navigation";
-import { ProductType } from '@/app/DashboardLayout/types/apps/servicios';
+import { ProductType } from '@/app/ModulosMssinergy/types/apps/servicios';
 
 const ProductDetail = () => {
   const { products, addToCart } = useContext(ProductContext);

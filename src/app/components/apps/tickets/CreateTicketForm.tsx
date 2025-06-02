@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { TicketContext } from "@/app/context/TicketContext/index";
 import { Avatar, Button, Dropdown, Label, TextInput } from "flowbite-react";
-import { TicketType } from "@/app/DashboardLayout/types/apps/ticket";
+import { TicketType } from "@/app/ModulosMssinergy/types/apps/ticket";
 import { useRouter } from "next/navigation";
 import { isValid, format } from "date-fns";
 import CardBox from "../../shared/CardBox";

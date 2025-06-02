@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useState, Dispatch, SetStateAction, useEffect } from 'react';
 import axios from '@/utils/axios';
-import { EmailType } from '@/app/DashboardLayout/types/apps/email';
+import { EmailType } from '@/app/ModulosMssinergy/types/apps/email';
 
 interface EmailContextType {
   emails: EmailType[];

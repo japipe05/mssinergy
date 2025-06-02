@@ -7,7 +7,7 @@ import {
   CommentDataType,
   Reply,
   ProfileType,
-} from "../../../../DashboardLayout/types/apps/userProfile";
+} from "../../../../ModulosMssinergy/types/apps/userProfile";
 import { Avatar, Button, TextInput, Tooltip } from "flowbite-react";
 import { UserDataContext } from '@/app/context/UserDataContext/index';
 

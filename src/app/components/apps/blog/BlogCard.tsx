@@ -1,7 +1,7 @@
 'use client'
 import { format } from "date-fns";
 import { IconEye, IconMessage2, IconPoint } from "@tabler/icons-react";
-import { BlogPostType } from "@/app/DashboardLayout/types/apps/blog";
+import { BlogPostType } from "@/app/ModulosMssinergy/types/apps/blog";
 import CardBox from "../../shared/CardBox";
 import Link from "next/link";
 import Image from "next/image";

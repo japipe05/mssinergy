@@ -12,7 +12,7 @@ import {
 } from "@tabler/icons-react";
 import { Button, HR, Label, List, Radio } from "flowbite-react";
 import React, { useState, useContext } from "react";
-import { ProductFiterType } from "../../../../DashboardLayout/types/apps/eCommerce";
+import { ProductFiterType } from "../../../../ModulosMssinergy/types/apps/eCommerce";
 import { ProductContext } from '@/app/context/Ecommercecontext/index';
 
 const ProductFilter = () => {

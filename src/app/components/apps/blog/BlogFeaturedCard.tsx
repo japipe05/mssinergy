@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { IconEye, IconMessage2, IconPoint } from "@tabler/icons-react";
 import { format } from "date-fns";
-import { BlogPostType } from "../../../DashboardLayout/types/apps/blog";
+import { BlogPostType } from "../../../ModulosMssinergy/types/apps/blog";
 import { Avatar, Badge, Card } from "flowbite-react";
 import { BlogContext, BlogContextProps } from '@/app/context/BlogContext/index';
 import React, { useEffect, useContext } from "react";

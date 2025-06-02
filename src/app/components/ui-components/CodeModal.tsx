@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Modal, Tooltip } from "flowbite-react";
 import { IconCode } from "@tabler/icons-react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism"; // ✅ compatible con v5.8.0
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 
 const CodeModal = ({ children }: any) => {
   const [openModal, setOpenModal] = useState(false);
@@ -23,7 +24,7 @@ const CodeModal = ({ children }: any) => {
       <Modal show={openModal} onClose={handleOpenModal}>
         <Modal.Header className="rounded-t-md border-b border-ld">Sample Code</Modal.Header>
         <Modal.Body className="overflow-y-auto code-modal">
-          <SyntaxHighlighter language="tsx" style={vscDarkPlus}>
+          <SyntaxHighlighter language="tsx" >
             {children}
           </SyntaxHighlighter>
         </Modal.Body>

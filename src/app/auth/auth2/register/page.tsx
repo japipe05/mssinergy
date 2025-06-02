@@ -1,4 +1,4 @@
-import Logo from "@/app/DashboardLayout/layout/shared/logo/Logo";
+import Logo from "@/app/ModulosMssinergy/layout/shared/logo/Logo";
 import CardBox from "@/app/components/shared/CardBox";
 import React from "react";
 import SocialButtons from "../../authforms/SocialButtons";
@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 import rightBgimg from "/public/images/backgrounds/leaf-right.png"
 import leftBgimg from "/public/images/backgrounds/leaf-left.png"
 import Image from "next/image";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import AuthRegister from "../../authforms/AuthRegister";
 export const metadata: Metadata = {
   title: "Boxed Login Authentication",

@@ -7,7 +7,7 @@ const DefaultMegamenuCode = () => {
        <CodeModal>
             {`
     import { MegaMenu, Button, Navbar } from "flowbite-react";
-    import FullLogo from "@/app/(DashboardLayout)/layout/shared/logo/FullLogo";
+    import FullLogo from "@/app/(ModulosMssinergy)/layout/shared/logo/FullLogo";
     
     <MegaMenu className="rounded-md">
           <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4 md:space-x-8">

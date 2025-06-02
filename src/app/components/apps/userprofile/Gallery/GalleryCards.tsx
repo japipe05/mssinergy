@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 
 import { IconDotsVertical, IconSearch } from "@tabler/icons-react";
 import { format } from "date-fns";
-import { GallaryType } from "../../../../DashboardLayout/types/apps/users";
+import { GallaryType } from "../../../../ModulosMssinergy/types/apps/users";
 import { Badge, Button, Dropdown, TextInput } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import CardBox from "@/app/components/shared/CardBox";

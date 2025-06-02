@@ -1,7 +1,7 @@
 'use  client'
 import React, { useState } from "react";
 import { IconArrowBackUp } from "@tabler/icons-react";
-import { BlogType } from "../../../../DashboardLayout/types/apps/blog";
+import { BlogType } from "../../../../ModulosMssinergy/types/apps/blog";
 import { Avatar, Button, TextInput, Tooltip } from "flowbite-react";
 
 const BlogComment = ({ comment }: BlogType | any) => {
