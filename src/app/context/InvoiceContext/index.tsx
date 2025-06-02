@@ -1,6 +1,6 @@
 'use client'
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { InvoiceList, order } from '@/app/DashboardLayout/types/apps/invoice';
+import { InvoiceList, order } from '@/app/ModulosMssinergy/types/apps/invoice';
 import axios from '@/utils/axios';
 
 interface InvoiceContextType {

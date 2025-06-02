@@ -44,12 +44,12 @@ const Blog = () => {
 
   const router = useRouter();
   const [form, setForm] = useState({
-    title: '',
-    content: '',
-    category: '',
-    coverImg: '',
-    author: '',
-    videoUrl: ''
+      title: '',
+      content: '',
+      category: '',
+      coverImg: '',
+      author: 'user', // default
+      videoUrl: ''
   });
 
   const handleChange = (

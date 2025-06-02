@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import axios from '@/utils/axios';
-import { ContactType } from '../../DashboardLayout/types/apps/contact'
+import { ContactType } from '../../ModulosMssinergy/types/apps/contact'
 
 // Define the shape of the context
 export interface ContactContextType {

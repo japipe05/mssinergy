@@ -2,7 +2,7 @@
 'use client'
 import React, { createContext, useState, useEffect } from 'react';
 import axios from '@/utils/axios';
-import { TicketType } from '@/app/DashboardLayout/types/apps/ticket';
+import { TicketType } from '@/app/ModulosMssinergy/types/apps/ticket';
 
 export interface TicketContextType {
     tickets: TicketType[];

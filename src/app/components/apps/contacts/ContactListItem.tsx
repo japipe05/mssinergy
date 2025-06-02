@@ -20,7 +20,7 @@ import {
   IconAlertOctagon,
 } from "@tabler/icons-react";
 import { ContactContext } from "@/app/context/Conatactcontext/index";
-import { ContactType } from "@/app/DashboardLayout/types/apps/contact";
+import { ContactType } from "@/app/ModulosMssinergy/types/apps/contact";
 import { CustomizerContext } from "@/app/context/customizerContext";
 import Image from "next/image";
 import { Icon } from "@iconify/react";

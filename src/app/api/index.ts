@@ -1,6 +1,6 @@
 "use client";
 import mock from './mock';
-import './blog/blogData';
+//import './blog/blogData';
 import './contacts/ContactsData';
 import './chat/Chatdata';
 import './notes/NotesData';

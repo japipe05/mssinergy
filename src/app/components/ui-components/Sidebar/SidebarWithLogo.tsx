@@ -1,5 +1,5 @@
 "use client";
-import FullLogo from "@/app/DashboardLayout/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import {
   IconLayoutDashboard,
   IconBrandTrello,

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { IconMinus, IconPlus, IconTrash } from "@tabler/icons-react";
 import OrderSummary from "./OrderSummary";
-import { ProductType } from "@/app/DashboardLayout/types/apps/eCommerce";
+import { ProductType } from "@/app/ModulosMssinergy/types/apps/eCommerce";
 import { ProductContext } from '@/app/context/Ecommercecontext/index';
 
 

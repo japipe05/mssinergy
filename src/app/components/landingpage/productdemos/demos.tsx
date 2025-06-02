@@ -18,7 +18,7 @@ const ProductDemos = () => {
             >
               <Image
                 src={bannerWidget1}
-                alt="Misión Ms Sinergy"
+                alt="Misión Ms Sinergy "
                 className="rounded-lg shadow-lg"
               />
             </div>

@@ -3,11 +3,11 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { demosMegamenu, appsMegamenu } from "../Data";
-import * as AppsData from "@/app/DashboardLayout/layout/vertical/header/Data";
+import * as AppsData from "@/app/ModulosMssinergy/layout/vertical/header/Data";
 import { IconChevronDown, IconHelp } from "@tabler/icons-react";
 import { Button } from "flowbite-react";
 import { Accordion } from "flowbite-react";
-import Quicklinks from "@/app/DashboardLayout/layout/vertical/header/Quicklinks";
+import Quicklinks from "@/app/ModulosMssinergy/layout/vertical/header/Quicklinks";
 const MobileDemosMenu = () => {
   return (
     <>

@@ -1,52 +1,32 @@
-import { notFound } from 'next/navigation';
-import { getBlogById } from '@/services/blogService';
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
+'use client';
+import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 
-// Define el tipo para el blog (opcional pero recomendado)
-type Blog = {
-  blg_id: number;
-  blg_title: string;
-  blg_content: string;
-  blg_category: string;
-  blg_coverImg: string;
-  blg_author: string;
-  blg_videoUrl: string;
-  blg_createdAt: string;
-};
+const VerBlogPage = () => {
+  const { id } = useParams();
+  const [blog, setBlog] = useState<any>(null);
 
-const BlogDetailPage = async ({ params }: Props) => {
-const result = await getBlogById(params.id);
-const blog = result as Blog; // o valida si `result` existe directamente
+  useEffect(() => {
+    if (id) {
+      fetch(`/api/blog/${id}`)
+        .then(res => res.json())
+        .then(data => {
+          if (!data || data.error) return setBlog(undefined);
+          setBlog(data);
+        });
+    }
+  }, [id]);
 
-//console.log("params.id:", params.id);
-//console.log("result:", result);
-
-
-  if (!blog) {
-  console.log("⚠️ blog es null o undefined, haciendo notFound()");
-  return notFound();
-}
-
+  if (blog === undefined) return <div className="p-6 text-red-500">Publicación no encontrada</div>;
+  if (!blog) return <div className="p-6">Cargando publicación...</div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-2">{blog.blg_title}</h1>
-      <p className="text-sm text-gray-600 mb-4">
+      <p className="text-sm text-gray-500 mb-4">
         {blog.blg_author} • {blog.blg_category} • {new Date(blog.blg_createdAt).toLocaleDateString()}
       </p>
-
-     
-
-      <article
-        className="prose prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: blog.blg_content }}
-      />
-      
       {blog.blg_coverImg && (
         <img
           src={blog.blg_coverImg}
@@ -54,21 +34,20 @@ const blog = result as Blog; // o valida si `result` existe directamente
           className="w-full h-auto rounded shadow mb-6"
         />
       )}
+      <article
+        className="prose prose-lg max-w-none"
+        dangerouslySetInnerHTML={{ __html: blog.blg_content }}
+      />
       {blog.blg_videoUrl && (
         <div className="mt-6">
-          {isYouTubeUrl(blog.blg_videoUrl) ? (
+          {blog.blg_videoUrl.includes('youtube.com') || blog.blg_videoUrl.includes('youtu.be') ? (
             <iframe
-              src={`https://www.youtube.com/embed/${extractYouTubeId(blog.blg_videoUrl)}`}
+              src={`https://www.youtube.com/embed/${blog.blg_videoUrl.split('v=')[1]}`}
               className="w-full aspect-video rounded border"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           ) : (
-            <video
-              controls
-              src={blog.blg_videoUrl}
-              className="w-full h-auto rounded border"
-            />
+            <video controls src={blog.blg_videoUrl} className="w-full h-auto rounded border" />
           )}
         </div>
       )}
@@ -76,16 +55,4 @@ const blog = result as Blog; // o valida si `result` existe directamente
   );
 };
 
-// Extra: extrae YouTube ID si es necesario
-const extractYouTubeId = (url: string) => {
-  const match = url.match(
-    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
-  );
-  return match ? match[1] : '';
-};
-
-const isYouTubeUrl = (url: string) => {
-  return url.includes('youtube.com') || url.includes('youtu.be');
-};
-
-export default BlogDetailPage;
+export default VerBlogPage;

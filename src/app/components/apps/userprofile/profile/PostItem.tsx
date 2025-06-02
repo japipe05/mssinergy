@@ -9,7 +9,7 @@ import PostComments from "./PostComments";
 import {
   Comment as CommentType,
   PostType,
-} from "../../../../DashboardLayout/types/apps/userProfile";
+} from "../../../../ModulosMssinergy/types/apps/userProfile";
 import CardBox from "@/app/components/shared/CardBox";
 import { Avatar, Button, HR, TextInput, Tooltip } from "flowbite-react";
 import Image from "next/image";

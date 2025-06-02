@@ -1,7 +1,7 @@
 'use client'
 import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from 'react';
 import axios from "@/utils/axios";
-import { BlogType, BlogPostType } from '../../DashboardLayout/types/apps/blog';
+import { BlogType, BlogPostType } from '../../ModulosMssinergy/types/apps/blog';
 
 // Define BlogContextProps interface
 export interface BlogContextProps {

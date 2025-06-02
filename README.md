@@ -1,8 +1,3 @@
-
-
-
-
-
 --Docker manual ya el github actisc actualiza
 docker login
 docker build -t japipe05/mssinergy-nextjs-dock:latest .
@@ -30,6 +25,8 @@ producción
 
 
 https://adminpro-nextjs-main.vercel.app/
+
+https://www.google.com/recaptcha/admin/create
 
 
 ojo rdto va en crear en local el build 

@@ -21,7 +21,7 @@ import { format } from "date-fns";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import SimpleBar from "simplebar-react";
-import { ProductType } from "@/app/DashboardLayout/types/apps/eCommerce";
+import { ProductType } from "@/app/ModulosMssinergy/types/apps/eCommerce";
 
 const ProductTablelist = () => {
   const {

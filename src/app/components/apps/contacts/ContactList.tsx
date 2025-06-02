@@ -2,7 +2,7 @@
 import React, { Dispatch, SetStateAction, useContext, useState } from "react";
 import { IconStar, IconAlertOctagon } from "@tabler/icons-react";
 import { ContactContext } from "@/app/context/Conatactcontext/index";
-import { ContactType } from "@/app/DashboardLayout/types/apps/contact";
+import { ContactType } from "@/app/ModulosMssinergy/types/apps/contact";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { Alert, Button, Modal } from "flowbite-react";

@@ -3,9 +3,9 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import * as AppsData from "@/app/DashboardLayout/layout/vertical/header/Data";
+import * as AppsData from "@/app/ModulosMssinergy/layout/vertical/header/Data";
 import { IconChevronDown, IconHelp } from "@tabler/icons-react";
-import Quicklinks from "@/app/DashboardLayout/layout/vertical/header/Quicklinks";
+import Quicklinks from "@/app/ModulosMssinergy/layout/vertical/header/Quicklinks";
 import { Button, Dropdown } from "flowbite-react";
 
 const PagesMenu = () => {

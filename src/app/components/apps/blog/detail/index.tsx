@@ -11,7 +11,7 @@ import { format } from "date-fns";
 import { uniqueId } from "lodash";
 import type {
   BlogType,
-} from "../../../../DashboardLayout/types/apps/blog";
+} from "../../../../ModulosMssinergy/types/apps/blog";
 import CardBox from "@/app/components/shared/CardBox";
 import Image from "next/image";
 import {
