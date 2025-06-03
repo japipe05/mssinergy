@@ -191,5 +191,15 @@
     "Calificación de equipos de producción.": "生产设备认证。",
     "Proyección de proceso de acreditación en calibración de equipos de diferencial de presión.": "差压设备校准认证流程的预期。",
     "Proyección del proceso de acreditación en magnitud de temperatura y humedad relativa.": "温度和相对湿度量级认证流程的预期。",
-    "Línea del Tiempo": "时间线"
+    "Línea del Tiempo": "时间线",
+    "Cotización": "报价",
+    "PQRS": "PQRS",
+    "Contactanos": "联系我们",
+    "La calificación de vehículos refrigerados es un proceso técnico y sistemático que asegura que los vehículos utilizados para el transporte de productos sensibles a la temperatura, como medicamentos, alimentos y productos biológicos, cumplan con los requisitos necesarios para mantener la integridad y calidad de los productos transportados. Este proceso incluye:":"冷藏车认证是一个技术性和系统性的过程，旨在确保用于运输药品、食品和生物制品等温度敏感产品的车辆满足必要的要求，以保持运输产品的完整性和质量。该过程包括：",
+    "Verificación de equipos: Asegurarse de que los sistemas de refrigeración del vehículo funcionen correctamente y puedan mantener la temperatura requerida durante el transporte.":"设备验证：确保车辆的制冷系统正常工作，并能在运输过程中保持所需的温度。",
+    "Pruebas de temperatura: Realizar pruebas de mapeo térmico para verificar la uniformidad de la temperatura en todo el compartimento de carga, asegurando que no haya puntos calientes o fríos que puedan comprometer los productos.":"温度测试：进行热映射测试，以验证整个货物舱内温度的均匀性，确保没有热点或冷点可能会影响产品。",
+    "Validación de procedimientos: Asegurar que los procedimientos de carga, descarga y transporte cumplan con las normativas y estándares de calidad específicos de la industria.":"程序验证：确保装载、卸载和运输程序符合行业特定的规范和质量标准。",
+    "Documentación y registros: Mantener registros detallados de todas las pruebas y verificaciones realizadas, incluyendo cualquier mantenimiento y calibración de los equipos de refrigeración.":"文档和记录：保持所有测试和验证的详细记录，包括制冷设备的任何维护和校准。",
+    "Cumplimiento regulatorio: Garantizar que el vehículo y sus sistemas de refrigeración cumplan con las regulaciones y normativas aplicables, tanto nacionales como internacionales, para el transporte de productos refrigerados.":"合规性：确保车辆及其制冷系统符合适用于冷藏产品运输的国家和国际法规和标准。",
+    "Inicio": "开始"
 }

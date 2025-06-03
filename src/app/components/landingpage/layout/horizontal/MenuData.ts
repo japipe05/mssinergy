@@ -63,7 +63,7 @@ const Menuitems = [
         id: uniqueId(),
         title: "Chats",
         icon: 'solar:chat-round-line-line-duotone',
-        href: "/apps/chats",
+        href: "/apps/chats4",
       },
       {
         id: uniqueId(),

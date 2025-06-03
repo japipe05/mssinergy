@@ -47,7 +47,7 @@ import { Icon } from "@iconify/react";
         </MenuHeading>
         <MenuItem>
         <a className="ui-dropdown-item" href="/support">
-            Documentation
+            Documentation2
         </a>
         </MenuItem>
         <MenuItem>

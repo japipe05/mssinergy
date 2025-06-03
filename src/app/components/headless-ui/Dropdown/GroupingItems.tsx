@@ -53,7 +53,7 @@ const GroupingItems = () => {
               </MenuHeading>
               <MenuItem>
                 <a className="ui-dropdown-item" href="/support">
-                  Documentation
+                  Documentation1
                 </a>
               </MenuItem>
               <MenuItem>

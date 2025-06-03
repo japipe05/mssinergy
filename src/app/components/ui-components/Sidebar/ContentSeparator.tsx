@@ -36,9 +36,7 @@ const ContentSeparator = () => {
               <Sidebar.Item href="#" icon={() => <IconWorldUpload size={20} className="me-3" />}>
                 Upgrade to Pro
               </Sidebar.Item>
-              <Sidebar.Item href="#" icon={() => <IconFileText size={20} className="me-3" />}>
-                Documentation
-              </Sidebar.Item>
+              
               <Sidebar.Item
                 href="#"
                 icon={() => <IconInfoSquareRounded size={20} className="me-3" />}
@@ -76,7 +74,7 @@ const ContentSeparator = () => {
                 Upgrade to Pro
               </Sidebar.Item>
               <Sidebar.Item href="#" icon={() => <IconFileText size={20} className="me-3" />}>
-                Documentation
+                Documentation8
               </Sidebar.Item>
               <Sidebar.Item
                 href="#"

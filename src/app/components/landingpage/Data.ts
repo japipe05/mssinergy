@@ -105,7 +105,7 @@ const AppsDemos: DemoTypes[] = [
     type: false,
     img: img7,
     name: "Chat App",
-    link: "/apps/chats",
+    link: "/apps/chats1",
   },
   {
     type: false,
@@ -355,7 +355,7 @@ const appsMegamenu: DemosMegaMenuTypes[] = [
   {
       img: img7,
       name: 'Chat App',
-      link: '/apps/chats'
+      link: '/apps/chats2'
   },
   {
       img: img8,

@@ -144,7 +144,7 @@ const SidebarContent: MenuitemsType[] = [
       id: uniqueId(),
       title: "Chats",
       icon: "solar:chat-round-line-line-duotone",
-      href: "/apps/chats",
+      href: "/apps/chats3",
     },
     {
       title: "User Profile1",
