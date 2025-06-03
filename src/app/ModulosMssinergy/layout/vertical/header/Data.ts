@@ -11,58 +11,83 @@ interface appsLinkType {
 
 const appsLink: appsLinkType[] = [
   {
-    href: "/apps/chats",
+    href: "/servicocalibracion",
     title: "Servicio de Calibraciones",
     subtext: "",
     avatar: `/images/svgs/msicon-sv-cb.svg`,
   },
   {
-    href: "/apps/chats",
+    href: "/labtemperatura",
     title: "Laboratorio de temperatura",
     subtext: "",
     avatar: `/images/svgs/msicon-lb-tp.svg`,
   },
   {
-    href: "/apps/chats",
+    href: "/labhumedad",
     title: "Laboratorio de humedad relativa",
     subtext: "",
     avatar: `/images/svgs/msicon-lb-hd.svg`,
   },
   {
-    href: "/apps/chats",
+    href:  "/sistemaccritico",
     title: "Calificación de sistemas de apoyo crítico",
     subtext: "",
     avatar: `/images/svgs/msicon-cb-st.svg`,
   },
   {
-    href: "/apps/chats",
+    href: "/isotermico",
     title: "Calificaciones isotérmicos",
     subtext: "",
     avatar: `/images/svgs/msicon-cb-it.svg`,
   },
   {
-    href: "/apps/chats",
+    href: "/mapeotermico",
     title: "Mapeos Térmicos",
     subtext: "",
     avatar: `/images/svgs/msicon-mp-tm.svg`,
   },
   {
-    href: "/apps/chats",
+    href: "/calificacionvehiculos",
     title: "Calificación de vehículos",
     subtext: "",
     avatar: `/images/svgs/msicon-cb-vh.svg`,
   },
   {
-    href: "/apps/ecommerce/shop",
+    href:"/esterilizaciones",
     title: "Esterilizaciones",
     subtext: "",
     avatar: `/images/svgs/msicon-est-zn.svg`,
   },
   {
-    href: "/apps/ecommerce/shop",
+    href: "/consultoria",
     title: "Servicios de consultoría",
     subtext: "",
     avatar: `/images/svgs/msicon-sv-cl.svg`,
+  },
+  {
+    href: "/cotizacion",
+    title: "Cotización",
+    subtext: "",
+    avatar: `/images/svgs/icon-phone.svg`,
+  },
+  {
+    href: "/pqrs",
+    title: "PQRS",
+    subtext: "",
+    avatar: `/images/svgs/icon-dd-cart.svg`,
+  },
+  {
+    href: "/contactanos",
+    title: "Contactanos",
+    subtext: "",
+    avatar: `/images/svgs/msicon-sv-cb.svg`,
+  }
+  ,
+  {
+    href: "/blog",
+    title: "Blog",
+    subtext: "",
+    avatar: `/images/svgs/icon-connect.svg`,
   }
 ];
 

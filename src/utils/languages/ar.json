@@ -192,5 +192,18 @@
     "Calificación de equipos de producción.": "تأهيل معدات الإنتاج.",
     "Proyección de proceso de acreditación en calibración de equipos de diferencial de presión.": "توقع عملية اعتماد معايرة معدات قياس الضغط التفاضلي.",
     "Proyección del proceso de acreditación en magnitud de temperatura y humedad relativa.": "توقع عملية اعتماد قياس درجة الحرارة والرطوبة النسبية.",
-    "Línea del Tiempo": "خط الزمن"
+    "Línea del Tiempo": "خط الزمن",
+    "Cotización": "اقتباس",
+    "PQRS": "PQRS",
+    "Contactanos": "اتصل بنا",
+    "La calificación de vehículos refrigerados es un proceso técnico y sistemático que asegura que los vehículos utilizados para el transporte de productos sensibles a la temperatura, como medicamentos, alimentos y productos biológicos, cumplan con los requisitos necesarios para mantener la integridad y calidad de los productos transportados. Este proceso incluye:":"تأهيل المركبات المبردة عملية فنية ومنهجية تضمن استيفاء المركبات المستخدمة لنقل المنتجات الحساسة للحرارة، مثل الأدوية والأغذية والمنتجات البيولوجية، للمتطلبات اللازمة للحفاظ على سلامة وجودة المنتجات المنقولة. وتشمل هذه العملية ما يلي:",
+    "Verificación de equipos: Asegurarse de que los sistemas de refrigeración del vehículo funcionen correctamente y puedan mantener la temperatura requerida durante el transporte.":"التحقق من المعدات: التأكد من أن أنظمة التبريد في المركبة تعمل بشكل صحيح ويمكنها الحفاظ على درجة الحرارة المطلوبة أثناء النقل.",
+    "Pruebas de temperatura: Realizar pruebas de mapeo térmico para verificar la uniformidad de la temperatura en todo el compartimento de carga, asegurando que no haya puntos calientes o fríos que puedan comprometer los productos.":"اختبارات درجة الحرارة: إجراء اختبارات رسم الخرائط الحرارية للتحقق من تجانس درجة الحرارة في جميع أنحاء حجرة التحميل، مما يضمن عدم وجود نقاط ساخنة أو باردة قد تعرض المنتجات للخطر.",
+    "Validación de procedimientos: Asegurar que los procedimientos de carga, descarga y transporte cumplan con las normativas y estándares de calidad específicos de la industria.":"التحقق من صحة الإجراءات: التأكد من أن إجراءات التحميل والتفريغ والنقل تتوافق مع اللوائح والمعايير المحددة في الصناعة.",
+    "Documentación y registros: Mantener registros detallados de todas las pruebas y verificaciones realizadas, incluyendo cualquier mantenimiento y calibración de los equipos de refrigeración.":"التوثيق والسجلات: الاحتفاظ بسجلات مفصلة لجميع الاختبارات والتحققات التي تم إجراؤها، بما في ذلك أي صيانة ومعايرة لأنظمة التبريد.",
+    "Cumplimiento regulatorio: Garantizar que el vehículo y sus sistemas de refrigeración cumplan con las regulaciones y normativas aplicables, tanto nacionales como internacionales, para el transporte de productos refrigerados.":"الامتثال للتنظيم: ضمان أن المركبة وأنظمة التبريد الخاصة بها تتوافق مع اللوائح والمعايير المعمول بها، سواء على المستوى الوطني أو الدولي، لنقل المنتجات المبردة.",
+    "Inicio": "الصفحة الرئيسية"
 }
+
+
+

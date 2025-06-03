@@ -17,14 +17,14 @@ const DemosMenu = () => {
           renderTrigger={() => (
             <div className="relative">
               <span className="py-1.5 px-4 text-base text-darkbody dark:text-darkmuted dark:te font-medium text-ld hover:text-primary hover:bg-lightprimary rounded-full flex justify-center items-center cursor-pointer group-hover/menu:bg-lightprimary group-hover/menu:text-primary">
-                Demos <IconChevronDown className="ms-1" size={15} />
+                Demos1 <IconChevronDown className="ms-1" size={15} />
               </span>
             </div>
           )}
         >
           <div className="xl:p-6 p-3">
             <div className="mb-5">
-              <h5 className="card-title">Different Demos</h5>
+              <h5 className="card-title">Different Demos2</h5>
               <p>Included with the Package</p>
             </div>
             <div className="grid xl:grid-cols-5 grid-cols-1 gap-6">

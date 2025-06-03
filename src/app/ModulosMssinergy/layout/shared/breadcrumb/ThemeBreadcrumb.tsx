@@ -2,7 +2,8 @@
 import React from "react";
 import { Breadcrumb } from "flowbite-react";
 import CardBox from "@/app/components/shared/CardBox";
-
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 interface BreadCrumbType {
   title: string;
 }
@@ -10,6 +11,7 @@ interface BreadCrumbType {
 const ThemeBreadcrumb = ({
   title
 }: BreadCrumbType) => {
+  const { t } = useTranslation();
   return (
     <> 
       <CardBox className="mb-6">
@@ -19,7 +21,7 @@ const ThemeBreadcrumb = ({
           </div>
           <Breadcrumb aria-label="Solid background breadcrumb example" className="bg-transparent p-0 dark:bg-transparent">
             <Breadcrumb.Item href="/ModulosMssinergy">
-              <span className="text-primary" >Inicio</span>
+              <span className="text-primary" >{t("Inicio")}</span>
             </Breadcrumb.Item>
             <Breadcrumb.Item >{title}</Breadcrumb.Item>
           </Breadcrumb>
