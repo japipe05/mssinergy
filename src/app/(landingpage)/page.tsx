@@ -31,15 +31,8 @@ export default function page()  {
         <Ticket />
           
           <Footer />
-          <Whastappdemo /> {/* Botón de WhatsApp */}
-      {/* 
-          <ProductDemos />
-          <LpBanners />
-          <AppsDemos/>
-          <AllFeatures />
-          <Ticket />
-          <Footer />
-          */}
+          <Whastappdemo /> 
+      
         </div>
       </Flowbite>
     </>

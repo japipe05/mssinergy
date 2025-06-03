@@ -1,5 +1,6 @@
 {
     "Quíenes somos": "我们是谁",
+    "Linea del Tiempo": "时代线",
     "Metrología": "计量学",
     "Solicita tú Servicio": "请求您的服务",
     "Servicios": "服务",
@@ -174,6 +175,21 @@
     "Select": "選擇",
     "Switch": "轉變",
     "Textarea": "文字區",
-    "Combobox": "組合框"
-
+    "Combobox": "組合框",
+    "Misión": "使命",
+    "Ms Sinergy SAS, es una organización que direcciona las áreas de metrología (magnitud de presión) y ensayos, en los sectores industriales, farmacéutico, alimentario, hospitalario y veterinario, manteniéndose a la vanguardia de las nuevas tecnologías a través de la implementación de metodologías ágiles con base a una mejora continua en los procesos generando la satisfacción y desarrollo sostenible de sus clientes.":"Sinergy SAS 是一家专注于工业、制药、食品、医院和兽医领域计量（压力大小）和测试的组织。该公司通过实施基于持续流程改进的敏捷方法，始终处于新技术的前沿，从而提高客户满意度并实现可持续发展。",
+    "Visión": "想象",
+    "La organización Ms Sinergy SAS, ejecutará para el 2024 la acreditación ante el Organismo Nacional de Acreditación de Colombia “ONAC”. Del área de calibraciones, obteniendo como ello la integración a nivel nacional e internacional para la prestación del servicio de metrología – magnitud de presión diferencial. El laboratorio de ensayos debe alinearlo a las metodologías que “ONAC” requiere para una futura ampliación en el esquema acreditado.": "Ms Sinergy SAS 机构将于 2024 年获得哥伦比亚国家认证机构 (ONAC) 的认证。该认证还将涵盖校准领域，从而实现差压量级计量服务在国内和国际上的一体化。测试实验室必须使其测试符合 ONAC 要求的方法，以便未来能够扩展至认证体系。",
+    "Inicio de actividades con calificaciones y ensayos.": "开始资格认证和测试活动。",
+    "Política de Calidad": "质量政策",
+    "Ms Sinergy S.A.S., somos un laboratorio altamente comprometido con la calidad y la excelencia en nuestros servicios. Nos acogemos a las metodologías como: BPM, BPL, BPA Y BPD para garantizar la satisfacción total de nuestros clientes. Adoptamos un enfoque de mejora continua, buscando constantemente optimizar nuestros procesos y servicios para ser más eficientes, efectivos e innovadores. Asimismo, nos comprometemos a cumplir con los lineamientos establecidos por la ISO/IEC 17025:2017 y a seguir las regulaciones impuestas por entes reguladores y organizaciones que otorgan reconocimiento. Contamos con un equipo altamente capacitado y en constante formación, asegurando la competencia profesional en todas las áreas. Buscamos la mejora continua, integrando soluciones avanzadas para optimizar nuestros procesos y servicios. Mantenemos la imparcialidad, confidencialidad e integridad en nuestras operaciones. Nuestro compromiso es ofrecer resultados confiables, precisos en constante mejora, consolidándonos como líderes en la industria.":"Ms Sinergy S.A.S. 是一家高度致力于质量和卓越服务的实验室。我们采用 BPM、BPL、BPA 和 BPD 等方法，确保客户的完全满意。我们采用持续改进的方法，不断优化我们的流程和服务，以提高效率、有效性和创新性。同时，我们承诺遵守 ISO/IEC 17025:2017 规定的准则，并遵循监管机构和认可组织施加的规定。我们拥有一支高素质、不断培训的团队，确保各领域的专业能力。我们追求持续改进，整合先进解决方案以优化我们的流程和服务。我们在运营中保持公正、保密和诚信。我们的承诺是提供可靠、准确且不断改进的结果，使我们在行业中巩固领导地位。",
+    "Contáctanos": "联系我们",
+    "Llamar a": "致电",
+    "copyright todos los derechos reservados": "版权所有，保留所有权利",
+    "Expansión de servicios en el territorio nacional.": "在国家领土上扩展服务。",
+    "Inicio de la calificación de vehículos de transporte en cadena de frío.": "开始冷链运输车辆的认证。",
+    "Calificación de equipos de producción.": "生产设备认证。",
+    "Proyección de proceso de acreditación en calibración de equipos de diferencial de presión.": "差压设备校准认证流程的预期。",
+    "Proyección del proceso de acreditación en magnitud de temperatura y humedad relativa.": "温度和相对湿度量级认证流程的预期。",
+    "Línea del Tiempo": "时间线"
 }
