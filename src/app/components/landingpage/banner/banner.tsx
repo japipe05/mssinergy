@@ -95,10 +95,7 @@ const banner = () => {
               <h4 className="mb-3 font-bold text-dark dark:text-white text-[40px]">10+</h4>
               <span className="text-body dark:text-darkmuted textt-sm font-medium" >{t("Clientes")}</span>
             </div>
-            <div className="col-sm-3 col-6 col-lg-5">
-              <h4 className="mb-3 font-bold text-dark dark:text-white text-[40px]">4+</h4>
-              <span className="text-body dark:text-darkmuted textt-sm font-medium text-nowrap" >{t("Clientes")}</span>
-            </div>
+            
           </div>
         </div>
       </div>
