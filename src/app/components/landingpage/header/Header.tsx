@@ -24,10 +24,10 @@ const Header = () => {
           <Navbar.Collapse className="xl:block hidden">
             {/*<DemosMenu />
             <PagesMenu />*/}
-            <Navbar.Link as={Link} href="#demos" >
+            <Navbar.Link as={Link} href="/#demos" >
               {t("Quíenes somos")}
             </Navbar.Link>
-            <Navbar.Link as={Link} href="#lineatiempo" >
+            <Navbar.Link as={Link} href="/#lineatiempo" >
               {t("Linea del Tiempo")}
             </Navbar.Link>
             <ServicioMenu />

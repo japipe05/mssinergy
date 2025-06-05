@@ -1,6 +1,8 @@
 "use client";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector"; // ✅ importar
+
 import spanish from "./languages/es.json";
 import english from "./languages/en.json";
 import portuguese from "./languages/pt.json";
@@ -9,33 +11,26 @@ import arabic from "./languages/ar.json";
 import chinese from "./languages/ch.json";
 
 const resources = {
-  es: {
-    translation: spanish,
-  },
-  en: {
-    translation: english,
-  },
-  pt: {
-    translation: portuguese,
-  },
-  fr: {
-    translation: french,
-  },
-  ar: {
-    translation: arabic,
-  },
-  ch: {
-    translation: chinese,
-  },
+  es: { translation: spanish },
+  en: { translation: english },
+  pt: { translation: portuguese },
+  fr: { translation: french },
+  ar: { translation: arabic },
+  ch: { translation: chinese },
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(LanguageDetector) // ✅ para detectar y persistir idioma
+  .use(initReactI18next)
   .init({
     resources,
-    lng: "es",
+    fallbackLng: "es", // ✅ si no detecta, usa español
+    detection: {
+      order: ["localStorage", "navigator", "htmlTag"],
+      caches: ["localStorage"],
+    },
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false,
     },
   });
 
