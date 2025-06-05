@@ -11,11 +11,9 @@ const CalificacionVehiculos = () => {
   const { t } = useTranslation();
 
   return (
-    <ProductProvider>
+     <section className="py-12 md:py-20 dark:bg-dark">
+      <div className="container mx-auto px-4">
       <ThemeBreadcrumb title={t("Calificación de vehículos")} />
-
-      <section className="py-12 md:py-20 bg-gray-50 dark:bg-dark">
-        <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-10">
             {/* Imagen/Slider */}
             <div
@@ -61,7 +59,7 @@ const CalificacionVehiculos = () => {
           </div>
         </div>
       </section>
-    </ProductProvider>
+    
   );
 };
 

@@ -32,39 +32,32 @@ const ServicioMenu = () => {
           <div className="lg:col-span-8 col-span-12 flex items-stretch lg:px-5 lg:pr-0 px-0 py-5">
             <div className="grid grid-cols-12 lg:gap-3 w-full">
               {AppsData.appsLink.map((links, index) => (
-                <div
-                  className="col-span-12 lg:col-span-6 flex items-stretch"
-                  key={index}
-                >
-                  <ul>
-                    <li>
-                      {/* ✅ Usamos un <Link> dentro de Dropdown.Item */}
-                      <Dropdown.Item className="!p-0 !bg-transparent">
-                        <Link
-                          href={links.href}
-                          className="flex gap-3 items-center hover:text-primary group relative w-full"
-                        >
-                          <span className="bg-lightsecondary dark:bg-lightprimary h-10 w-10 flex justify-center items-center rounded-full">
-                            <Image
-                              src={links.avatar}
-                              width={20}
-                              height={20}
-                              alt="materialm"
-                            />
-                          </span>
-                          <div>
-                            <h6 className="font-semibold text-sm text-ld group-hover:text-primary mb-1">
-                              {t(links.title)}
-                            </h6>
-                            <p className="text-xs text-link dark:text-darkmuted opacity-90 font-medium">
-                              {links.subtext}
-                            </p>
-                          </div>
-                        </Link>
-                      </Dropdown.Item>
-                    </li>
-                  </ul>
-                </div>
+               <div className="col-span-12 lg:col-span-6 flex items-stretch" key={index}>
+  <Dropdown.Item className="!p-0 !bg-transparent">
+    <Link
+      href={links.href}
+      className="flex gap-3 items-center hover:text-primary group relative w-full"
+    >
+      <span className="bg-lightsecondary dark:bg-lightprimary h-10 w-10 flex justify-center items-center rounded-full">
+        <Image
+          src={links.avatar}
+          width={20}
+          height={20}
+          alt="materialm"
+        />
+      </span>
+      <div className="text-left">
+        <h6 className="font-semibold text-sm text-ld group-hover:text-primary mb-1">
+          {t(links.title)}
+        </h6>
+        <p className="text-xs text-link dark:text-darkmuted opacity-90 font-medium">
+          {links.subtext}
+        </p>
+      </div>
+    </Link>
+  </Dropdown.Item>
+</div>
+
               ))}
             </div>
           </div>

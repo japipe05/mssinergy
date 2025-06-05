@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import TitleCard from "@/app/components/shared/TitleBorderCard";
 import BasicTable1 from "@/app/components/tables/basic/mstablasvcalibra";
@@ -10,24 +11,27 @@ import ThemeBreadcrumb from "../../../components/landingpage/layout/shared/bread
 import CardBox from "@/app/components/shared/CardBox";
 import ProductDescsvtpt from "@/app/components/apps/servicios/productDetail/ProductDescsvtpt";
 import { ProductProvider } from '@/app/context/Ecommercecontext/index';
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 
-export const metadata: Metadata = {
-  title: "Tabla",
-  description: "Tabla de servicios de calibración",
-};
 
 
 const labhumedad = () => {
+    const { t } = useTranslation();
   return (
-    <>
-      <ProductProvider>
-      <ThemeBreadcrumb title="Laboratorio de humedad relativa"/>
-      {/* Description Tabs Products */}
-      <CardBox className="mt-[30px] pt-2">
-          <ProductDescsvtpt />
-        </CardBox>
-        </ProductProvider>
-    </>
+   <section className="min-h-screen py-12 md:py-20 dark:bg-dark">
+      <div className="container mx-auto px-4">
+        <ThemeBreadcrumb title={t("Servicio de Calibraciones")} />
+        <div className="mt-10 text-center py-10 px-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
+          <h1 className="text-2xl font-bold text-primary mb-4">
+            {t("Esta sección está en construcción")}
+          </h1>
+          <p className="text-gray-600 dark:text-gray-300">
+            {t("Estamos trabajando para ofrecerte esta información pronto.")}
+          </p>
+        </div>
+      </div>
+    </section>
   );
 };
 

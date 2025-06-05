@@ -7,7 +7,11 @@ import customTheme from "@/utils/theme/custom-theme";
 import { CustomizerContextProvider } from "./context/customizerContext";
 import "./api/index";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  preload: false, // 🔧 evita precarga en compilación
+});
 
 export const metadata: Metadata = {
   title: "Adminpro Starterkit - Nextjs",
