@@ -12,11 +12,10 @@ import React, { useState, ChangeEvent } from "react";
 import TitleCard from "@/app/components/shared/TitleBorderCard";
 import { HiInformationCircle, HiCheckCircle, HiExclamationCircle } from "react-icons/hi";
 import emailjs from "@emailjs/browser";
-import { time } from "console";
 import { useTranslation } from "react-i18next";
 import "@/utils/i18n";
-import { ca } from "date-fns/locale";
 import ThemeBreadcrumb from "@/app/components/landingpage/layout/shared/breadcrumb/ThemeBreadcrumb";
+
 const PQRS = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
@@ -30,7 +29,7 @@ const PQRS = () => {
     nombre: "",
     cargo: "",
     empresa: "",
-    correo:"",
+    correo: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -51,24 +50,23 @@ const PQRS = () => {
 
     const templateParams = {
       from_name: "PQRS desde la web",
-      nombre_var: "PQRS desde la web 15 días hábiles para la respuesta: "+formData.correo,
-      area: "🔹 Área: "+formData.area,
-      solicitud: "📌 Tipo de solicitud: "+formData.solicitud,
-      motivo: "❓ Motivo: "+formData.motivo,
-      descripcion: "📝 Descripción de la solicitud: "+formData.descripcion,
-      nombre: "👤 Nombre: "+formData.nombre,
-      tipoDocumento: "🆔 Tipo de Documento: "+formData.tipoDocumento,
-      numeroDocumento: "📄 Número de Documento: "+formData.numeroDocumento,
-      cargo: "💼 Cargo: "+formData.cargo,
-      empresa: "🏢 Empresa: "+formData.empresa,
+      nombre_var: "PQRS desde la web 15 días hábiles para la respuesta: " + formData.correo,
+      area: "🔹 Área: " + formData.area,
+      solicitud: "📌 Tipo de solicitud: " + formData.solicitud,
+      motivo: "❓ Motivo: " + formData.motivo,
+      descripcion: "📝 Descripción de la solicitud: " + formData.descripcion,
+      nombre: "👤 Nombre: " + formData.nombre,
+      tipoDocumento: "🆔 Tipo de Documento: " + formData.tipoDocumento,
+      numeroDocumento: "📄 Número de Documento: " + formData.numeroDocumento,
+      cargo: "💼 Cargo: " + formData.cargo,
+      empresa: "🏢 Empresa: " + formData.empresa,
       reply_to: formData.correo,
       to_email: toEmail,
     };
 
-
     try {
       await emailjs.send(serviceId, templateId, templateParams, userId);
-      setAlert({ type: "success", message: "Correo enviado correctamente" });
+      setAlert({ type: "success", message: t("Correo enviado correctamente") });
       setFormData({
         from_name: "",
         area: "",
@@ -80,10 +78,10 @@ const PQRS = () => {
         nombre: "",
         cargo: "",
         empresa: "",
-        correo:"",
+        correo: "",
       });
     } catch (error) {
-      setAlert({ type: "error", message: "Hubo un error al enviar el correo" });
+      setAlert({ type: "error", message: t("Hubo un error al enviar el correo") });
     } finally {
       setLoading(false);
       setTimeout(() => setAlert(null), 4000);
@@ -91,11 +89,11 @@ const PQRS = () => {
   };
 
   return (
-    <section className="min-h-screen py-12 px-4 bg-white dark:bg-black text-gray-800 dark:text-white">
+    <section className="min-h-screen py-12 px-4 dark:bg-dark">
       <div className="max-w-4xl mx-auto">
-        
-        
-          <ThemeBreadcrumb title={t("PQR")} />
+        <ThemeBreadcrumb title={t("PQR")} />
+
+        <TitleCard title={t("PQR")}>
           <div className="pb-6 space-y-4">
             <Alert color="lightprimary" icon={HiInformationCircle}>
               <span className="font-medium text-base">{t("Información PQR")}</span>
@@ -112,30 +110,46 @@ const PQRS = () => {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6">
-            {/* Campos */}
+          <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6 text-base font-medium">
             {[
               {
                 id: "area",
                 label: t("Área"),
                 type: "select",
-                options: ["Laboratorio de Calibraciones", "Laboratorio de Ensayos", "Laboratorio de temperatura y humedad relativa"],
+                options: [
+                  t("Laboratorio de Calibraciones"),
+                  t("Laboratorio de Ensayos"),
+                  t("Laboratorio de temperatura y humedad relativa"),
+                ],
               },
               {
                 id: "solicitud",
                 label: t("Solicitud"),
                 type: "select",
-                options: ["Petición", "Queja", "Reclamo"],
+                options: [t("Petición"), t("Queja"), t("Reclamo")],
               },
-              { id: "motivo", label: t("Motivo"), type: "text" },
-              { id: "descripcion", label: t("Descripción de la solicitud"), type: "textarea" },
+              {
+                id: "motivo",
+                label: t("Motivo"),
+                type: "text",
+              },
+              {
+                id: "descripcion",
+                label: t("Descripción de la solicitud"),
+                type: "textarea",
+              },
               {
                 id: "tipoDocumento",
                 label: t("Tipo de documento"),
                 type: "select",
-                options: ["Cédula de ciudadanía", "Cédula de extranjería", "NIT", "Pasaporte"],
+                options: [
+                  t("Cédula de ciudadanía"),
+                  t("Cédula de extranjería"),
+                  t("NIT"),
+                  t("Pasaporte"),
+                ],
               },
-              { id: "numeroDocumento", label: t("Número de documento"), type: "number" },
+              { id: "numeroDocumento", label: t("Número de documento"), type: "text" },
               { id: "nombre", label: t("Nombre"), type: "text" },
               { id: "cargo", label: t("Cargo"), type: "text" },
               { id: "empresa", label: t("Empresa"), type: "text" },
@@ -143,7 +157,7 @@ const PQRS = () => {
             ].map(({ id, label, type, options }) => (
               <div
                 key={id}
-                className={`${["descripcion"].includes(id) || ["motivo"].includes(id) ? "col-span-12" : "sm:col-span-6 col-span-12"}`}
+                className={`${["descripcion", "motivo"].includes(id) ? "col-span-12" : "sm:col-span-6 col-span-12"}`}
               >
                 <Label htmlFor={id} value={label} className="text-base font-medium dark:text-white" />
                 {type === "select" ? (
@@ -155,7 +169,7 @@ const PQRS = () => {
                     onChange={handleChange}
                     className="mt-1"
                   >
-                    <option value="" disabled>Seleccione una opción</option>
+                    <option value="" disabled>{t("Seleccione una opción")}</option>
                     {options!.map((opt) => (
                       <option key={opt}>{opt}</option>
                     ))}
@@ -174,7 +188,7 @@ const PQRS = () => {
                   <TextInput
                     id={id}
                     name={id}
-                    type="text"
+                    type={type === "number" ? "number" : "text"}
                     required
                     value={(formData as any)[id]}
                     onChange={handleChange}
@@ -190,11 +204,11 @@ const PQRS = () => {
                 disabled={loading}
                 className="rounded-md bg-primary hover:bg-primaryemphasis text-white w-full py-2 transition"
               >
-                {loading ? t('Cargando...') : t('Enviar')}
+                {loading ? t("Cargando...") : t("Enviar")}
               </Button>
             </div>
           </form>
-        
+        </TitleCard>
       </div>
     </section>
   );

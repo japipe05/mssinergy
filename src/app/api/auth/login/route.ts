@@ -35,7 +35,7 @@ export async function POST(req: Request) {
     const message = error instanceof Error ? error.message : 'Error desconocido';
     logger.info(`❌ Error... <1> ${seg} ${message}`);
 
-    return NextResponse.json({ error: "Error Conexion" }, { status: 401 });
+    return NextResponse.json({ error: error.message }, { status: 401 });
   }
 }
 

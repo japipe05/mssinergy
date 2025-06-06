@@ -123,7 +123,7 @@ const tableData = [
 const servicocalibracion = () => {
   const { t } = useTranslation();
   return (
-    
+     
       <section className="min-h-screen py-12 md:py-20 dark:bg-dark">
       <div className="container mx-auto px-4">
         <ThemeBreadcrumb title={t("Servicio de Calibraciones")} />
