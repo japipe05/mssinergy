@@ -25,9 +25,7 @@ const Contactanos = () => {
   });
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -35,7 +33,6 @@ const Contactanos = () => {
     e.preventDefault();
     setLoading(true);
 
-    const seg = 'src\\app\\landingpage\\general\\contactanos\\page.tsx';
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
     const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID!;
@@ -44,9 +41,9 @@ const Contactanos = () => {
     const templateParams = {
       from_name: "Contactanos desde la web",
       nombre_var: "Contactanos desde la web",
-      area: "🔹 Título: "+formData.titulo,
-      solicitud: "📌 Correo electrónico: "+formData.mail,
-      motivo: "📝 Descripción de la solicitud: "+formData.descripcion,
+      area: "🔹 Título: " + formData.titulo,
+      solicitud: "📌 Correo electrónico: " + formData.mail,
+      motivo: "📝 Descripción de la solicitud: " + formData.descripcion,
       reply_to: formData.mail,
       to_email: toEmail,
     };
@@ -59,21 +56,21 @@ const Contactanos = () => {
       setAlert({ type: "error", message: t("Hubo un error al enviar el correo") });
     } finally {
       setLoading(false);
-      setTimeout(() => setAlert(null), 4000); // Oculta la alerta después de 4 segundos
+      setTimeout(() => setAlert(null), 4000);
     }
   };
 
   return (
-    <section className="min-h-screen py-12 px-4 dark:bg-black text-body dark:text-white">
+    <section className="min-h-screen py-12 px-4 dark:bg-dark">
       <div className="max-w-4xl mx-auto">
         <ThemeBreadcrumb title={t("Contáctanos")} />
-       
+
+        <TitleCard title={t("Contáctanos")}>
           <div className="pb-6 space-y-4">
             <Alert color="lightprimary" icon={HiInformationCircle}>
               <span className="font-medium text-base">{t("Información de contacto")}</span>
             </Alert>
 
-            {/* ✅ Alerta bonita */}
             {alert && (
               <Alert
                 color={alert.type === "success" ? "success" : "failure"}
@@ -85,7 +82,7 @@ const Contactanos = () => {
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6">
+          <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6 text-base font-medium">
             <div className="sm:col-span-6 col-span-12">
               <Label htmlFor="titulo" value={t("Título")} className="text-base font-medium dark:text-white" />
               <TextInput
@@ -125,15 +122,17 @@ const Contactanos = () => {
               />
             </div>
 
-            <div className="col-span-12 flex items-center gap-4">
-              <Button type="submit"
-                className="rounded-md bg-primary text-white hover:bg-primaryemphasis w-full py-2"
-                disabled={loading}>
-                {loading ? t('Cargando...') : t('Enviar')}
+            <div className="col-span-12">
+              <Button
+                type="submit"
+                disabled={loading}
+                className="rounded-md bg-primary text-white hover:bg-primaryemphasis w-full py-2 transition"
+              >
+                {loading ? t("Cargando...") : t("Enviar")}
               </Button>
             </div>
           </form>
-   
+        </TitleCard>
       </div>
     </section>
   );

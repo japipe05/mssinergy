@@ -12,9 +12,12 @@ import leftBgimg from "/public/images/backgrounds/leaf-left.png";
 import Image from "next/image";
 import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n"; // Asegúrate de tener esta línea para inicializar i18next
 
 const BoxedLogin = () => {
   const router = useRouter();
+  const { t } = useTranslation(); // Hook de traducción
 
   useEffect(() => {
     router.prefetch("/auth/auth2/register");
@@ -32,12 +35,12 @@ const BoxedLogin = () => {
           </div>
           <AuthLogin />
           <div className="flex gap-2 text-base text-dark dark:text-white font-medium mt-6 items-center justify-center">
-            <p>No tienes Cuenta?</p>
+            <p>{t("No tienes Cuenta?")}</p>
             <Link
               href={"/auth/auth2/register"}
               className="text-primary text-sm font-medium"
             >
-              Create una Cuenta
+              {t("Crea una Cuenta")}
             </Link>
           </div>
         </CardBox>

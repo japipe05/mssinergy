@@ -21,7 +21,7 @@ const labhumedad = () => {
   return (
    <section className="min-h-screen py-12 md:py-20 dark:bg-dark">
       <div className="container mx-auto px-4">
-        <ThemeBreadcrumb title={t("Servicio de Calibraciones")} />
+        <ThemeBreadcrumb title={t("Laboratorio de humedad relativa")} />
         <div className="mt-10 text-center py-10 px-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
           <h1 className="text-2xl font-bold text-primary mb-4">
             {t("Esta sección está en construcción")}
