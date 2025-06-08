@@ -346,5 +346,34 @@
     "Resolución 1160 de 2016 – Requisitos de Buenas Prácticas de Manufactura (BPM)": "القرار 1160 لعام 2016 – متطلبات ممارسات التصنيع الجيدة (BPM)",
     "Normas relacionadas con productos farmacéuticos, cosméticos y dispositivos médicos": "المعايير المتعلقة بالمنتجات الصيدلانية والتجميلية والأجهزة الطبية",
     "Lineamientos para certificación de BPM y renovación de registros sanitarios": "إرشادات لشهادة BPM وتجديد السجلات الصحية",
-    "Guías técnicas emitidas por el Invima y adoptadas por la industria": "الإرشادات الفنية الصادرة عن إنفيما والمعتمدة من قبل الصناعة"
+    "Guías técnicas emitidas por el Invima y adoptadas por la industria": "الإرشادات الفنية الصادرة عن إنفيما والمعتمدة من قبل الصناعة",
+    "Iniciar Sesión": "تسجيل الدخول",
+    "¿Ya tienes una cuenta?": "هل لديك حساب بالفعل؟",
+    "Términos y Condiciones de Ms Sinergy S.A.S": "الشروط والأحكام الخاصة بـ Ms Sinergy S.A.S",
+    "Al registrarse en nuestra plataforma, usted acepta cumplir con todos los términos establecidos por Ms Sinergy S.A.S.": "من خلال التسجيل في منصتنا، فإنك توافق على الالتزام بجميع الشروط التي وضعتها Ms Sinergy S.A.S.",
+    "Nos comprometemos a proteger sus datos personales conforme a nuestra política de privacidad...": "نحن ملتزمون بحماية بياناتك الشخصية وفقًا لسياسة الخصوصية الخاصة بنا. سيتم استخدام معلوماتك فقط لأغراض تتعلق بتقديم خدماتنا.",
+    "Usted no podrá usar nuestros servicios para actividades ilegales...": "لا يجوز لك استخدام خدماتنا في أنشطة غير قانونية أو احتيالية أو تنتهك حقوق الغير. نحتفظ بالحق في تعليق الحسابات التي تنتهك هذه الشروط.",
+    "Ms Sinergy S.A.S podrá actualizar estos términos sin previo aviso...": "قد تقوم Ms Sinergy S.A.S بتحديث هذه الشروط دون إشعار مسبق. تقع على عاتق المستخدم مسؤولية مراجعتها بانتظام.",
+    "Si tiene dudas, contáctenos a través del correo soporte@mssinergy.com.": "إذا كانت لديك أي أسئلة، يرجى التواصل معنا عبر البريد الإلكتروني soporte@mssinergy.com.",
+    "Cerrar": "إغلاق",
+    "Cargar Imagen": "تحميل صورة",
+    "Nombre Completo": "الاسم الكامل",
+    "Celular": "رقم الهاتف المحمول",
+    "Acepto los": "أوافق على",
+    "Términos y Condiciones": "الشروط والأحكام",
+    "Crear": "إنشاء",
+    "Debes aceptar los términos para continuar.": "يجب عليك قبول الشروط للمتابعة.",
+    "Por favor, completa el CAPTCHA para continuar.": "يرجى إكمال اختبار CAPTCHA للمتابعة.",
+    "Usuario registrado": "تم تسجيل المستخدم",
+    "Error desconocido": "خطأ غير معروف",
+    "Error inesperado": "خطأ غير متوقع",
+
+    "Digite la contraseña nueva": "أدخل كلمة المرور الجديدة",
+    "Nueva Contraseña": "كلمة المرور الجديدة",
+    "Cambiar contraseña": "تغيير كلمة المرور",
+    "Contraseña actualizada. Redirigiendo...": "تم تحديث كلمة المرور. سيتم تحويلك...",
+    "Error al actualizar contraseña.": "حدث خطأ أثناء تحديث كلمة المرور.",
+    "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "يجب أن تحتوي كلمة المرور على 5 أحرف على الأقل، بما في ذلك أحرف كبيرة وصغيرة وأرقام."
+
+   
 }

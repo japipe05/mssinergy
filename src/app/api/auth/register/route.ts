@@ -67,12 +67,32 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'Usuario registrado correctamente' });
   } catch (error: unknown) {
-    console.error('Error en registro:', error);
-    if (error instanceof Error) {
-      logger.info(`❌ Error... <1> ${seg} ${error.message}`);
-      return NextResponse.json({ error: "Error Conexion" }, { status: 400 });
+  console.error('Error en registro:', error);
+
+  if (error instanceof Error) {
+    logger.info(`❌ Error... <1> ${seg} ${error.message}`);
+    
+    // Error de conexión a MySQL
+    if (
+      typeof error.message === 'string' &&
+      (error.message.includes('Access denied') || error.message.includes('ER_ACCESS_DENIED_ERROR'))
+    ) {
+      return NextResponse.json(
+        { error: 'Error de conexión' },
+        { status: 500 }
+      );
     }
 
-    return NextResponse.json({ error: 'Ocurrió un error inesperado' }, { status: 500 });
+    return NextResponse.json(
+      { error: error.message }, // ✔️ devuelve el mensaje real
+      { status: 400 }
+    );
   }
+
+  return NextResponse.json(
+    { error: 'Ocurrió un error inesperado' }, // fallback
+    { status: 500 }
+  );
+}
+
 }
