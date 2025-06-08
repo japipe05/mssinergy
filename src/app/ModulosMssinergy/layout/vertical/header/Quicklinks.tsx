@@ -4,8 +4,14 @@ import React from "react";
 import * as QuicklinksData from "./Data";
 import { useTranslation } from "react-i18next";
 import '../../../../../utils/i18n';
-const Quicklinks = () => {
+
+type Props = {
+  closeMenu: () => void;
+};
+
+const Quicklinks = ({ closeMenu }: Props) => {
   const { t } = useTranslation();
+
   return (
     <div className="p-5 lg:border-s border-border dark:border-darkborder">
       <h5 className="text-xl font-semibold mb-4 text-dark dark:text-white">
@@ -16,6 +22,7 @@ const Quicklinks = () => {
           <li className="mb-4" key={index}>
             <Link
               href={links.href}
+              onClick={closeMenu}
               className="text-sm font-semibold text-link dark:text-darkmuted hover:text-primary dark:hover:text-primary"
             >
               {t(links.title)}
@@ -26,5 +33,6 @@ const Quicklinks = () => {
     </div>
   );
 };
+
 
 export default Quicklinks;

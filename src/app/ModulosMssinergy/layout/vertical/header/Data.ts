@@ -98,19 +98,19 @@ interface LinkType {
 
 const pageLinks: LinkType[] = [
   {
-    href: "/theme-pages/pricing",
+    href: "/ISO9001",
     title: "ISO 9001",
   },
   {
-    href: "/auth/auth1/login",
+    href: "/ISO17025",
     title: "ISO 17025",
   },
   {
-    href: "/auth/auth1/register",
+    href: "/InformesOMS",
     title: "Informes OMS",
   },
   {
-    href: "/auth/auth1/register",
+    href: "/ResolucionesInvima",
     title: "Resoluciones Invima",
   },
 ];

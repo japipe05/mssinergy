@@ -327,5 +327,37 @@
     "Recuperar contraseña":"Récupérer le mot de passe",
     "Ingrese el Email para recuperar contraseña":"Entrez votre adresse email pour récupérer votre mot de passe.",
     "Revisa tu correo para continuar el cambio de contraseña.":"Consultez votre courrier électronique pour continuer à modifier votre mot de passe.",
-    "Error al enviar correo. Verifica tu email.":"Erreur lors de l'envoi de l'e-mail. Veuillez vérifier votre boîte de réception."
+    "Error al enviar correo. Verifica tu email.":"Erreur lors de l'envoi de l'e-mail. Veuillez vérifier votre boîte de réception.",
+    "Sistema de Gestión de la Calidad - ISO 9001": "Système de gestion de la qualité - ISO 9001",
+  "La norma ISO 9001 establece los requisitos para un sistema de gestión de la calidad. Es utilizada por organizaciones que buscan garantizar su capacidad para proporcionar productos y servicios que cumplan consistentemente con los requisitos del cliente y los reglamentarios aplicables.": "La norme ISO 9001 définit les exigences relatives à un système de gestion de la qualité. Elle est utilisée par les organisations souhaitant garantir leur capacité à fournir constamment des produits et services conformes aux exigences des clients et aux exigences réglementaires applicables.",
+  "Enfoque basado en procesos y mejora continua": "Approche basée sur les processus et amélioration continue",
+  "Participación del personal y liderazgo organizacional": "Participation du personnel et leadership organisationnel",
+  "Gestión del riesgo y toma de decisiones basada en evidencia": "Gestion des risques et prise de décision fondée sur des preuves",
+  "Relación beneficiosa con proveedores y partes interesadas": "Relation mutuellement bénéfique avec les fournisseurs et les parties prenantes",
+  "Puedes consultar más información en los siguientes enlaces oficiales:": "Vous pouvez consulter plus d'informations via les liens officiels suivants :",
+
+  "Requisitos generales para la competencia de los laboratorios de ensayo y calibración - ISO 17025": "Exigences générales concernant la compétence des laboratoires d’essai et d’étalonnages - ISO 17025",
+  "La norma ISO/IEC 17025 especifica los requisitos generales para la competencia, imparcialidad y operación coherente de los laboratorios. Aplica tanto a laboratorios de ensayo como de calibración y es esencial para asegurar resultados técnicamente válidos.": "La norme ISO/IEC 17025 définit les exigences générales relatives à la compétence, l’impartialité et le fonctionnement cohérent des laboratoires. Elle s'applique aussi bien aux laboratoires d’essai qu’à ceux d’étalonnage, et elle est essentielle pour garantir des résultats techniquement valides.",
+  "Consulta los recursos oficiales y la versión PDF de la norma:": "Consultez les ressources officielles et la version PDF de la norme :",
+  "Aseguramiento de la calidad en los procesos de ensayo y calibración": "Assurance qualité dans les processus d’essai et d’étalonnage",
+  "Gestión de riesgos y trazabilidad de las mediciones": "Gestion des risques et traçabilité des mesures",
+  "Confianza en los resultados y en la competencia técnica": "Confiance dans les résultats et la compétence technique",
+  "Cumplimiento con organismos de acreditación nacionales e internacionales": "Conformité avec les organismes d’accréditation nationaux et internationaux",
+
+  "Buenas Prácticas de Fabricación – Informes OMS": "Bonnes pratiques de fabrication – Rapports OMS",
+  "Los Informes de la OMS proporcionan guías técnicas sobre Buenas Prácticas de Fabricación (BPF) y otros estándares internacionales relacionados con la calidad en productos farmacéuticos. Son usados como referencia clave para cumplir con normativas sanitarias y de calidad en múltiples países.": "Les rapports de l'OMS fournissent des lignes directrices techniques sur les Bonnes Pratiques de Fabrication (BPF) ainsi que sur d'autres normes internationales relatives à la qualité des produits pharmaceutiques. Ils servent de référence clé pour se conformer aux réglementations sanitaires et de qualité dans de nombreux pays.",
+  "Accede a los recursos oficiales y documentos técnicos de la OMS:": "Accédez aux ressources officielles et aux documents techniques de l’OMS :",
+  "Guía de Buenas Prácticas de Fabricación (GMP)": "Guide des Bonnes Pratiques de Fabrication (BPF)",
+  "Recomendaciones para la validación y calificación de procesos": "Recommandations pour la validation et la qualification des processus",
+  "Referencias para auditorías regulatorias y autoinspecciones": "Références pour les audits réglementaires et les auto-inspections",
+  "Cumplimiento con estándares internacionales de calidad sanitaria": "Conformité aux normes internationales de qualité sanitaire",
+
+  "Normativa Sanitaria Colombiana – Resoluciones Invima": "Réglementation sanitaire colombienne – Résolutions Invima",
+  "Las resoluciones emitidas por el Invima establecen directrices y requerimientos regulatorios para la producción, control de calidad, y comercialización de productos sujetos a vigilancia sanitaria en Colombia.": "Les résolutions émises par l’Invima établissent des directives et exigences réglementaires pour la production, le contrôle qualité et la commercialisation des produits soumis à une surveillance sanitaire en Colombie.",
+  "Puedes consultar las resoluciones y guías técnicas directamente en los sitios oficiales:": "Vous pouvez consulter les résolutions et les guides techniques directement sur les sites officiels :",
+  "Resolución 1160 de 2016 – Requisitos de Buenas Prácticas de Manufactura (BPM)": "Résolution 1160 de 2016 – Exigences des Bonnes Pratiques de Fabrication (BPF)",
+  "Normas relacionadas con productos farmacéuticos, cosméticos y dispositivos médicos": "Normes relatives aux produits pharmaceutiques, cosmétiques et dispositifs médicaux",
+  "Lineamientos para certificación de BPM y renovación de registros sanitarios": "Lignes directrices pour la certification BPF et le renouvellement des enregistrements sanitaires",
+  "Guías técnicas emitidas por el Invima y adoptadas por la industria": "Guides techniques publiés par l'Invima et adoptés par l'industrie"
+
 }
