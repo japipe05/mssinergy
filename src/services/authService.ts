@@ -18,7 +18,7 @@ interface DBUser extends RowDataPacket {
 export async function registerUser(user: userData) {
   const seg = 'src\\services\\authService.ts';
   try {
-    logger.info(`🛠️ Conectando a MySQL... <1> ${seg}`);
+    //logger.info(`🛠️ Conectando a MySQL... <1> ${seg}`);
 
     // Opcional: validar que no exista usuario con ese correo antes
 // 🔍 Validar que no exista un usuario con ese correo
@@ -28,12 +28,12 @@ export async function registerUser(user: userData) {
     );
 
     if (existingUser.length > 0) {
-      logger.warn(`⚠️ El correo ya está registrado: ${user.usr_correo} <1.1> ${seg}`);
+      //logger.warn(`⚠️ El correo ya está registrado: ${user.usr_correo} <1.1> ${seg}`);
       throw new Error('El correo ya está registrado');
     }
     
     const hashedPassword = await hashPassword(user.usr_credencial);
-    logger.info(`🔐 Password hasheado <2> ${seg}`);
+    //logger.info(`🔐 Password hasheado <2> ${seg}`);
 
     const [rows] = await pool.query(
       `INSERT INTO usuarios (
@@ -50,7 +50,7 @@ export async function registerUser(user: userData) {
       ]
     );
 
-    logger.info(`✅ Usuario insertado <3> ${seg}`);
+    //logger.info(`✅ Usuario insertado <3> ${seg}`);
     return rows;
   } catch (err) {
     logger.error({ err }, `❌ ERROR EN registerUser ${seg}`);

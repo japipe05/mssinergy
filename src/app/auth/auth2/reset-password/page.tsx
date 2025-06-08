@@ -7,8 +7,12 @@ import rightBgimg from "/public/images/backgrounds/leaf-right.png";
 import CardBox from "@/app/components/shared/CardBox";
 import FullLogo from "@/app/ModulosMssinergy/layout/shared/logo/FullLogo";
 import AuthResetPassword from "../../authforms/AuthResetPassword";
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n"; // asegúrate de tener esto
 
 const ResetPassword = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="relative overflow-hidden h-screen bg-lightsubtle dark:bg-dark">
       <div className="absolute start-0 bottom-0 z-1 md:block hidden">
@@ -22,11 +26,10 @@ const ResetPassword = () => {
               <FullLogo />
             </div>
             <p className="text-bodyclr dark:text-darkmuted text-center text-sm font-medium">
-              Digite la contraseña nueva
+              {t("Digite la contraseña nueva")}
             </p>
 
-            {/* 👇 Suspense aquí es clave */}
-            <Suspense fallback={<p className="text-center">Cargando...</p>}>
+            <Suspense fallback={<p className="text-center">{t("Cargando...")}</p>}>
               <AuthResetPassword />
             </Suspense>
           </div>

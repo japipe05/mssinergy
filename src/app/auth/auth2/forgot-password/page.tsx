@@ -18,6 +18,8 @@ import "@/utils/i18n";
 
 const BoxedForgotpwd = () => {
   const { t } = useTranslation();
+
+  
   return (
     <>
       <div className="relative overflow-hidden h-screen bg-lightsubtle dark:bg-dark">

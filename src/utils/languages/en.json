@@ -334,5 +334,32 @@
     "Resolución 1160 de 2016 – Requisitos de Buenas Prácticas de Manufactura (BPM)": "Resolution 1160 of 2016 – Good Manufacturing Practices (GMP) Requirements",
     "Normas relacionadas con productos farmacéuticos, cosméticos y dispositivos médicos": "Regulations related to pharmaceuticals, cosmetics, and medical devices",
     "Lineamientos para certificación de BPM y renovación de registros sanitarios": "Guidelines for GMP certification and sanitary registration renewal",
-    "Guías técnicas emitidas por el Invima y adoptadas por la industria": "Technical guidelines issued by Invima and adopted by the industry"
+    "Guías técnicas emitidas por el Invima y adoptadas por la industria": "Technical guidelines issued by Invima and adopted by the industry",
+     
+  "¿Ya tienes una cuenta?": "Already have an account?",
+  "Términos y Condiciones de Ms Sinergy S.A.S": "Terms and Conditions of Ms Sinergy S.A.S",
+  "Al registrarse en nuestra plataforma, usted acepta cumplir con todos los términos establecidos por Ms Sinergy S.A.S.": "By registering on our platform, you agree to comply with all terms established by Ms Sinergy S.A.S.",
+  "Nos comprometemos a proteger sus datos personales conforme a nuestra política de privacidad...": "We are committed to protecting your personal data in accordance with our privacy policy. Your information will be used solely for purposes related to the provision of our services.",
+  "Usted no podrá usar nuestros servicios para actividades ilegales...": "You may not use our services for illegal, fraudulent, or rights-infringing activities. We reserve the right to suspend accounts that violate these terms.",
+  "Ms Sinergy S.A.S podrá actualizar estos términos sin previo aviso...": "Ms Sinergy S.A.S may update these terms without prior notice. It is the user's responsibility to review them periodically.",
+  "Si tiene dudas, contáctenos a través del correo soporte@mssinergy.com.": "If you have any questions, please contact us at soporte@mssinergy.com.",
+  "Cerrar": "Close",
+  "Cargar Imagen": "Upload Image",
+  "Nombre Completo": "Full Name",
+  "Celular": "Mobile Number",
+  "Acepto los": "I accept the",
+  "Términos y Condiciones": "Terms and Conditions",
+  
+  "Debes aceptar los términos para continuar.": "You must accept the terms to continue.",
+  "Por favor, completa el CAPTCHA para continuar.": "Please complete the CAPTCHA to continue.",
+  "Usuario registrado": "User successfully registered",
+  "Error desconocido": "Unknown error",
+  "Error inesperado": "Unexpected error",
+    "Digite la contraseña nueva": "Enter the new password",
+  "Nueva Contraseña": "New Password",
+  "Cambiar contraseña": "Change Password",
+  "Contraseña actualizada. Redirigiendo...": "Password updated. Redirecting...",
+  "Error al actualizar contraseña.": "Error updating password.",
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "The password must be at least 5 characters long and include uppercase letters, lowercase letters, and numbers."
+
 }
