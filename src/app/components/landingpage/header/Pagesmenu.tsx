@@ -1,7 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import * as AppsData from "@/app/ModulosMssinergy/layout/vertical/header/Data";
 import { IconChevronDown, IconHelp } from "@tabler/icons-react";
@@ -9,6 +9,7 @@ import Quicklinks from "@/app/ModulosMssinergy/layout/vertical/header/Quicklinks
 import { Button, Dropdown } from "flowbite-react";
 
 const PagesMenu = () => {
+  const [open, setOpen] = useState(false);
   return (
 
     <div className="relative group/menu">
@@ -76,9 +77,9 @@ const PagesMenu = () => {
             </div>
           </div>
         </div>
-        <div className="lg:col-span-4 col-span-12  flex items-strech">
-          <Quicklinks />
-        </div>
+        <div className="lg:col-span-4 col-span-12">
+        <Quicklinks closeMenu={() => setOpen(false)} />
+      </div>
       </div>
     </Dropdown>
 

@@ -1,7 +1,7 @@
 "use client";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import * as AppsData from "./Data";
 import Link from "next/link";
 import Quicklinks from "./Quicklinks";
@@ -9,10 +9,11 @@ import { IconHelp } from "@tabler/icons-react";
 import { Button, Drawer } from "flowbite-react";
 import SimpleBar from "simplebar-react";
 
+
 const AppLinks = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleClose = () => setIsOpen(false);
-
+  const [open, setOpen] = useState(false);
   return (
     <>
       <div className="relative group ">
@@ -87,9 +88,9 @@ const AppLinks = () => {
                     </div>
                   </div>
                 </div>
-                <div className="xl:col-span-4 col-span-12  flex items-strech">
-                  <Quicklinks />
-                </div>
+              <div className="lg:col-span-4 col-span-12">
+        <Quicklinks closeMenu={() => setOpen(false)} />
+      </div>
               </div>
             </SimpleBar>
           </Drawer>
