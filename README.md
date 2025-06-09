@@ -175,3 +175,8 @@ root@srv828976:~# docker cp 6097bd696ea4:/app/public/uploads /tmp/uploads
 Successfully copied 894kB to /tmp/uploads
 
 PS D:\Github\Nextjs\mssinergy> scp -r root@46.202.88.181:/tmp/uploads C:\Users\felip\Downloads\registro
+
+
+
+
+docker-compose up --build -d 
