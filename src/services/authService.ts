@@ -61,7 +61,7 @@ export async function registerUser(user: userData) {
 export async function loginUser(email: string, password: string) {
   const seg = 'src\\services\\authService.ts';
   try {
-    logger.info(`🛠️ Conectando a MySQL... <1> ${seg}`);
+    //logger.info(`🛠️ Conectando a MySQL... <1> ${seg}`);
 
     const [rows] = await pool.query<DBUser[]>(
       'SELECT * FROM usuarios WHERE usr_correo = ?',
@@ -70,20 +70,20 @@ export async function loginUser(email: string, password: string) {
 
     const user = rows[0];
 
-    logger.info(`🛠️ Validando correo <2> ${seg}`);
+    //logger.info(`🛠️ Validando correo <2> ${seg}`);
     if (!user) {
-      logger.warn(`📛 Usuario no encontrado: ${email} <3> ${seg}`);
+      //logger.warn(`📛 Usuario no encontrado: ${email} <3> ${seg}`);
       throw new Error('Usuario no encontrado');
     }
 
-    logger.info(`🛠️ Validando credenciales hash MySQL... <4> ${seg}`);
+    //logger.info(`🛠️ Validando credenciales hash MySQL... <4> ${seg}`);
     const isMatch = await comparePasswords(password, user.usr_credencial);
     if (!isMatch) {
-      logger.warn(`🔐 Contraseña inválida para: ${email} <5> ${seg}`);
+      //logger.warn(`🔐 Contraseña inválida para: ${email} <5> ${seg}`);
       throw new Error('Credenciales inválidas');
     }
 
-    logger.info(`✅ Usuario autenticado correctamente: ${email} <6> ${seg}`);
+    //logger.info(`✅ Usuario autenticado correctamente: ${email} <6> ${seg}`);
     return user;
   } catch (err) {
     logger.error({ err, email }, `❌ ERROR en loginUser ${seg}`);
