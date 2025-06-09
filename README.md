@@ -149,3 +149,29 @@ npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-text-align @tipt
 
 git config --global user.name "japipe05"
 git config --global user.email "felipehuchija@gmail.com"
+
+
+
+ssh feliperodriguez96@hotmail.com@46.202.88.181
+
+SSH
+ssh-keygen -t ed25519 -C "feliperodriguez96@hotmail.com"
+y (C:\Users\felip/.ssh/id_ed25519): mssinergy12345key
+
+
+scp -r -i "C:\Users\felip\.ssh\id_ed25519" root@46.202.88.181:/root/public "D:\Descargas\public"
+
+
+scp -r root@46.202.88.181:/tmp/registro /
+
+scp -r root@46.202.88.181:/tmp/registro /ruta/local/donde/quieres/guardar
+
+
+E&8zINh7FJZ-0;No1tWN
+
+
+# migrar archivos
+root@srv828976:~# docker cp 6097bd696ea4:/app/public/uploads /tmp/uploads
+Successfully copied 894kB to /tmp/uploads
+
+PS D:\Github\Nextjs\mssinergy> scp -r root@46.202.88.181:/tmp/uploads C:\Users\felip\Downloads\registro

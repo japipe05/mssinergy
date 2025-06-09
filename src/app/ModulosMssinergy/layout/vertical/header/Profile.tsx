@@ -17,16 +17,21 @@ interface User {
 const Profile = () => {
   const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    axios.get('/api/auth/me')
-      .then(res => setUser(res.data.user))
-      .catch(err => console.error('No autenticado', err));
-  }, []);
+useEffect(() => {
+  axios.get('/api/auth/me')
+    .then(res => {
+      console.log('Respuesta completa del backend:', res);
+      console.log('Datos del usuario:', res.data.user);
+      setUser(res.data.user);
+    })
+    .catch(err => console.error('No autenticado', err));
+}, []);
+
 
   const userName = user?.usr_nombre || 'Cargando...';
   const userEmail = user?.usr_correo || '---';
   const userPhoto = user?.usr_fotografia || '/images/profile/default.jpg';
-
+console.log("***************************"+userPhoto);
   return (
     <div className="relative group/menu">
       <Dropdown
