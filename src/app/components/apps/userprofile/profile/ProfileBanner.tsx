@@ -17,7 +17,8 @@ import Link from "next/link";
 import { Button } from "flowbite-react";
 import ProfileTab from "./ProfileTab";
 import axios from "axios";
-import profileImage from "/public/uploads/registro/1749425921145-3andresfelipe.jpg"
+import profileImage from "/public/images/profile/user-1.jpg"
+
 interface User {
   usr_nombre: string;
   usr_correo: string;
