@@ -42,7 +42,7 @@ const Profile = () => {
               className="rounded-full"
             />
             <div>
-              <h5 className="card-title text-base font-medium dark:text-white text-dark">Tania Andrew</h5>
+              <h5 className="card-title text-base font-medium dark:text-white text-dark">Tania Andrew3</h5>
               <span className="card-subtitle text-muted font-medium dark:text-darkmuted text-sm">Designer</span>
               <p className="card-subtitle mb-0 mt-1 font-medium text-sm flex items-center text-muted dark:text-darkmuted">
                 <Icon

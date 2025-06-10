@@ -55,7 +55,7 @@ const SidebarLayout = () => {
        <Link href="#" className="flex justify-between items-center py-3 px-1 mb-0.5" onClick={handleProfile}>
           <div className="flex items-center hide-profile gap-3">
             <Image src={profileImage} alt="profile-image" width={30} height={30} className="rounded-full  ml-[5px]" />
-             <span className={`text-white shrink-0 whitespace-nowrap font-light hide-menu ${profileDD==="active"?"font-medium":null}`} >Tania andrew</span>
+             <span className={`text-white shrink-0 whitespace-nowrap font-light hide-menu ${profileDD==="active"?"font-medium":null}`} >Tania andrew5</span>
           </div>
            <Icon icon="octicon:chevron-right-24" className={`text-lg hide-menu shrink-0  transition-all text-white ${profileDD==="active"?"rotate-90":null}`} />
         </Link>

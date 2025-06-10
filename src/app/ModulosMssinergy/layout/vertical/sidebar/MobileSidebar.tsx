@@ -92,7 +92,7 @@ const MobileSidebar = () => {
        <Link href="#" className="flex justify-between items-center py-3 px-1 mb-0.5" onClick={handleProfile}>
           <div className="flex items-center hide-profile gap-3">
             <Image src={profileImage} alt="profile-image" width={30} height={30} className="rounded-full  mx-auto" />
-             <span className="text-white font-light hide-menu" >Tania Andrew</span>
+             <span className="text-white font-light hide-menu" >Tania Andrew7</span>
           </div>
            <Icon icon="octicon:chevron-right-24" className={`text-lg hide-menu shrink-0 transition-all text-white ${profileDD==="active"?"rotate-90":null}`} />
         </Link>
