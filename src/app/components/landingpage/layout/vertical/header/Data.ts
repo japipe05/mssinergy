@@ -167,7 +167,7 @@ const MessagesLink: MessageType[] = [
   {
     avatar: avatar1,
     color: "bg-info",
-    title: "Tania Andrew",
+    title: "Tania Andrew2",
     subtitle: "Just see the my new admin!",
     time: "just now",
   },

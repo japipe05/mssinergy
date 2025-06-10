@@ -17,7 +17,7 @@ import Link from "next/link";
 import { Button } from "flowbite-react";
 import ProfileTab from "./ProfileTab";
 import axios from "axios";
-
+import profileImage from "/public/uploads/registro/1749425921145-3andresfelipe.jpg"
 interface User {
   usr_nombre: string;
   usr_correo: string;
@@ -35,6 +35,7 @@ const ProfileBanner = () => {
   useEffect(() => {
   axios.get('/api/auth/me')
     .then(res => {
+       console.log('📷 usr_fotografia:', res.data.user.usr_fotografia);
       setUser(res.data.user);
     })
     .catch(err => {
@@ -57,7 +58,23 @@ const ProfileBanner = () => {
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-4 col-span-12 flex flex-col items-center">
             <Image
-              src={user.usr_fotografia || "/images/profile/default.jpg"}
+              src={ user.usr_fotografia }
+              alt="profile"
+              height={100}
+              width={100}
+              className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
+            />
+
+             <Image
+              src={ profileImage}
+              alt="profile"
+              height={100}
+              width={100}
+              className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
+            />
+
+            <Image
+              src={ "public/uploads/registro/1749425921145-3andresfelipe.jpg"}
               alt="profile"
               height={100}
               width={100}
@@ -65,7 +82,15 @@ const ProfileBanner = () => {
             />
             <h5 className="text-lg mt-3 font-semibold">{user.usr_nombre}</h5>
             
-        
+        {user.usr_fotografia && (
+  <p className="text-xs text-gray-400">Fotografía URL: {user.usr_fotografia}  </p>
+)}
+
+{profileImage && (
+  <p className="text-xs text-gray-400">Fotografía URL: {profileImage.src}</p>
+)}
+
+
           </div>
 
           <div className="lg:col-span-8 col-span-12">

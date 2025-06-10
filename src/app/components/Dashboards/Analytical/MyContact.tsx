@@ -14,7 +14,7 @@ import Image from 'next/image';
   const msgsData = [
     {
       image: user1,
-      name: 'Tania Andrew',
+      name: 'Tania Andrew1',
       emailid: 'info@wrappixel.com',
       date: '10:20 AM',
       badgetype:"bg-success dark:bg-success",
