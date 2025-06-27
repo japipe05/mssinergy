@@ -65,33 +65,7 @@ const ProfileBanner = () => {
               width={100}
               className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
             />
-
-             <Image
-              src={ profileImage}
-              alt="profile"
-              height={100}
-              width={100}
-              className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
-            />
-
-            <Image
-              src={ "public/uploads/registro/1749425921145-3andresfelipe.jpg"}
-              alt="profile"
-              height={100}
-              width={100}
-              className="rounded-full border-4 border-white dark:border-darkborder -mt-16"
-            />
             <h5 className="text-lg mt-3 font-semibold">{user.usr_nombre}</h5>
-            
-        {user.usr_fotografia && (
-  <p className="text-xs text-gray-400">Fotografía URL: {user.usr_fotografia}  </p>
-)}
-
-{profileImage && (
-  <p className="text-xs text-gray-400">Fotografía URL: {profileImage.src}</p>
-)}
-
-
           </div>
 
           <div className="lg:col-span-8 col-span-12">

@@ -31,9 +31,9 @@ const samplePage = () => {
     <>
       
       <div className='grid grid-cols-12 gap-6' >
-        {/*<div className="col-span-12">
+      <div className="col-span-12">
           <TopCards activeCard={true}/>
-        </div>
+        </div> 
         <div className='lg:col-span-9 col-span-12'>
           <SalesOverview height="264px" />
         </div>
@@ -90,7 +90,8 @@ const samplePage = () => {
         </div>
         <div className='lg:col-span-6 col-span-12'>
           <RecentChat/>
-        </div>*/}
+        </div>
+         {/**/}
         </div>
     
 

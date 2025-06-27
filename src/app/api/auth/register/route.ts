@@ -1,9 +1,10 @@
 import { registerUser } from '@/services/authService';
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import fsPromises from 'fs/promises';
-import path from 'path';
+import { s3 } from '@/lib/s3';
 import logger from '@/utils/logger';
+import { uploadFileToS3, deleteFileFromS3 } from '@/services/s3Service';
+import { verifyCaptchaToken } from '@/utils/captcha';
+
 export async function POST(req: Request) {
   const seg = 'src\\app\\api\\auth\\register\\route.ts';
   const formData = await req.formData();
@@ -20,38 +21,29 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Captcha token es requerido' }, { status: 400 });
   }
 
-  // Verificar CAPTCHA
   const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  if (!secretKey) {
-    return NextResponse.json({ error: 'Clave secreta CAPTCHA no configurada' }, { status: 500 });
+  const bucket = process.env.AWS_S3_BUCKET;
+  const region = process.env.AWS_REGION;
+
+  if (!secretKey || !bucket || !region) {
+    return NextResponse.json({ error: 'Configuración del entorno incompleta' }, { status: 500 });
   }
 
-  const verifyRes = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captchaToken}`,
-    { method: 'POST' }
-  );
-  const verifyJson = await verifyRes.json();
-
-  if (!verifyJson.success) {
+  const captchaOk = await verifyCaptchaToken(captchaToken);
+  if (!captchaOk) {
     return NextResponse.json({ error: 'Captcha inválido' }, { status: 400 });
   }
 
-  // Guardar imagen si existe
   let filePath = '';
+  let fileKey = '';
 
   if (file && file.size > 0) {
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'registro');
-
-    if (!fs.existsSync(uploadDir)) {
-      await fsPromises.mkdir(uploadDir, { recursive: true });
+    try {
+      filePath = await uploadFileToS3(file, 'uploads/registro');
+      fileKey = filePath.replace(`https://${bucket}.s3.${region}.amazonaws.com/`, '');
+    } catch (err) {
+      return NextResponse.json({ error: 'Error al subir el archivo' }, { status: 500 });
     }
-
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const fileName = `${Date.now()}-${file.name}`;
-    filePath = `/uploads/registro/${fileName}`;
-
-    await fsPromises.writeFile(path.join(uploadDir, fileName), buffer);
   }
 
   try {
@@ -67,32 +59,30 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ message: 'Usuario registrado correctamente' });
   } catch (error: unknown) {
-  console.error('Error en registro:', error);
+    console.error('Error en registro:', error);
 
-  if (error instanceof Error) {
-    logger.info(`❌ Error... <1> ${seg} ${error.message}`);
-    
-    // Error de conexión a MySQL
-    if (
-      typeof error.message === 'string' &&
-      (error.message.includes('Access denied') || error.message.includes('ER_ACCESS_DENIED_ERROR'))
-    ) {
-      return NextResponse.json(
-        { error: 'Error de conexión' },
-        { status: 500 }
-      );
+    // ❌ Si hubo un archivo subido, eliminarlo
+    if (fileKey) {
+      try {
+        await deleteFileFromS3(fileKey);
+      } catch (deleteError) {
+        logger.error(`Error eliminando archivo fallido: ${fileKey}`, deleteError);
+      }
     }
 
-    return NextResponse.json(
-      { error: error.message }, // ✔️ devuelve el mensaje real
-      { status: 400 }
-    );
+    if (error instanceof Error) {
+      logger.info(`❌ Error... <1> ${seg} ${error.message}`);
+
+      if (
+        error.message.includes('Access denied') ||
+        error.message.includes('ER_ACCESS_DENIED_ERROR')
+      ) {
+        return NextResponse.json({ error: 'Error de conexión' }, { status: 500 });
+      }
+
+      return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+
+    return NextResponse.json({ error: 'Ocurrió un error inesperado' }, { status: 500 });
   }
-
-  return NextResponse.json(
-    { error: 'Ocurrió un error inesperado' }, // fallback
-    { status: 500 }
-  );
-}
-
 }

@@ -10,6 +10,8 @@ import { CustomizerContext } from "../context/customizerContext";
 import RightSidebar from "../components/Dashboards/minimal/RightSidebar";
 //import '../../utils/i18n';
 
+
+
 export default function Layout({
   children,
 }: Readonly<{
@@ -25,13 +27,13 @@ export default function Layout({
       <div className={`page-wrapper flex w-full ${activeLayout==="vertical"  ?isCollapse==="full-sidebar"?"xl:ms-[240px] ms-0":"xl:ms-[65px] ms-0":"ms-0"}`}>
         {/* Header/sidebar */}
         {activeLayout == "vertical" ? <Sidebar /> : null}
-        <div className="body-wrapper w-full bg-lightgray dark:bg-dark">
+        <div className="body-wrapper w-full  dark:bg-dark bg-lightgray">
           {/* Top Header  */}
           <Header />
           {/* Body Content  */}
           <div className={`${isLayout==="boxed"?"container":"w-full px-5"} mx-auto ${activeLayout==="vertical"?"py-30px":"py-20"} `}>
             <div className={`${url==="/dashboards/minimal"?"xl:me-[256px]  me-0":null}`} >
-            {children}
+          
             </div>
             </div>
           
