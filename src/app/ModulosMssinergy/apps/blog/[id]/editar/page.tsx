@@ -1,9 +1,8 @@
-// ✅ Página para editar blog con TipTap, igual a la vista de creación
-// src/app/ModulosMssinergy/apps/blog/[id]/editar/page.tsx
-
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import axios from 'axios';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
@@ -33,8 +32,19 @@ const MenuBar = ({ editor }: { editor: any }) => {
 const EditarBlogPage = () => {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
-  const [form, setForm] = useState<any>(null);
+
+  const [form, setForm] = useState({
+    title: '',
+    content: '',
+    category: '',
+    coverImg: '',
+    author: '',
+    videoUrl: '',
+  });
+
   const [initialContent, setInitialContent] = useState('');
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -48,61 +58,101 @@ const EditarBlogPage = () => {
     ],
     content: initialContent,
     onUpdate({ editor }) {
-      setForm((prev: any) => ({ ...prev, content: editor.getHTML() }));
+      setForm((prev) => ({ ...prev, content: editor.getHTML() }));
     },
   });
 
   useEffect(() => {
     if (id) {
-      fetch(`/api/blog/${id}`)
-        .then(res => res.json())
-        .then(data => {
-          if (!data || data.error) return;
+      axios.get(`/api/blog?id=${id}`)
+        .then((res) => {
+          const data = res.data;
           setForm({
-            title: data.blg_title,
-            content: data.blg_content,
-            category: data.blg_category,
-            coverImg: data.blg_coverImg,
-            author: data.blg_author,
-            videoUrl: data.blg_videoUrl,
+            title: data.blg_title || '',
+            content: data.blg_content || '',
+            category: data.blg_category || '',
+            coverImg: data.blg_coverImg || '',
+            author: data.blg_author || '',
+            videoUrl: data.blg_videoUrl || '',
           });
-          setInitialContent(data.blg_content);
+          setInitialContent(data.blg_content || '');
+        })
+        .catch((err) => {
+          console.error('❌ Error al obtener blog:', err);
         });
     }
   }, [id]);
 
   useEffect(() => {
-    if (editor && form?.content) {
+    if (editor && form.content) {
       editor.commands.setContent(form.content);
     }
-  }, [editor, form?.content]);
+  }, [editor, form.content]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleUpdate = async () => {
-    await fetch(`/api/blog/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(form),
-    });
-    router.push(`/ModulosMssinergy/apps/blog/${id}`);
-  };
-
   const extractYouTubeId = (url: string) => {
-    const match = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
     return match ? match[1] : '';
   };
 
-  if (!form) return <div className="p-6">Cargando publicación...</div>;
+  const handleUpdate = async () => {
+    if (
+      !form.title.trim() ||
+      !form.content.trim() ||
+      !form.category.trim() ||
+      !form.author.trim()
+    ) {
+      alert('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append('title', form.title);
+      formData.append('content', form.content);
+      formData.append('category', form.category);
+      formData.append('author', form.author);
+
+      if (coverFile) {
+        formData.append('coverImg', coverFile);
+      } else {
+        formData.append('coverImgUrl', form.coverImg); // URL si no cambia la imagen
+      }
+
+      if (videoFile) {
+        formData.append('video', videoFile);
+      } else {
+        formData.append('videoUrl', form.videoUrl); // URL si no cambia el video
+      }
+
+      const res = await axios.put(`/api/blog?id=${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (res.status === 200) {
+        router.push(`/ModulosMssinergy/apps/blog/${id}`);
+      } else {
+        alert(res.data.error || 'Error al actualizar publicación');
+      }
+    } catch (error: any) {
+      console.error('❌ Error al actualizar:', error);
+      alert(error?.response?.data?.error || 'Error inesperado');
+    }
+  };
+
+  if (!editor) return <div className="p-6">Cargando editor...</div>;
 
   return (
     <>
       <ThemeBreadcrumb title="Editar Publicación" />
-
       <div className="max-w-2xl mx-auto p-6">
         <h1 className="text-2xl font-bold mb-4">Editar Publicación</h1>
+
         <input
           name="title"
           value={form.title}
@@ -113,7 +163,7 @@ const EditarBlogPage = () => {
 
         <select
           name="category"
-          value={form.category}
+          value={form.category || ''}
           onChange={handleChange}
           className="w-full mb-3 p-2 border rounded"
         >
@@ -150,6 +200,23 @@ const EditarBlogPage = () => {
           />
         )}
 
+        <div className="mb-3">
+          <label className="block mb-1 font-medium">Cambiar imagen de portada</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setCoverFile(file);
+                const imageUrl = URL.createObjectURL(file);
+                setForm((prev) => ({ ...prev, coverImg: imageUrl }));
+              }
+            }}
+            className="w-full border rounded p-2"
+          />
+        </div>
+
         <input
           name="author"
           value={form.author}
@@ -157,8 +224,6 @@ const EditarBlogPage = () => {
           placeholder="Autor"
           className="w-full mb-3 p-2 border rounded"
         />
-
-       
 
         {form.videoUrl && (
           <div className="mb-4">
@@ -174,7 +239,27 @@ const EditarBlogPage = () => {
           </div>
         )}
 
-        <button onClick={handleUpdate} className="bg-blue-600 text-white px-4 py-2 rounded">
+        <div className="mb-3">
+          <label className="block mb-1 font-medium">Cambiar video</label>
+          <input
+            type="file"
+            accept="video/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setVideoFile(file);
+                const videoUrl = URL.createObjectURL(file);
+                setForm((prev) => ({ ...prev, videoUrl }));
+              }
+            }}
+            className="w-full border rounded p-2"
+          />
+        </div>
+
+        <button
+          onClick={handleUpdate}
+          className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-2 px-4 text-sm"
+        >
           Guardar cambios
         </button>
       </div>

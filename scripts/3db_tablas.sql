@@ -28,26 +28,53 @@ CREATE TABLE IF NOT EXISTS usuarios_aud (
 
 CREATE TABLE IF NOT EXISTS accesos (
   acc_id INT AUTO_INCREMENT PRIMARY KEY,
-  usr_correo VARCHAR(100) NOT NULL,
+  usr_id INT,
   usr_modulo VARCHAR(100) NOT NULL,
-  usr_insertar VARCHAR(3) NOT NULL default 'N',
-  usr_actualizar VARCHAR(3) NOT NULL default 'N',
-  usr_eliminar VARCHAR(3) NOT NULL default 'N',
-  usr_lectura VARCHAR(3) NOT NULL default 'N',
+  usr_descripcion VARCHAR(255) NOT NULL,
+  mod_ruta VARCHAR(255) NOT NULL,
+  usr_insertar VARCHAR(3) NOT NULL DEFAULT 'N',
+  usr_actualizar VARCHAR(3) NOT NULL DEFAULT 'N',
+  usr_eliminar VARCHAR(3) NOT NULL DEFAULT 'N',
+  usr_lectura VARCHAR(3) NOT NULL DEFAULT 'N',
   usr_usuario_aud VARCHAR(100) NOT NULL,
-  usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uniq_usr_modulo (usr_id, usr_modulo) 
 );
 
+
 CREATE TABLE IF NOT EXISTS accesos_aud (
-  acc_id INT AUTO_INCREMENT PRIMARY KEY,
+  aud_id INT AUTO_INCREMENT PRIMARY KEY,
+  acc_id INT,
+  usr_id INT,
   usr_usuario VARCHAR(100) ,
   usr_modulo VARCHAR(100) ,
+  usr_descripcion VARCHAR(255),
+  mod_ruta VARCHAR(255),
   usr_insertar VARCHAR(3) ,
   usr_actualizar VARCHAR(3) ,
   usr_eliminar VARCHAR(3),
   usr_lectura VARCHAR(3) ,
   usr_usuario_aud VARCHAR(100),
   usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS modulos (
+  mod_id INT AUTO_INCREMENT PRIMARY KEY,
+  mod_nombre VARCHAR(100) NOT NULL,
+  mod_descripcion VARCHAR(255) NOT NULL,
+  mod_ruta VARCHAR(255) NOT NULL,
+  usr_usuario_aud VARCHAR(100) NOT NULL,
+  usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS modulos_aud (
+   aud_id INT AUTO_INCREMENT PRIMARY KEY,
+  mod_id INT,
+  mod_nombre VARCHAR(100) ,
+  mod_descripcion VARCHAR(255),
+  mod_ruta VARCHAR(255),
+  usr_usuario_aud VARCHAR(100),
+  usr_fecha_aud TIMESTAMP 
 );
 
 CREATE TABLE IF NOT EXISTS blogs (

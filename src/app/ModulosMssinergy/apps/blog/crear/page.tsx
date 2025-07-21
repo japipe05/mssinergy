@@ -1,27 +1,9 @@
-
-
-import CrearPost from "@/app/components/apps/blog/CrearPost";
-/*import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Ms sinergy - Post",
-};
-const Crearblog = () => {
-  return (
-    <>
-     <ThemeBreadcrumb title="Crear Publicación" />
-    
-    </>
-  );
-};
-export default Crearblog;
-
-*/
-
 'use client';
-import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
+//blg_author
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
+import ThemeBreadcrumb from '@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import TextAlign from '@tiptap/extension-text-align';
@@ -33,11 +15,8 @@ import ListItem from '@tiptap/extension-list-item';
 
 const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) return null;
-
   return (
-    
     <div className="flex flex-wrap gap-2 mb-3 border p-2 rounded bg-white">
-      
       <button onClick={() => editor.chain().focus().toggleBold().run()} className="font-bold">B</button>
       <button onClick={() => editor.chain().focus().toggleItalic().run()} className="italic">I</button>
       <button onClick={() => editor.chain().focus().toggleUnderline().run()} className="underline">U</button>
@@ -51,42 +30,24 @@ const MenuBar = ({ editor }: { editor: any }) => {
 };
 
 const Blog = () => {
-
-  const uploadFile = async (file: File) => {
-    const formData = new FormData();
-    formData.append('file', file);
-    const res = await fetch('/api/upload', {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
-    return data.url;
-  };
-
-
   const router = useRouter();
   const [form, setForm] = useState({
-      title: '',
-      content: '',
-      category: '',
-      coverImg: '',
-      author: 'user', // default
-      videoUrl: ''
+    title: '',
+    category: '',
+    content: '',
+    author: '',
+    videoUrl: '',
+    coverImg: '',
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [coverFile, setCoverFile] = useState<File | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [coverPreview, setCoverPreview] = useState<string | null>(null);
+  const [videoPreview, setVideoPreview] = useState<string | null>(null);
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({
-        bulletList: false,
-        orderedList: false,
-        listItem: false,
-      }),
+      StarterKit.configure({ bulletList: false, orderedList: false, listItem: false }),
       BulletList,
       OrderedList,
       ListItem,
@@ -95,48 +56,64 @@ const Blog = () => {
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
     content: form.content,
-    onUpdate({ editor }) {
-      setForm((prev) => ({ ...prev, content: editor.getHTML() }));
-    },
+    onUpdate: ({ editor }) =>
+      setForm((prev) => ({ ...prev, content: editor.getHTML() })),
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
   const extractYouTubeId = (url: string) => {
-    const match = url.match(
-      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
-    );
+    const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/);
     return match ? match[1] : '';
   };
 
-
   const handleSubmit = async () => {
-    const res = await fetch('/api/blog', {
-      method: 'POST',
-      body: JSON.stringify(form),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+      const formData = new FormData();
+      formData.append('title', form.title);
+      formData.append('content', form.content);
+      formData.append('category', form.category);
+      formData.append('author', form.author);
 
-    const data = await res.json();
+      if (coverFile) formData.append('coverImg', coverFile);
+      else if (form.coverImg) formData.append('coverImgUrl', form.coverImg);
 
-    if (res.ok && data?.id) {
-      router.push(`/ModulosMssinergy/apps/blog/${data.id}`); // Redirige al detalle del blog
+      if (videoFile) formData.append('video', videoFile);
+      else if (form.videoUrl) formData.append('videoUrl', form.videoUrl);
+
+      const { data } = await axios.post('/api/blog', formData);
+      if (data?.id) {
+        router.push(`/ModulosMssinergy/apps/blog/${data.id}`);
+      } else {
+        alert(data.error || 'Error al crear publicación');
+      }
+    } catch (err: any) {
+      console.error('❌ Error al crear blog:', err);
+      alert(err?.response?.data?.error || 'Error inesperado');
     }
   };
 
-
   return (
-     <>
-    <ThemeBreadcrumb title="Crear Publicación" />
+    <>
+      <ThemeBreadcrumb title="Crear Publicación" />
+      <div className="max-w-2xl mx-auto p-6">
+        <h1 className="text-2xl font-bold mb-4">Crear Publicación</h1>
 
-    <div className="max-w-2xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Crear Publicación</h1>
-      <input name="title" value={form.title} onChange={handleChange} placeholder="Título" className="w-full mb-3 p-2 border rounded" />
-      <div className="mb-3">
-        <label htmlFor="category" className="block mb-1 font-medium">Categoría</label>
+        <input
+          name="title"
+          value={form.title}
+          onChange={handleChange}
+          placeholder="Título"
+          className="w-full mb-3 p-2 border rounded"
+        />
+
         <select
           name="category"
           value={form.category}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded mb-3"
         >
           <option value="">Selecciona una categoría</option>
           <option value="tecnologia">Tecnología</option>
@@ -149,112 +126,106 @@ const Blog = () => {
           <option value="viajes">Viajes</option>
           <option value="finanzas">Finanzas</option>
         </select>
-      </div>
 
+        <div className="border rounded mb-3 p-2 bg-white">
+          <MenuBar editor={editor} />
+          <EditorContent editor={editor} className="min-h-[150px] prose prose-sm max-w-none" />
+        </div>
 
+        <input
+          name="author"
+          value={form.author}
+          onChange={handleChange}
+          placeholder="Autor"
+          className="w-full mb-3 p-2 border rounded"
+        />
 
-      {/* Editor enriquecido */}
-      <div className="border rounded mb-3 p-2 bg-white">
-        <MenuBar editor={editor} />
-        <EditorContent editor={editor} className="min-h-[150px] prose prose-sm max-w-none" />
-      </div>
-      <div className="mb-3">
         <label className="block font-medium mb-1">Imagen de portada</label>
 
-        {/* URL manual */}
         <input
           type="text"
           name="coverImg"
           value={form.coverImg}
-          onChange={handleChange}
-          placeholder="URL Imagen (o sube una imagen abajo)"
+          onChange={(e) => {
+            setForm({ ...form, coverImg: e.target.value });
+            setCoverPreview(e.target.value);
+          }}
+          placeholder="URL de la imagen o sube un archivo"
           className="w-full mb-2 p-2 border rounded"
         />
 
-        {/* Subida local */}
         <input
           type="file"
           accept="image/*"
-          onChange={async (e) => {
+          onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
-              const url = await uploadFile(file); // Subida a /api/upload
-              setForm((prev) => ({ ...prev, coverImg: url }));
+              setCoverFile(file);
+              setCoverPreview(URL.createObjectURL(file));
             }
           }}
           className="mb-2"
         />
 
-        {form.coverImg && (
+        {coverPreview && (
           <img
-            src={form.coverImg}
+            src={coverPreview}
             alt="Vista previa"
-            className="max-w-full h-auto border rounded shadow"
+            className="w-full max-h-[250px] object-cover rounded shadow mb-4"
           />
         )}
 
+        <label className="block font-medium mb-1 mt-4">Video</label>
 
-
-
-      </div>
-
-      <div className="mb-3">
-        <label className="block font-medium mb-1">Video</label>
-
-        {/* URL manual */}
         <input
           type="text"
           name="videoUrl"
           value={form.videoUrl}
           onChange={handleChange}
-          placeholder="URL del video (YouTube, Vimeo o MP4)"
+          placeholder="URL o sube video"
           className="w-full mb-2 p-2 border rounded"
         />
 
-        {/* Subida local */}
         <input
           type="file"
           accept="video/*"
-          onChange={async (e) => {
+          onChange={(e) => {
             const file = e.target.files?.[0];
             if (file) {
-              const url = await uploadFile(file);
-              setForm((prev) => ({ ...prev, videoUrl: url }));
+              setVideoFile(file);
+              setVideoPreview(URL.createObjectURL(file));
             }
           }}
           className="mb-2"
         />
 
-        {form.videoUrl && (
-          <>
-            {form.videoUrl.includes('youtube.com') || form.videoUrl.includes('youtu.be') ? (
+        {(form.videoUrl || videoPreview) && (
+          <div className="mb-4">
+            {form.videoUrl.includes('youtube') ? (
               <iframe
                 src={`https://www.youtube.com/embed/${extractYouTubeId(form.videoUrl)}`}
                 className="w-full aspect-video rounded border"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
               />
             ) : (
-              <video
-                controls
-                src={form.videoUrl}
-                className="w-full h-auto rounded border"
-              />
+              videoPreview && (
+                <video
+                  controls
+                  src={videoPreview}
+                  className="w-full max-h-[250px] rounded border object-contain"
+                />
+              )
             )}
-          </>
+          </div>
         )}
 
-
-
+        <button
+          onClick={handleSubmit}
+          className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-2 px-4 text-sm"
+        >
+          Publicar
+        </button>
       </div>
-
-
-
-
-
-      <button onClick={handleSubmit} className="bg-blue-600 text-white px-4 py-2 rounded">Publicar</button>
-    </div>
-    
     </>
   );
 };

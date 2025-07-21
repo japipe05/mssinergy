@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import ReCAPTCHA from "react-google-recaptcha";
 import "@/utils/i18n";
-
+  
 const AuthLogin = () => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -60,7 +60,8 @@ const AuthLogin = () => {
         localStorage.removeItem("rememberedUser");
       }
 
-      router.push("/ModulosMssinergy");
+     // router.push("/ModulosMssinergy");
+      window.location.href = "/ModulosMssinergy/apps/user-profile/profile";
     } catch (err: unknown) {
       setLoading(false);
       if (err instanceof AxiosError) {
@@ -101,15 +102,16 @@ const AuthLogin = () => {
           required
         />
       </div>
-
+ 
       <div className="mb-6 flex justify-center">
         <ReCAPTCHA
           sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
           onChange={onCaptchaChange}
           ref={recaptchaRef}
         />
-      </div>
 
+      </div>
+ 
       {message && (
         <p className={`mt-2 text-center ${message.type === "success" ? "text-green-500" : "text-red-500"}`}>
           {message.text}

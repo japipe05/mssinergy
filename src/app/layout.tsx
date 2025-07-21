@@ -28,7 +28,7 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <body className={montserrat.className}>
+      <body className={montserrat.className} suppressHydrationWarning>
         <Flowbite theme={{ theme: customTheme }}>
           <CustomizerContextProvider>
             {children}
