@@ -9,14 +9,14 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   const token = req.cookies.get("token")?.value;
-  if (!token) {
+  if (!token)  {
     return NextResponse.redirect(new URL("/auth/auth2/login", req.url));
   }
-
+ 
   try {
     const { payload } = await jwtVerify(token, JWT_SECRET);
     const userModules = (payload.accesos || []) as string[];
-
+ 
     const requiredModule = extractModuleFromPath(pathname);
  
     if (requiredModule === "*" ) {
