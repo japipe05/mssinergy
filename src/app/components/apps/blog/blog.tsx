@@ -33,7 +33,7 @@ const Blog = () => {
   const uploadFile = async (file: File) => {
     const formData = new FormData();
     formData.append('file', file);
-    const res = await fetch('/api/upload', {
+    const res = await fetch('/api/blog', {
       method: 'POST',
       body: formData,
     });
@@ -153,7 +153,7 @@ const Blog = () => {
           onChange={async (e) => {
             const file = e.target.files?.[0];
             if (file) {
-              const url = await uploadFile(file); // Subida a /api/upload
+              const url = await uploadFile(file); // Subida
               setForm((prev) => ({ ...prev, coverImg: url }));
             }
           }}

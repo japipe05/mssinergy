@@ -1,7 +1,8 @@
+// src/app/api/auth/me/route.ts
+
 import { NextRequest, NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
 import { getUserById } from '@/services/userService';
-
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_dev';
 

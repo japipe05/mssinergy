@@ -1,51 +1,85 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getBlogById, updateBlog, deleteBlog } from '@/services/blogService';
+import { Blog } from '@/services/blogService';
+import { deleteFileFromS3 } from '@/services/s3Upload';
 
+interface RouteContext {
+  params: { id: string };
+}
 
-import pool from '@/config/db';
-
+// ✅ GET /api/blog/:id
 export async function GET(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: RouteContext
 ) {
-  const id = context.params.id;
+  const blogId = Number(context.params.id);
+
+  if (isNaN(blogId)) {
+    return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
+  }
+
   try {
-    const [rows] = await pool.execute('SELECT * FROM blogs WHERE blg_id = ?', [id]);
-
-    if ((rows as any[]).length === 0) {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    const blog = await getBlogById(blogId);
+    if (!blog) {
+      return NextResponse.json({ error: 'No encontrado' }, { status: 404 });
     }
-
-    return NextResponse.json((rows as any[])[0]);
+    return NextResponse.json(blog);
   } catch (error) {
-    console.error('DB Error:', error);
-    return NextResponse.json({ error: 'Error fetching blog' }, { status: 500 });
+    console.error('❌ Error al obtener blog:', error);
+    return NextResponse.json({ error: 'Error interno del servidor' }, { status: 500 });
   }
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
-  const id = context.params.id;
+// ✅ PUT /api/blog/:id
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const blogId = Number(params.id);
+
+  if (isNaN(blogId)) {
+    return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
+  }
+
   try {
-    const { title, content, category, coverImg, author, videoUrl } = await req.json();
-
-    await pool.execute(
-      `UPDATE blogs SET blg_title=?, blg_content=?, blg_category=?, blg_coverImg=?, blg_author=?, blg_videoUrl=? WHERE blg_id = ?`,
-      [title, content, category, coverImg, author, videoUrl, id]
-    );
-
+    const body: Blog = await req.json();
+    await updateBlog(blogId, body);
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('DB Error:', error);
-    return NextResponse.json({ error: 'Error updating blog' }, { status: 500 });
+    console.error('❌ Error al actualizar blog:', error);
+    return NextResponse.json({ error: 'Error al actualizar blog' }, { status: 500 });
   }
 }
+ 
+// ✅ DELETE /api/blog/:id
+
 
 export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
-  const id = context.params.id;
+  const id = Number(context.params.id);
   try {
-    await pool.execute('DELETE FROM blogs WHERE blg_id = ?', [id]);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error('DB Error:', error);
-    return NextResponse.json({ error: 'Error deleting blog' }, { status: 500 });
+    
+    if (!id) {
+      return NextResponse.json({ error: 'ID requerido' }, { status: 400 });
+    }
+
+    // 🚨 Obtener el blog antes de eliminarlo para poder borrar sus archivos
+    const blog = await getBlogById(id);
+    if (!blog) {
+      return NextResponse.json({ error: 'Blog no encontrado' }, { status: 404 });
+    }
+
+    // 🧹 Eliminar archivos de S3 si existen
+    if (blog.blg_coverImg) await deleteFileFromS3(blog.blg_coverImg);
+    if (blog.blg_videoUrl && !blog.blg_videoUrl.includes('youtube.com')) {
+      await deleteFileFromS3(blog.blg_videoUrl);
+    }
+
+    // 🗑️ Eliminar blog de la base de datos
+    await deleteBlog(id);
+
+    return NextResponse.json({ message: 'Blog eliminado correctamente' });
+  } catch (error: any) {
+    console.error('❌ Error al eliminar blog:', error);
+    return NextResponse.json({ error: 'Error al eliminar blog' }, { status: 500 });
   }
 }

@@ -24,7 +24,6 @@ a
 producción
 
 
-https://adminpro-nextjs-main.vercel.app/
 
 https://www.google.com/recaptcha/admin/create
 
@@ -176,7 +175,13 @@ Successfully copied 894kB to /tmp/uploads
 
 PS D:\Github\Nextjs\mssinergy> scp -r root@46.202.88.181:/tmp/uploads C:\Users\felip\Downloads\registro
 
-
-
+https://adminpro-nextjs-main.vercel.app/
 
 docker-compose up --build -d 
+
+> npm run build
+
+auditar vulnerabilidadesnpm audit
+> npm audit     
+arreglar
+npm audit fix --force

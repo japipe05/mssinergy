@@ -1,22 +1,31 @@
-
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const BlogListPage = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    fetch('/api/blog/all')
-      .then(res => res.json())
-      .then(setBlogs);
+    axios
+      .get('/api/blog/all')
+      .then(res => setBlogs(res.data))
+      .catch(err => console.error('❌ Error al obtener blogs:', err));
   }, []);
 
   const handleDelete = async (id: number) => {
-    if (confirm('¿Deseas eliminar esta publicación?')) {
-      await fetch(`/api/blog/${id}`, { method: 'DELETE' });
+    const confirmDelete = confirm('¿Deseas eliminar esta publicación?');
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`/api/blog?id=${id}`);
+
       setBlogs(prev => prev.filter(b => b.blg_id !== id));
+    } catch (error) {
+      console.error('❌ Error al eliminar blog:', error);
+      alert('Ocurrió un error al eliminar la publicación.');
     }
   };
 
@@ -25,12 +34,32 @@ const BlogListPage = () => {
       {blogs.map(blog => (
         <div key={blog.blg_id} className="border p-4 rounded shadow bg-white">
           <h2 className="text-xl font-bold mb-2">{blog.blg_title}</h2>
-          <p className="text-sm text-gray-500 mb-2">{blog.blg_author} • {new Date(blog.blg_createdAt).toLocaleDateString()}</p>
-          <p className="text-sm mb-4 line-clamp-3" dangerouslySetInnerHTML={{ __html: blog.blg_content }} />
+          <p className="text-sm text-gray-500 mb-2">
+            {blog.blg_author} • {new Date(blog.blg_createdAt).toLocaleDateString()}
+          </p>
+          <p
+            className="text-sm mb-4 line-clamp-3"
+            dangerouslySetInnerHTML={{ __html: blog.blg_content }}
+          />
           <div className="flex gap-2">
-            <button onClick={() => router.push(`/ModulosMssinergy/apps/blog/${blog.blg_id}`)} className="text-blue-600">Ver</button>
-            <button onClick={() => router.push(`/ModulosMssinergy/apps/blog/${blog.blg_id}/editar`)} className="text-yellow-600">Editar</button>
-            <button onClick={() => handleDelete(blog.blg_id)} className="text-red-600">Eliminar</button>
+            <button
+              onClick={() => router.push(`/ModulosMssinergy/apps/blog/${blog.blg_id}`)}
+              className="text-blue-600"
+            >
+              Ver
+            </button>
+            <button
+              onClick={() => router.push(`/ModulosMssinergy/apps/blog/${blog.blg_id}/editar`)}
+              className="text-yellow-600"
+            >
+              Editar
+            </button>
+            <button
+              onClick={() => handleDelete(blog.blg_id)}
+              className="text-red-600"
+            >
+              Eliminar
+            </button>
           </div>
         </div>
       ))}

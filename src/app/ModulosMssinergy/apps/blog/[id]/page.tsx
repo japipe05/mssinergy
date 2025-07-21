@@ -1,4 +1,3 @@
-
 'use client';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
@@ -27,19 +26,25 @@ const VerBlogPage = () => {
       <p className="text-sm text-gray-500 mb-4">
         {blog.blg_author} • {blog.blg_category} • {new Date(blog.blg_createdAt).toLocaleDateString()}
       </p>
-      {blog.blg_coverImg && (
-        <img
-          src={blog.blg_coverImg}
-          alt="Portada"
-          className="w-full h-auto rounded shadow mb-6"
-        />
-      )}
+
+    {blog.blg_coverImg && (
+  <div className="max-w-xs mx-auto mb-6">
+    <img
+      src={blog.blg_coverImg}
+      alt="Portada"
+      className="w-full h-auto rounded shadow"
+    />
+  </div>
+)}
+
+
       <article
         className="prose prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: blog.blg_content }}
       />
+
       {blog.blg_videoUrl && (
-        <div className="mt-6">
+        <div className="mt-6 max-w-md mx-auto">
           {blog.blg_videoUrl.includes('youtube.com') || blog.blg_videoUrl.includes('youtu.be') ? (
             <iframe
               src={`https://www.youtube.com/embed/${blog.blg_videoUrl.split('v=')[1]}`}
