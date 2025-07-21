@@ -18,7 +18,7 @@ export async function middleware(req: NextRequest) {
     const userModules = (payload.accesos || []) as string[];
 
     const requiredModule = extractModuleFromPath(pathname);
-
+ 
     if (requiredModule === "*" ) {
       return NextResponse.next();
     }
