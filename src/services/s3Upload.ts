@@ -26,7 +26,7 @@ try{
     Body: buffer,
     ContentType: file.type,
   });
-
+ 
   await s3.send(command);
 
   const url = `https://${process.env.AWS_S3_BUCKET}.s3.amazonaws.com/${key}`;

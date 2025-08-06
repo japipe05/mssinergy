@@ -1,7 +1,7 @@
 
 CREATE TABLE IF NOT EXISTS usuarios (
     usr_id INT AUTO_INCREMENT PRIMARY KEY,
-    usr_fotografia VARCHAR(100) NOT NULL,
+    usr_fotografia VARCHAR(1000) NOT NULL,
     usr_nombre VARCHAR(100) NOT NULL,
     usr_correo VARCHAR(100) NOT NULL UNIQUE,
     usr_codigo_pais VARCHAR(100) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 CREATE TABLE IF NOT EXISTS usuarios_aud (
     aud_id INT AUTO_INCREMENT PRIMARY KEY,
     usr_id INT,
-    usr_fotografia VARCHAR(100) ,
+    usr_fotografia VARCHAR(1000) ,
     usr_nombre VARCHAR(100)  ,
     usr_correo VARCHAR(100)   ,
     usr_codigo_pais VARCHAR(100)   ,
@@ -82,9 +82,9 @@ CREATE TABLE IF NOT EXISTS blogs (
   blg_title VARCHAR(255) NOT NULL,
   blg_content LONGTEXT NOT NULL,
   blg_category VARCHAR(100),
-  blg_coverImg VARCHAR(255),
+  blg_coverImg VARCHAR(1000),
   blg_author VARCHAR(100),
-  blg_videoUrl VARCHAR(255),
+  blg_videoUrl VARCHAR(1000),
   blg_createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -95,8 +95,8 @@ CREATE TABLE IF NOT EXISTS blogs_aud (
   blg_title VARCHAR(255) ,
   blg_content LONGTEXT ,
   blg_category VARCHAR(100),
-  blg_coverImg VARCHAR(255),
+  blg_coverImg VARCHAR(1000),
   blg_author VARCHAR(100),
-  blg_videoUrl VARCHAR(255),
+  blg_videoUrl VARCHAR(1000),
   blg_createdAt TIMESTAMP
 );
