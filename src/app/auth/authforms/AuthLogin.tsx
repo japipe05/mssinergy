@@ -103,14 +103,24 @@ const AuthLogin = () => {
         />
       </div>
  
-      <div className="mb-6 flex justify-center">
-        <ReCAPTCHA
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-          onChange={onCaptchaChange}
-          ref={recaptchaRef}
-        />
+    
 
-      </div>
+
+      <div className="mb-6 flex justify-center">
+  {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+    <ReCAPTCHA
+      sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+      onChange={onCaptchaChange}
+      ref={recaptchaRef}
+    />
+  ) : (
+    <p className="text-red-500 text-center">
+      ⚠️ Error: reCAPTCHA sitekey no definido. Verifica tu archivo <code>.env.local</code>.
+    </p>
+  )}
+</div>
+
+
  
       {message && (
         <p className={`mt-2 text-center ${message.type === "success" ? "text-green-500" : "text-red-500"}`}>
