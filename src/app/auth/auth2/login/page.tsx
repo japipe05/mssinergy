@@ -16,6 +16,7 @@ import { useTranslation } from "react-i18next";
 import "@/utils/i18n"; // Asegúrate de tener esta línea para inicializar i18next
 
 const BoxedLogin = () => {
+  
   const router = useRouter();
   const { t } = useTranslation(); // Hook de traducción
 
@@ -48,7 +49,9 @@ const BoxedLogin = () => {
       <div className="absolute end-0 bottom-0 z-1 md:block hidden">
         <Image src={rightBgimg} alt="img" />
       </div>
+      
     </div>
+   
   );
 };
 
