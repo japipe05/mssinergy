@@ -4,6 +4,7 @@ import '../../../../utils/i18n';
 import Image from "next/image";
 
 const Footer = () => {
+  console.log("NEXT_PUBLIC_VERSION:"+process.env.NEXT_PUBLIC_FECHMOD)
   const { t } = useTranslation();
 
   return (
@@ -103,7 +104,9 @@ const Footer = () => {
 
         <p className="text-lg font-medium leading-7 text-body dark:text-darkmuted">
           © {new Date().getFullYear()} {t("copyright todos los derechos reservados")}
+          {" "}– v1
         </p>
+
       </div>
     </footer>
   );
