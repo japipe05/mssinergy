@@ -4,7 +4,7 @@ import '../../../../utils/i18n';
 import Image from "next/image";
 
 const Footer = () => {
-  console.log("NEXT_PUBLIC_VERSION:"+process.env.NEXT_PUBLIC_FECHMOD)
+  console.log("NEXT_PUBLIC_FECHMOD:"+process.env.NEXT_PUBLIC_FECHMOD)
   const { t } = useTranslation();
 
   return (
