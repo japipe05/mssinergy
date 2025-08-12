@@ -25,9 +25,9 @@ export async function POST(req: NextRequest) {
     const videoFile = form.get('video') as File | null;
 
     // ✅ Subir archivos a S3 si existen
-    const coverImgUrl = coverImgFile ? await uploadFileToS3(coverImgFile, 'blogs') : '';
+    const coverImgUrl = coverImgFile ? await uploadFileToS3(coverImgFile, '901408258/blogs') : '';
     const videoUrl = videoFile
-      ? await uploadFileToS3(videoFile, 'blogs')
+      ? await uploadFileToS3(videoFile, '901408258/blogs')
       : videoUrlManual || '';
 
     // ✅ Insertar en base de datos
@@ -104,7 +104,7 @@ export async function PUT(req: NextRequest) {
       if (existingBlog.blg_coverImg) {
         await deleteFileFromS3(existingBlog.blg_coverImg);
       }
-      newCoverImgUrl = await uploadFileToS3(coverImgFile, 'blogs') ?? '';
+      newCoverImgUrl = await uploadFileToS3(coverImgFile, '901408258/blogs') ?? '';
     } else if (coverImgUrlManual) {
       newCoverImgUrl = coverImgUrlManual;
     }
@@ -114,7 +114,7 @@ export async function PUT(req: NextRequest) {
       if (existingBlog.blg_videoUrl) {
         await deleteFileFromS3(existingBlog.blg_videoUrl);
       }
-      newVideoUrl = await uploadFileToS3(videoFile, 'blogs') ?? '';
+      newVideoUrl = await uploadFileToS3(videoFile, '901408258/blogs') ?? '';
     } else if (videoUrlManual) {
       newVideoUrl = videoUrlManual;
     }

@@ -40,7 +40,7 @@ export async function POST(req: Request) {
   let filePath = '';
   if (file && file.size > 0) {
     try {
-      filePath = (await uploadFileToS3(file, 'registro')) ?? '';
+      filePath = (await uploadFileToS3(file, '901408258/registro')) ?? '';
     } catch (err) {
       console.error('❌ Error subiendo imagen a S3:', err);
       return NextResponse.json({ error: 'Error al subir la imagen' }, { status: 500 });
