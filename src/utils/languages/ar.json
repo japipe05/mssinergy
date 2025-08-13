@@ -17,6 +17,7 @@
     "Normativa": "التنظيم",
     "ISO 9001": "ISO 9001",
     "ISO 17025": "ISO 17025",
+    "País": "البلد",
     "Informes OMS": "تقارير منظمة الصحة العالمية",
     "Resoluciones Invima": "قرارات Invima",
     "Bienvenido A": "مرحبًا بك في",
@@ -374,6 +375,6 @@
     "Contraseña actualizada. Redirigiendo...": "تم تحديث كلمة المرور. سيتم تحويلك...",
     "Error al actualizar contraseña.": "حدث خطأ أثناء تحديث كلمة المرور.",
     "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "يجب أن تحتوي كلمة المرور على 5 أحرف على الأقل، بما في ذلك أحرف كبيرة وصغيرة وأرقام."
-
+    
    
 }
