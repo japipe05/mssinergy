@@ -63,7 +63,7 @@ const Cotizacion = () => {
 
 
   
-
+ 
     try {
       await emailjs.send(serviceId, templateId, templateParams, userId);
       setAlert({ type: "success", message: t("Correo enviado correctamente") });
@@ -90,6 +90,7 @@ const Cotizacion = () => {
 
   return (
     <section className="min-h-screen py-12 px-4 dark:bg-dark">
+      <div className="max-w-4xl mx-auto">
       <TitleCard title={t("Cotización")}>
         <div className="pb-6 space-y-4">
           <Alert color="lightprimary" icon={HiInformationCircle}>
@@ -145,6 +146,7 @@ const Cotizacion = () => {
           </div>
         </form>
       </TitleCard>
+      </div>
     </section>
   );
 };
