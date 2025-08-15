@@ -32,7 +32,10 @@ const Header = () => {
             </Navbar.Link>
             <ServicioMenu />
             <DarkModeToggle />
+            {/* Language Dropdown 
+            */}
             <Language />
+            
             <Navbar.Link
               href="/auth/auth2/login"
               className="bg-primary text-white text-sm hover:text-white dark:hover:text-white hover:bg-primaryemphasis py-2 px-5"

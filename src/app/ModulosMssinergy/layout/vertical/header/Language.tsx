@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import '../../../../../utils/i18n';
+import { P } from 'pino';
 
 const Languages = [
   { flagname: "Español", icon: `/images/flag/icon-flag-es.svg`, value: "es" },
@@ -26,6 +27,7 @@ export const Language = () => {
 
   return (
     <div className="relative group/menu">
+      
       <Dropdown
         label=""
         className="w-56 dark:bg-darkgray rounded-sm"

@@ -364,6 +364,10 @@
   "Cambiar contraseña": "Cambiar contraseña",
   "Contraseña actualizada. Redirigiendo...": "Contraseña actualizada. Redirigiendo...",
   "Error al actualizar contraseña.": "Error al actualizar contraseña.",
-  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números."
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.",
+    "Cancelar":"Cancelar",
+  "Guardar cambios":"Guardar cambios",
+  "Actualizar perfil":"Actualizar perfil",
+  "Perfil Usuario":"Perfil Usuario"
 
   }

@@ -37,7 +37,7 @@ const GroupingItems = () => {
               </MenuHeading>
               <MenuItem>
                 <a className="ui-dropdown-item" href="/profile">
-                  My profile
+                   My profile
                 </a>
               </MenuItem>
               <MenuItem>

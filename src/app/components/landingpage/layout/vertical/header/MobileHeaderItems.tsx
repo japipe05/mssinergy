@@ -29,8 +29,10 @@ const MobileHeaderItems = () => {
           {/* App Link Dropwown   */}
           <AppLinks/>
 
-        {/* Language Dropdown*/}
-        <Language />
+        {/* Language Dropdown
+             */}
+             <Language />
+   
 
         {/* Shop cart */}
         {/* <Cart /> */}

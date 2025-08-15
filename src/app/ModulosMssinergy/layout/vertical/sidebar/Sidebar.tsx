@@ -27,7 +27,7 @@ interface User {
 interface Acceso {
   usr_modulo: string;
 }
-
+ 
 interface MenuitemsType {
   id?: string;
   navlabel?: boolean;

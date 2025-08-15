@@ -12,6 +12,7 @@ const FullLogo = () => {
   return (
 <div className="block relative z-10">
   <div className=" bg-transparent flex items-center justify-between ps-0">
+    
     <Link
       href="/"
     >

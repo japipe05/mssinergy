@@ -361,6 +361,10 @@
   "Cambiar contraseña": "Change Password",
   "Contraseña actualizada. Redirigiendo...": "Password updated. Redirecting...",
   "Error al actualizar contraseña.": "Error updating password.",
-  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "The password must be at least 5 characters long and include uppercase letters, lowercase letters, and numbers."
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "The password must be at least 5 characters long and include uppercase letters, lowercase letters, and numbers.",
+  "Cancelar":"Cancel",
+    "Guardar cambios":"Save changes",
+    "Actualizar perfil":"Update profile",
+    "Perfil Usuario":"User Profile"
 
 }
