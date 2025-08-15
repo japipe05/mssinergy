@@ -1,6 +1,8 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const BlogDetailPublic = () => {
   const { id } = useParams();
@@ -10,16 +12,12 @@ const BlogDetailPublic = () => {
 
   useEffect(() => {
     if (id) {
-      fetch(`/api/blog/${id}`)
-        .then(res => {
-          if (!res.ok) {
-            setNotFound(true);
-            return null;
-          }
-          return res.json();
-        })
-        .then(data => {
-          if (data) setBlog(data);
+      axios
+        .get(`/api/blog/${id}`)
+        .then(res => setBlog(res.data))
+        .catch(err => {
+          console.error('Error al cargar blog:', err);
+          setNotFound(true);
         });
     }
   }, [id]);
@@ -31,56 +29,77 @@ const BlogDetailPublic = () => {
     return match ? match[1] : '';
   };
 
-  if (notFound) return <div className="p-6 text-red-600">Publicación no encontrada</div>;
-  if (!blog) return <div className="p-6">Cargando publicación...</div>;
+  if (notFound) {
+    return (
+      <section className="min-h-screen py-12 px-4 dark:bg-dark transition-colors">
+        <div className="max-w-2xl mx-auto text-red-600 dark:text-red-400">
+          Publicación no encontrada
+        </div>
+      </section>
+    );
+  }
+
+  if (!blog) {
+    return (
+      <section className="min-h-screen py-12 px-4 dark:bg-dark transition-colors">
+        <div className="max-w-2xl mx-auto text-gray-700 dark:text-gray-300">
+          Cargando publicación...
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-8 max-w-2xl mx-auto py-6">
-      <button
-        onClick={() => router.push('/blog')}
-        className="mb-4 text-blue-600 hover:underline text-sm"
-      >
-        ← Volver al blog
-      </button>
+    <section className="min-h-screen py-12 px-4 dark:bg-dark transition-colors">
+      <div className="max-w-2xl mx-auto">
+        <button
+          onClick={() => router.push('/blog')}
+          className="mb-4 text-blue-600 dark:text-blue-400 hover:underline text-sm"
+        >
+          ← Volver al blog
+        </button>
 
-      <h1 className="text-2xl sm:text-3xl font-bold mb-2">{blog.blg_title}</h1>
-      <p className="text-xs sm:text-sm text-gray-600 mb-4">
-        {blog.blg_author} • {new Date(blog.blg_createdAt).toLocaleDateString()}
-      </p>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2 dark:text-white">
+          {blog.blg_title}
+        </h1>
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-4">
+          {blog.blg_author} • {new Date(blog.blg_createdAt).toLocaleDateString()}
+        </p>
 
-      {blog.blg_coverImg && (
-        <img
-          src={blog.blg_coverImg}
-          alt="Portada"
-          className="w-full max-h-[250px] object-cover mb-4 rounded-md shadow"
+        {blog.blg_coverImg && (
+          <img
+            src={blog.blg_coverImg}
+            alt="Portada"
+            className="w-full max-h-[250px] object-cover mb-4 rounded-md shadow"
+          />
+        )}
+
+        <article
+          className="prose prose-sm sm:prose lg:prose-lg max-w-none mb-6 text-gray-800 dark:text-gray-300"
+          dangerouslySetInnerHTML={{ __html: blog.blg_content }}
         />
-      )}
 
-      <article
-        className="prose prose-sm sm:prose lg:prose-lg max-w-none mb-6"
-        dangerouslySetInnerHTML={{ __html: blog.blg_content }}
-      />
-
-      {blog.blg_videoUrl && (
-        <div className="w-full mb-6">
-          {blog.blg_videoUrl.includes('youtube') ? (
-            <div className="aspect-video rounded overflow-hidden border">
-              <iframe
-                src={`https://www.youtube.com/embed/${extractYouTubeId(blog.blg_videoUrl)}`}
-                className="w-full h-full"
-                allowFullScreen
+        {blog.blg_videoUrl && (
+          <div className="w-full mb-6">
+            {blog.blg_videoUrl.includes('youtube') ? (
+              <div className="aspect-video rounded overflow-hidden border dark:border-gray-700">
+                <iframe
+                  src={`https://www.youtube.com/embed/${extractYouTubeId(blog.blg_videoUrl)}`}
+                  className="w-full h-full"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <video
+                controls
+                src={blog.blg_videoUrl}
+                className="w-full max-h-[250px] rounded border dark:border-gray-700 object-contain"
               />
-            </div>
-          ) : (
-            <video
-              controls
-              src={blog.blg_videoUrl}
-              className="w-full max-h-[250px] rounded border object-contain"
-            />
-          )}
-        </div>
-      )}
-    </div>
+            )}
+          </div>
+        )}
+      </div>
+    </section>
   );
 };
 

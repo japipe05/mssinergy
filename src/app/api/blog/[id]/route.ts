@@ -1,18 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getBlogById, updateBlog, deleteBlog } from '@/services/blogService';
-import { Blog } from '@/services/blogService';
+import { getBlogById, updateBlog, deleteBlog, Blog } from '@/services/blogService';
 import { deleteFileFromS3 } from '@/services/s3Upload';
-
-interface RouteContext {
-  params: { id: string };
-}
 
 // ✅ GET /api/blog/:id
 export async function GET(
   req: NextRequest,
-  context: RouteContext
+  context: { params: Promise<{ id: string }> }
 ) {
-  const blogId = Number(context.params.id);
+  const { id } = await context.params; // 👈 aquí va el await
+  const blogId = Number(id);
 
   if (isNaN(blogId)) {
     return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
@@ -33,9 +29,10 @@ export async function GET(
 // ✅ PUT /api/blog/:id
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  const blogId = Number(params.id);
+  const { id } = await context.params;
+  const blogId = Number(id);
 
   if (isNaN(blogId)) {
     return NextResponse.json({ error: 'ID inválido' }, { status: 400 });
@@ -50,32 +47,31 @@ export async function PUT(
     return NextResponse.json({ error: 'Error al actualizar blog' }, { status: 500 });
   }
 }
- 
+
 // ✅ DELETE /api/blog/:id
+export async function DELETE(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const { id } = await context.params;
+  const blogId = Number(id);
 
+  if (!blogId) {
+    return NextResponse.json({ error: 'ID requerido' }, { status: 400 });
+  }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
-  const id = Number(context.params.id);
   try {
-    
-    if (!id) {
-      return NextResponse.json({ error: 'ID requerido' }, { status: 400 });
-    }
-
-    // 🚨 Obtener el blog antes de eliminarlo para poder borrar sus archivos
-    const blog = await getBlogById(id);
+    const blog = await getBlogById(blogId);
     if (!blog) {
       return NextResponse.json({ error: 'Blog no encontrado' }, { status: 404 });
     }
 
-    // 🧹 Eliminar archivos de S3 si existen
     if (blog.blg_coverImg) await deleteFileFromS3(blog.blg_coverImg);
     if (blog.blg_videoUrl && !blog.blg_videoUrl.includes('youtube.com')) {
       await deleteFileFromS3(blog.blg_videoUrl);
     }
 
-    // 🗑️ Eliminar blog de la base de datos
-    await deleteBlog(id);
+    await deleteBlog(blogId);
 
     return NextResponse.json({ message: 'Blog eliminado correctamente' });
   } catch (error: any) {
