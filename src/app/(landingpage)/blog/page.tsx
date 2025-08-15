@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const POSTS_PER_PAGE = 6;
 
@@ -11,9 +12,12 @@ const BlogPublicPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch('/api/blog/all')
-      .then(res => res.json())
-      .then(setBlogs);
+    axios
+      .get('/api/blog/all')
+      .then(res => setBlogs(res.data))
+      .catch(err => {
+        console.error('Error al cargar blogs:', err);
+      });
   }, []);
 
   const totalPages = Math.ceil(blogs.length / POSTS_PER_PAGE);
@@ -54,7 +58,8 @@ const BlogPublicPage = () => {
                 {blog.blg_title}
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-                {blog.blg_author} • {new Date(blog.blg_createdAt).toLocaleDateString()}
+                {blog.blg_author} •{' '}
+                {new Date(blog.blg_createdAt).toLocaleDateString()}
               </p>
               <div
                 className="line-clamp-3 text-sm text-gray-700 dark:text-gray-300"
