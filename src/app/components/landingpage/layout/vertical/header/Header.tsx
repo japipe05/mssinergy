@@ -119,8 +119,10 @@ const Header = () => {
               {/* App Link Dropwown   */}
             <AppLinks />
 
-            {/* Language Dropdown*/}
+            {/* Language Dropdown
+            */}
             <Language />
+            
 
             {/* Profile Dropdown */}
             <Profile />

@@ -368,11 +368,15 @@
   "Usuario registrado": "用户已注册",
   "Error desconocido": "未知错误",
   "Error inesperado": "意外错误",
-   "Digite la contraseña nueva": "Enter the new password",
-  "Nueva Contraseña": "New Password",
-  "Cambiar contraseña": "Change Password",
-  "Contraseña actualizada. Redirigiendo...": "Password updated. Redirecting...",
-  "Error al actualizar contraseña.": "Error updating password.",
-  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "The password must be at least 5 characters long and include uppercase letters, lowercase letters, and numbers."
+  "Digite la contraseña nueva": "输入新密码",
+  "Nueva Contraseña": "新密码",
+  "Cambiar contraseña": "更改密码",
+  "Contraseña actualizada. Redirigiendo...": "密码已更新。正在重定向...",
+  "Error al actualizar contraseña.": "更新密码时出错。",
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "密码必须至少包含 5 个字符，包括大写字母、小写字母和数字。",
+  "Cancelar":"取消",
+  "Guardar cambios":"保存更改",
+  "Actualizar perfil":"更新个人资料",
+  "Perfil Usuario":"用户资料"
 
 }

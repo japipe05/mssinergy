@@ -7,6 +7,7 @@ import Image from "next/image";
 import SimpleBar from "simplebar-react";
 import * as profileData from "./Data";
 import axios from "axios";
+import { P } from "pino";
 
 interface User {
   usr_nombre: string;
@@ -29,7 +30,9 @@ useEffect(() => {
   const userPhoto = user?.usr_fotografia || '/images/profile/default.jpg';
 
   return (
+    
     <div className="relative group/menu">
+      
       <Dropdown
         label=""
         className="w-screen sm:w-[360px] py-6 dark:bg-darkgray rounded-sm"

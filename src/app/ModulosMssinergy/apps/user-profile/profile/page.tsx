@@ -1,14 +1,19 @@
 
+"use client";
 import ThemeBreadcrumb from "@/app/ModulosMssinergy/layout/shared/breadcrumb/ThemeBreadcrumb";
 import UserProfileApp from "@/app/components/apps/userprofile/profile";
 import type { Metadata } from "next";
-export const metadata: Metadata = {
-  title: "User Profile App",
-};
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
+
+
+
+
 const UserProfile = () => {
+  const { t } = useTranslation();
   return (
     <>
-      <ThemeBreadcrumb title="Perfil Usuario" />
+      <ThemeBreadcrumb title={t("Perfil Usuario")} />
       <UserProfileApp />
     </>
   );

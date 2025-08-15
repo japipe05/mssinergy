@@ -14,7 +14,7 @@ import { Icon } from "@iconify/react";
         
 <Menu>
     <MenuButton className="ui-button bg-error gap-2">
-    My Profile <Icon icon="solar:alt-arrow-down-outline" height={18} />
+     My Profile <Icon icon="solar:alt-arrow-down-outline" height={18} />
     </MenuButton>
     <MenuItems transition anchor="bottom" className="ui-dropdown ui-dropdown-animation">
     <MenuItem>

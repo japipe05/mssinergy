@@ -366,7 +366,10 @@
   "Cambiar contraseña": "Alterar Senha",
   "Contraseña actualizada. Redirigiendo...": "Senha atualizada. Redirecionando...",
   "Error al actualizar contraseña.": "Erro ao atualizar a senha.",
-  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "A senha deve conter pelo menos 5 caracteres, incluindo letras maiúsculas, minúsculas e números."
-
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "A senha deve conter pelo menos 5 caracteres, incluindo letras maiúsculas, minúsculas e números.",
+ "Cancelar":"Cancelar",
+  "Guardar cambios":"Salvar alterações",
+  "Actualizar perfil":"Atualizar perfil",
+  "Perfil Usuario":"Perfil do Usuário"
   }
   

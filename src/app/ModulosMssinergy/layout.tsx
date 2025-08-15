@@ -34,8 +34,11 @@ export default function Layout({
             {children}
             </div>
             </div>
-          
+          {/* Customizer 
+          muestra una barra a la derecha que sale en mobile
           <MobileRightSidebar />
+          */}
+          
           {url==="/dashboards/minimal" ? <RightSidebar/> : null }
         </div>
       </div>

@@ -385,7 +385,11 @@
   "Cambiar contraseña": "Changer le mot de passe",
   "Contraseña actualizada. Redirigiendo...": "Mot de passe mis à jour. Redirection...",
   "Error al actualizar contraseña.": "Erreur lors de la mise à jour du mot de passe.",
-  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "Le mot de passe doit contenir au moins 5 caractères, y compris des majuscules, des minuscules et des chiffres."
+  "La contraseña debe tener al menos 5 caracteres, incluyendo mayúsculas, minúsculas y números.": "Le mot de passe doit contenir au moins 5 caractères, y compris des majuscules, des minuscules et des chiffres.",
+   "Cancelar":" Annuler",
+  "Guardar cambios":" Enregistrer les modifications",
+  "Actualizar perfil":" Mettre à jour le profil",
+  "Perfil Usuario":" Profil de l'utilisateur"
 
 
 
