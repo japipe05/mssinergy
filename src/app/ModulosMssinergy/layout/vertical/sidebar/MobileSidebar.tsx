@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useMemo } from "react";
-import { Sidebar } from "flowbite-react";
+import { Sidebar, Button } from "flowbite-react";
 import SidebarContent from "./Sidebaritems";
 import NavItems from "./NavItems";
 import SimpleBar from "simplebar-react";
@@ -8,12 +8,8 @@ import Image from "next/image";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Link from "next/link";
 import axios from "axios";
-
-import darkIcon from "/public/images/logos/dark-logo-icon.svg";
-import lightIcon from "/public/images/logos/white-logo-icon.svg";
-import darkText from "/public/images/logos/dark-logo-text.svg";
-import lightText from "/public/images/logos/white-logo-text.svg";
-
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 interface User {
   usr_id: number;
   usr_nombre: string;
@@ -36,7 +32,6 @@ interface MenuitemsType {
   modulo?: string;
 }
 
-// Recursivo para filtrar menú según permisos
 const filterSidebarByAccess = (
   items: MenuitemsType[],
   allowed: string[]
@@ -52,9 +47,9 @@ const filterSidebarByAccess = (
     })
     .filter(Boolean) as MenuitemsType[];
 
-// Componente para submenús en mobile
 const NavCollapseMobile = ({ item }: { item: MenuitemsType }) => {
   const [open, setOpen] = useState(false);
+
   return (
     <div>
       <button
@@ -70,12 +65,11 @@ const NavCollapseMobile = ({ item }: { item: MenuitemsType }) => {
           className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
         />
       </button>
+
       {open && (
         <ul className="pl-8 mt-1 space-y-1">
           {item.children?.map((child) => (
-            <li key={child.id || child.title}>
-              <NavItems item={child} />
-            </li>
+            <NavItems key={child.id || child.title} item={child} />
           ))}
         </ul>
       )}
@@ -83,7 +77,9 @@ const NavCollapseMobile = ({ item }: { item: MenuitemsType }) => {
   );
 };
 
+
 const MobileSidebar = () => {
+     const { t } = useTranslation();
   const [profileDD, setProfileDD] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [modulos, setModulos] = useState<string[]>([]);
@@ -125,6 +121,15 @@ const MobileSidebar = () => {
   const userName = user?.usr_nombre || "Cargando...";
   const userPhoto = user?.usr_fotografia || "/images/profile/default.jpg";
 
+  const handleLogout = async () => {
+    try {
+      await axios.post("/api/auth/logout");
+      window.location.href = "/auth/auth2/login";
+    } catch (error) {
+      console.error("❌ Error al cerrar sesión", error);
+    }
+  };
+
   return (
     <div>
       {/* Logo */}
@@ -162,7 +167,7 @@ const MobileSidebar = () => {
         </div>
 
         {/* Menú principal */}
-        <SimpleBar className="h-[calc(100vh_-_85px)] px-2">
+        <SimpleBar className="h-[calc(100vh_-_150px)] px-2">
           <Sidebar.Items>
             <Sidebar.ItemGroup className="sidebar-nav">
               {filteredSidebarContent.map((item) => (
@@ -184,6 +189,15 @@ const MobileSidebar = () => {
             </Sidebar.ItemGroup>
           </Sidebar.Items>
         </SimpleBar>
+
+        {/* Botón cerrar sesión */}
+        <div className="p-4 border-t border-darkborder dark:border-darkborder">
+          <Button color="failure" className="w-full" onClick={handleLogout}>
+            <Icon icon="solar:logout-2-line-duotone" className="me-2" />
+            {t("Cerrar Sesión")}
+
+          </Button>
+        </div>
       </Sidebar>
     </div>
   );

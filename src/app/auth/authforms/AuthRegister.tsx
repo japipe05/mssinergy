@@ -163,7 +163,7 @@ const AuthRegister = () => {
           <TextInput
             id="usr_correo"
             name="usr_correo"
-            placeholder="@gmail.com"
+            placeholder="@mssinergy.com"
             value={form.usr_correo}
             onChange={handleChange}
             type="email"
