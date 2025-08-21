@@ -79,7 +79,7 @@ const NavCollapseMobile = ({ item }: { item: MenuitemsType }) => {
 
 
 const MobileSidebar = () => {
-     const { t } = useTranslation();
+  const { t } = useTranslation();
   const [profileDD, setProfileDD] = useState("");
   const [user, setUser] = useState<User | null>(null);
   const [modulos, setModulos] = useState<string[]>([]);
@@ -138,7 +138,7 @@ const MobileSidebar = () => {
       </div>
 
       {/* Sidebar */}
-      <Sidebar className="transition-all menu-sidebar bg-darkgray dark:bg-darkgray px-0" aria-label="Sidebar móvil">
+      <Sidebar className="transition-all menu-sidebar bg-darkgray dark:bg-darkgray px-0 flex flex-col h-screen" aria-label="Sidebar móvil">
         {/* Perfil */}
         <div className="pt-4 pb-2 mb-2 border-b border-darkborder dark:border-darkborder px-2">
           <button
@@ -166,8 +166,8 @@ const MobileSidebar = () => {
           </ul>
         </div>
 
-        {/* Menú principal */}
-        <SimpleBar className="h-[calc(100vh_-_150px)] px-2">
+        {/* Menú principal con scroll */}
+        <SimpleBar className="flex-1 px-2">
           <Sidebar.Items>
             <Sidebar.ItemGroup className="sidebar-nav">
               {filteredSidebarContent.map((item) => (
@@ -188,17 +188,31 @@ const MobileSidebar = () => {
               ))}
             </Sidebar.ItemGroup>
           </Sidebar.Items>
-        </SimpleBar>
-
-        {/* Botón cerrar sesión */}
-        <div className="p-4 border-t border-darkborder dark:border-darkborder">
-          <Button color="failure" className="w-full" onClick={handleLogout}>
+        </SimpleBar> 
+  {/* botón fijo abajo */}
+        <div className="pt-3 px-6">
+          
+          <Button
+            color="primary"
+            onClick={async () => {
+              try {
+                await axios.post('/api/auth/logout');
+                window.location.href = '/auth/auth2/login';
+              } catch (error) {
+                console.error('Error al cerrar sesión', error);
+              }
+            }}
+            className="w-full"
+          >
             <Icon icon="solar:logout-2-line-duotone" className="me-2" />
             {t("Cerrar Sesión")}
-
           </Button>
         </div>
+
+      
+       
       </Sidebar>
+
     </div>
   );
 };

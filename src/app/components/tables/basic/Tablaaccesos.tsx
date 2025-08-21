@@ -14,12 +14,32 @@ import axios from "axios";
 import { DBUser } from "@/models/usuarioData";
 import { DBAccess } from "@/models/accesoData";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 
 const Tablaaccesos = () => {
+  const { t } = useTranslation();
+
+
+  // Estados de paginación
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // 👈 Cambia el número de filas por página
+
   const [users, setUsers] = useState<DBUser[]>([]);
   const [selectedUser, setSelectedUser] = useState<DBUser | null>(null);
   const [accesos, setAccesos] = useState<DBAccess[]>([]);
   const [modulos, setModulos] = useState<{ mod_id: number; mod_nombre: string; mod_descripcion: string; mod_ruta: string }[]>([]);
+
+  const totalPages = Math.ceil(accesos.length / itemsPerPage);
+
+  // Calcular accesos paginados
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedAccesos = accesos.slice(startIndex, endIndex);
+
+  const handlePrevious = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+  const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  const handlePageClick = (page: number) => setCurrentPage(page);
 
   const [newAccess, setNewAccess] = useState({
     usr_modulo: "",
@@ -162,65 +182,89 @@ const Tablaaccesos = () => {
     <div className="space-y-6">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <TextInput
-          placeholder="Filtrar por nombre"
+          placeholder={t("Filtrar por nombre")}
           value={filters.usr_nombre}
           onChange={(e) => setFilters({ ...filters, usr_nombre: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por correo"
+          placeholder={t("Filtrar por correo")}
           value={filters.usr_correo}
           onChange={(e) => setFilters({ ...filters, usr_correo: e.target.value })}
         />
       </div>
 
-      <Table>
-        <Table.Head>
-          <Table.HeadCell>Usuario</Table.HeadCell>
-          <Table.HeadCell>Correo</Table.HeadCell>
-          <Table.HeadCell>Rol</Table.HeadCell>
-          <Table.HeadCell>Estado</Table.HeadCell>
-        </Table.Head>
-        <Table.Body>
-          {filteredUsers.slice(0, 1).map((user) => (
-            <Table.Row
-              key={user.usr_id}
-              onClick={() => handleUserSelect(user)}
-              className={`cursor-pointer hover:bg-gray-100 ${selectedUser?.usr_id === user.usr_id ? "bg-primary/10" : ""
-                }`}
-            >
-              <Table.Cell>
-                <div className="flex gap-3 items-center">
-                  <Image
-                    src={user.usr_fotografia}
-                    alt="avatar"
-                    width={40}
-                    height={40}
-                    className="rounded-full object-cover"
-                  />
-                  <h6 className="text-base">{user.usr_nombre}</h6>
-                </div>
-              </Table.Cell>
-              <Table.Cell>{user.usr_correo}</Table.Cell>
-              <Table.Cell>{user.usr_ROL}</Table.Cell>
-              <Table.Cell>
-                <Badge color={user.usr_estado === "ACTIVO" ? "lightsuccess" : "lighterror"}>
-                  {user.usr_estado}
-                </Badge>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
+      <div className="w-full overflow-x-auto">
+        <Table className="min-w-[700px] w-full">
+          <Table.Head>
+            <Table.HeadCell className="whitespace-nowrap">{t("Nombre")}</Table.HeadCell>
+            <Table.HeadCell className="whitespace-nowrap">{t("Correo electrónico")}</Table.HeadCell>
+            <Table.HeadCell className="whitespace-nowrap">{t("Rol")}</Table.HeadCell>
+            <Table.HeadCell className="whitespace-nowrap">{t("Estado")}</Table.HeadCell>
+          </Table.Head>
+
+          <Table.Body>
+            {filteredUsers.slice(0, 1).map((user) => (
+              <Table.Row
+                key={user.usr_id}
+                onClick={() => handleUserSelect(user)}
+                className={`cursor-pointer hover:bg-green-100 dark:hover:bg-green-900 ${selectedUser?.usr_id === user.usr_id ? "bg-green-200 dark:bg-green-800" : ""
+                  }`}
+              >
+                {/* Nombre */}
+                <Table.Cell className="min-w-[180px]">
+                  <div className="flex gap-3 items-center">
+                    <Image
+                      src={user.usr_fotografia}
+                      alt="avatar"
+                      width={40}
+                      height={40}
+                      className="rounded-full object-cover"
+                    />
+                    <h6 className="text-base truncate max-w-[120px]">
+                      {user.usr_nombre}
+                    </h6>
+                  </div>
+                </Table.Cell>
+
+                {/* Correo */}
+                <Table.Cell className="min-w-[220px]">
+                  <span className="truncate max-w-[160px] block">
+                    {user.usr_correo}
+                  </span>
+                </Table.Cell>
+
+                {/* Rol */}
+                <Table.Cell className="min-w-[140px]">
+                  <span className="truncate max-w-[100px] block">
+                    {user.usr_ROL}
+                  </span>
+                </Table.Cell>
+
+                {/* Estado */}
+                <Table.Cell className="min-w-[120px]">
+                  <Badge
+                    color={user.usr_estado === "ACTIVO" ? "lightsuccess" : "lighterror"}
+                  >
+                    {user.usr_estado}
+                  </Badge>
+                </Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+      </div>
+
+
 
       {selectedUser && (
         <div className="space-y-4 border-t pt-6 mt-4">
-          <h3 className="text-lg font-bold">Accesos de {selectedUser.usr_nombre}</h3>
+          <h3 className="text-lg font-bold">{t("Accesos")} {t("de")} {selectedUser.usr_nombre}</h3>
 
           {message && <Alert color={message.type}>{message.text}</Alert>}
 
           <div className="grid md:grid-cols-3 gap-3">
             <div>
-              <Label htmlFor="modulo">Módulo</Label>
+              <Label htmlFor="modulo">{t("Módulo")}</Label>
               <select
                 id="modulo"
                 value={newAccess.usr_modulo}
@@ -246,7 +290,7 @@ const Tablaaccesos = () => {
             </div>
 
             <div>
-              <Label htmlFor="descripcion">Descripción</Label>
+              <Label htmlFor="descripcion">{t("Descripción")}</Label>
               <TextInput
                 id="descripcion"
                 value={newAccess.usr_descripcion}
@@ -255,7 +299,7 @@ const Tablaaccesos = () => {
               />
             </div>
             <div>
-              <Label htmlFor="mod_ruta">Ruta</Label>
+              <Label htmlFor="mod_ruta">{t("Ruta")}</Label>
               <TextInput
                 id="mod_ruta"
                 value={newAccess.mod_ruta}
@@ -265,7 +309,7 @@ const Tablaaccesos = () => {
             </div>
 
             <div className="flex gap-2 items-center mt-6">
-              <Label>Permisos:</Label>
+              <Label>{t("Permisos")}:</Label>
               {["insertar", "actualizar", "eliminar", "lectura"].map((perm) => {
                 type PermKey = "usr_insertar" | "usr_actualizar" | "usr_eliminar" | "usr_lectura";
                 const key = `usr_${perm}` as PermKey;
@@ -290,62 +334,107 @@ const Tablaaccesos = () => {
           </div>
 
           <Button className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1 px-2 text-sm" onClick={handleAddAccess}>
-            ➕ Agregar Acceso
+            ➕ {t("Agregar Acceso")}
           </Button>
-          <Table>
-            <Table.Head>
-              <Table.HeadCell>Módulo</Table.HeadCell>
-              <Table.HeadCell>Descripción</Table.HeadCell>
-              <Table.HeadCell>Ruta</Table.HeadCell>
-              <Table.HeadCell>Insertar</Table.HeadCell>
-              <Table.HeadCell>Actualizar</Table.HeadCell>
-              <Table.HeadCell>Eliminar</Table.HeadCell>
-              <Table.HeadCell>Lectura</Table.HeadCell>
-              <Table.HeadCell>Acción</Table.HeadCell>
-            </Table.Head>
-            <Table.Body>
-              {accesos.map((acc) => (
-                <Table.Row key={acc.acc_id}>
-                  <Table.Cell>{acc.usr_modulo}</Table.Cell>
-                  <Table.Cell>{acc.usr_descripcion}</Table.Cell>
-                  <Table.Cell>{acc.mod_ruta}</Table.Cell>
+          <div className="w-full">
+            {/* Tabla con scroll horizontal */}
+            <div className="overflow-x-auto">
+              <Table>
+                <Table.Head>
+                  <Table.HeadCell>{t("Opción")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Módulo")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Descripción")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Ruta")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Insertar")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Actualizar")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Eliminar")}</Table.HeadCell>
+                  <Table.HeadCell>{t("Lectura")}</Table.HeadCell>
+                </Table.Head>
+                <Table.Body>
+                  {paginatedAccesos.map((acc) => (
+                    <Table.Row key={acc.acc_id}>
+                      <Table.Cell>
+                        <Button
+                          size="xs"
+                          color="failure"
+                          onClick={() => {
+                            if (typeof acc.acc_id === "number") handleDeleteAccess(acc.acc_id);
+                          }}
+                          disabled={typeof acc.acc_id !== "number"}
+                        >
+                          {t("Eliminar")}
+                        </Button>
+                      </Table.Cell>
+                      <Table.Cell>{acc.usr_modulo}</Table.Cell>
+                      <Table.Cell>{acc.usr_descripcion}</Table.Cell>
+                      <Table.Cell>{acc.mod_ruta}</Table.Cell>
+                      <Table.Cell>
+                        <Badge color={acc.usr_insertar === "S" ? "lightsuccess" : "lighterror"}>
+                          {acc.usr_insertar}
+                        </Badge>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Badge color={acc.usr_actualizar === "S" ? "lightsuccess" : "lighterror"}>
+                          {acc.usr_actualizar}
+                        </Badge>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Badge color={acc.usr_eliminar === "S" ? "lightsuccess" : "lighterror"}>
+                          {acc.usr_eliminar}
+                        </Badge>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <Badge color={acc.usr_lectura === "S" ? "lightsuccess" : "lighterror"}>
+                          {acc.usr_lectura}
+                        </Badge>
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table>
+            </div>
 
-                  <Table.Cell>
-                    <Badge color={acc.usr_insertar === "S" ? "lightsuccess" : "lighterror"}>
-                      {acc.usr_insertar}
-                    </Badge>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Badge color={acc.usr_actualizar === "S" ? "lightsuccess" : "lighterror"}>
-                      {acc.usr_actualizar}
-                    </Badge>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Badge color={acc.usr_eliminar === "S" ? "lightsuccess" : "lighterror"}>
-                      {acc.usr_eliminar}
-                    </Badge>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Badge color={acc.usr_lectura === "S" ? "lightsuccess" : "lighterror"}>
-                      {acc.usr_lectura}
-                    </Badge>
-                  </Table.Cell>
-                  <Table.Cell>
-                    <Button
-                      size="xs"
-                      color="failure"
-                      onClick={() => {
-                        if (typeof acc.acc_id === "number") handleDeleteAccess(acc.acc_id);
-                      }}
-                      disabled={typeof acc.acc_id !== "number"}
-                    >
-                      Borrar
-                    </Button>
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-          </Table>
+            {/* Controles de paginación */}
+            <div className="flex flex-col sm:flex-row justify-between items-center mt-4 px-2 gap-3">
+              {/* Texto info */}
+              <div className="text-sm text-gray-600">
+                {t("Mostrando")} {paginatedAccesos.length} {t("de")} {accesos.length} {t("registros")}
+              </div>
+
+              {/* Botones de paginación */}
+              <div className="flex flex-wrap gap-2 items-center justify-center">
+                <Button
+                  size="xs"
+                  onClick={handlePrevious}
+                  disabled={currentPage === 1}
+                  className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1"
+                >
+                  {t("Anterior")}
+                </Button>
+
+                {[...Array(totalPages)].map((_, i) => (
+                  <Button
+                    key={i}
+                    size="xs"
+                    onClick={() => handlePageClick(i + 1)}
+                    color={currentPage === i + 1 ? "primary" : "gray"}
+                  >
+                    {i + 1}
+                  </Button>
+                ))}
+
+                <Button
+                  size="xs"
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages}
+                  className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1"
+                >
+                  {t("Siguiente")}
+                </Button>
+              </div>
+            </div>
+          </div>
+
 
 
         </div>

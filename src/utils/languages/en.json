@@ -384,6 +384,14 @@
     "Agregar Usuario":"Add User",
     "Editar": "Edit",
     "Eliminar": "Delete",
+    "Accesos": "Accesses",
+    "Módulo": "Module",
+    "Descripción": "Description",
+    "Permisos": "Permissions",
+    "Agregar Acceso":"Add Access",
+    "Insertar":"Insert",
+    "Actualizar":"Update",
+    "Lectura":"Read",
     "Actualizar perfil":"Update profile",
     "Perfil Usuario":"User Profile"
 

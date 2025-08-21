@@ -96,6 +96,7 @@ const Profile = () => {
             }}
             className="w-full"
           >
+            <Icon icon="solar:logout-2-line-duotone" className="me-2" />
             {t("Cerrar Sesión")}
           </Button>
         </div>
