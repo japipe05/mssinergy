@@ -7,7 +7,7 @@ import { ProductProvider } from "@/app/context/Ecommercecontext/index";
 import { useTranslation } from "react-i18next";
 import "@/utils/i18n";
 import TitleCard from "@/app/components/shared/TitleBorderCard";
-
+ 
 const CalificacionVehiculos = () => {
   const { t } = useTranslation();
 
