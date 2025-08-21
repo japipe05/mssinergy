@@ -396,6 +396,14 @@
   "Agregar Usuario":"添加用户",
   "Editar":"编辑",
   "Eliminar":"删除",
+  "Accesos": "访问权限",
+  "Módulo": "模块",
+  "Descripción": "描述",
+  "Permisos": "权限",
+  "Agregar Acceso":"添加访问权限",
+  "Insertar":"插入",
+  "Actualizar":"更新",
+  "Lectura":"阅读",
   "Actualizar perfil":"更新个人资料",
   "Perfil Usuario":"用户资料"
 

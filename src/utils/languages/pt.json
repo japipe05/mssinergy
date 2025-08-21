@@ -389,6 +389,14 @@
     "Agregar Usuario":"Adicionar Usuário",
     "Editar": "Editar",
   "Eliminar":"Excluir",
+  "Accesos": "Acessos",
+  "Módulo": "Módulo",
+  "Descripción": "Descrição",
+  "Permisos": "Permissões",
+  "Agregar Acceso":"Adicionar Acesso",
+  "Insertar":"Inserir",
+  "Actualizar":"Atualizar",
+  "Lectura":"Leitura",
   "Actualizar perfil":"Atualizar perfil",
   "Perfil Usuario":"Perfil do Usuário"
   }

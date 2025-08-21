@@ -408,6 +408,14 @@
   "Agregar Usuario":" Ajouter un utilisateur",
   "Editar":"Modifier",
   "Eliminar":"Supprimer",
+  "Accesos": "Accès",
+  "Módulo": "Module",
+  "Descripción": "Description",
+  "Permisos": "Autorisations",
+  "Agregar Acceso":" Ajouter un accès",
+  "Insertar":"Insérer",
+  "Actualizar":"Mettre à jour",
+  "Lectura":"Lecture",
   "Actualizar perfil":" Mettre à jour le profil",
   "Perfil Usuario":" Profil de l'utilisateur"
 
