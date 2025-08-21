@@ -6,8 +6,10 @@ import { IconDotsVertical } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { DBUser } from '@/models/usuarioData';
-
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
 const Perfiles = () => {
+  const { t } = useTranslation();
   //filtros
   const [filters, setFilters] = useState({
     usr_nombre: '',
@@ -132,13 +134,14 @@ const Perfiles = () => {
 
       <div className="flex justify-end mb-4">
         <Button className="bg-primary text-white" onClick={() => setIsAddOpen(true)}>
-          ➕ Agregar Usuario
+          ➕ {t("Agregar Usuario")}
         </Button>
       </div>
 
       {/* Columnas visibles */}
       <div className="flex flex-wrap gap-3 mb-4">
-        <label className="flex items-center gap-2">
+        {/* Toggle All */}
+        <label className="flex items-center gap-2 font-medium">
           <input
             type="checkbox"
             checked={Object.values(visibleColumns).every(Boolean)}
@@ -157,54 +160,56 @@ const Perfiles = () => {
             }}
           />
           Toggle All
-          {Object.entries(visibleColumns).map(([key, val]) => (
-            <label key={key} className="flex items-center gap-2 capitalize">
-              <input
-                type="checkbox"
-                checked={val}
-                onChange={() =>
-                  setVisibleColumns((prev) => ({
-                    ...prev,
-                    [key as VisibleColumnKey]: !prev[key as VisibleColumnKey],
-                  }))
-                }
-              />
-              {key}
-            </label>
-          ))}
         </label>
 
+        {/* Column checkboxes */}
+        {Object.entries(visibleColumns).map(([key, val]) => (
+          <label key={key} className="flex items-center gap-2 capitalize">
+            <input
+              type="checkbox"
+              checked={val}
+              onChange={() =>
+                setVisibleColumns((prev) => ({
+                  ...prev,
+                  [key as VisibleColumnKey]: !prev[key as VisibleColumnKey],
+                }))
+              }
+            />
+            {key}
+          </label>
+        ))}
       </div>
+
 
       {/* Filtros */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-4">
         <TextInput
-          placeholder="Filtrar por nombre"
+          placeholder={t("Filtrar por nombre")}
           value={filters.usr_nombre}
           onChange={(e) => setFilters({ ...filters, usr_nombre: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por correo"
+          placeholder={t("Filtrar por correo")}
           value={filters.usr_correo}
           onChange={(e) => setFilters({ ...filters, usr_correo: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por celular"
+          placeholder={t("Filtrar por celular")}
           value={filters.usr_celular}
           onChange={(e) => setFilters({ ...filters, usr_celular: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por rol"
+          placeholder={t("Filtrar por rol")}
           value={filters.usr_ROL}
           onChange={(e) => setFilters({ ...filters, usr_ROL: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por estado"
+          placeholder={t("Filtrar por estado")}
           value={filters.usr_estado}
           onChange={(e) => setFilters({ ...filters, usr_estado: e.target.value })}
         />
         <TextInput
-          placeholder="Filtrar por fecha (YYYY-MM-DD)"
+          placeholder={t("Filtrar por fecha (YYYY-MM-DD)")}
           value={filters.usr_fecha_creacion}
           onChange={(e) => setFilters({ ...filters, usr_fecha_creacion: e.target.value })}
         />
@@ -215,14 +220,14 @@ const Perfiles = () => {
 
         <Table>
           <Table.Head>
-            {visibleColumns.opciones && <Table.HeadCell>Opción</Table.HeadCell>}
-            {visibleColumns.usuario && <Table.HeadCell>Usuario</Table.HeadCell>}
-            {visibleColumns.correo && <Table.HeadCell>Correo</Table.HeadCell>}
-            {visibleColumns.celular && <Table.HeadCell>Celular</Table.HeadCell>}
-            {visibleColumns.rol && <Table.HeadCell>Rol</Table.HeadCell>}
-            {visibleColumns.estado && <Table.HeadCell>Estado</Table.HeadCell>}
-            {visibleColumns.fecha && <Table.HeadCell>Fecha de Creación</Table.HeadCell>}
-            {visibleColumns.id && <Table.HeadCell>ID</Table.HeadCell>}
+            {visibleColumns.opciones && <Table.HeadCell>{t("Opción")}</Table.HeadCell>}
+            {visibleColumns.usuario && <Table.HeadCell>{t("Nombre")}</Table.HeadCell>}
+            {visibleColumns.correo && <Table.HeadCell>{t("Correo electrónico")}</Table.HeadCell>}
+            {visibleColumns.celular && <Table.HeadCell>{t("Celular")}</Table.HeadCell>}
+            {visibleColumns.rol && <Table.HeadCell>{t("Rol")}</Table.HeadCell>}
+            {visibleColumns.estado && <Table.HeadCell>{t("Estado")}</Table.HeadCell>}
+            {visibleColumns.fecha && <Table.HeadCell>{t("Fecha de Creación")}</Table.HeadCell>}
+            {visibleColumns.id && <Table.HeadCell>{t("ID")}</Table.HeadCell>}
           </Table.Head>
 
           <Table.Body>
@@ -247,7 +252,7 @@ const Perfiles = () => {
                         }}
                       >
                         <Icon icon="tabler:edit" height={18} />
-                        <span>Editar</span>
+                        <span>{t("Editar")}</span>
                       </Dropdown.Item>
 
                       <Dropdown.Item
@@ -268,7 +273,7 @@ const Perfiles = () => {
                         }}
                       >
                         <Icon icon="tabler:trash" height={18} />
-                        <span>Eliminar</span>
+                        <span>{t("Eliminar")}</span>
                       </Dropdown.Item>
                     </Dropdown>
                   </Table.Cell>
@@ -316,19 +321,23 @@ const Perfiles = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-between items-center mt-4 px-2">
-        <div>
-          Mostrando {paginatedUsers.length} de {users.length} registros
+      <div className="flex flex-col sm:flex-row justify-between items-center mt-4 px-2 gap-3">
+        {/* Texto */}
+        <div className="text-sm text-gray-600">
+          {t("Mostrando")} {paginatedUsers.length} {t("de")} {users.length} {t("registros")}
         </div>
-        <div className="flex gap-2 items-center">
+
+        {/* Paginador */}
+        <div className="flex flex-wrap gap-2 items-center justify-center">
           <Button
             size="xs"
             onClick={handlePrevious}
             disabled={currentPage === 1}
             className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1"
           >
-            Anterior
+            {t("Anterior")}
           </Button>
+
           {[...Array(totalPages)].map((_, i) => (
             <Button
               key={i}
@@ -339,16 +348,18 @@ const Perfiles = () => {
               {i + 1}
             </Button>
           ))}
+
           <Button
             size="xs"
             onClick={handleNext}
             disabled={currentPage === totalPages}
             className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1"
           >
-            Siguiente
+            {t("Siguiente")}
           </Button>
         </div>
       </div>
+
 
       {/* Modal para editar usuario */}
       {selectedUser && (
@@ -399,7 +410,7 @@ const Perfiles = () => {
               <div className="space-y-4 overflow-y-auto max-h-[calc(70vh-64px)] px-1 sm:px-4 pb-24">
                 {/* Imagen */}
                 <div>
-                  <Label htmlFor="usr_fotografia" value="Cargar Imagen" />
+                  <Label htmlFor="usr_fotografia" value={t("Cargar Imagen")} />
                   <input
                     id="usr_fotografia"
                     type="file"
@@ -433,7 +444,7 @@ const Perfiles = () => {
 
                 {/* Nombre */}
                 <div>
-                  <Label htmlFor="usr_nombre">Nombre</Label>
+                  <Label htmlFor="usr_nombre">{t("Nombre")}</Label>
                   <TextInput
                     id="usr_nombre"
                     value={selectedUser.usr_nombre}
@@ -450,7 +461,7 @@ const Perfiles = () => {
 
                 {/* Correo */}
                 <div>
-                  <Label htmlFor="usr_correo">Correo</Label>
+                  <Label htmlFor="usr_correo">{t("Correo electrónico")}</Label>
                   <TextInput
                     id="usr_correo"
                     type="email"
@@ -465,7 +476,7 @@ const Perfiles = () => {
 
                 {/* Celular */}
                 <div>
-                  <Label htmlFor="usr_codigo_pais">Celular</Label>
+                  <Label htmlFor="usr_codigo_pais">{t("Celular")}</Label>
                   <div className="flex gap-2">
                     <select
                       id="usr_codigo_pais"
@@ -501,7 +512,7 @@ const Perfiles = () => {
 
                 {/* Estado */}
                 <div>
-                  <Label htmlFor="usr_estado">Estado</Label>
+                  <Label htmlFor="usr_estado">{t("Estado")}</Label>
                   <select
                     id="usr_estado"
                     value={selectedUser.usr_estado}
@@ -517,7 +528,7 @@ const Perfiles = () => {
 
                 {/* Rol */}
                 <div>
-                  <Label htmlFor="usr_ROL">Rol</Label>
+                  <Label htmlFor="usr_ROL">{t("Rol")}</Label>
                   <select
                     id="usr_ROL"
                     value={selectedUser.usr_ROL}
@@ -533,26 +544,32 @@ const Perfiles = () => {
                     <option value="SUPPORT">SUPPORT</option>
                   </select>
                 </div>
-              </div>
-            </Modal.Body>
 
-            {/* Footer fijo */}
-            <Modal.Footer className="sticky bottom-0 bg-white dark:bg-gray-900 px-4 py-3 shadow-md flex justify-between gap-4 z-10">
-              <Button
+                {/* Botones */}
+              <div>
+                <div className="flex gap-2">
+                  <Button
                 type="button"
                 color="gray"
                 className="rounded-md px-4 py-1 text-sm"
                 onClick={() => setIsEditOpen(false)}
               >
-                Cancelar
+                {t("Cancelar")}
               </Button>
               <button
                 type="submit"
                 className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-2 px-4 text-sm"
               >
-                Guardar Cambios
+                {t("Actualizar perfil")}
               </button>
-            </Modal.Footer>
+                </div>
+              </div>
+
+
+              </div>
+            </Modal.Body>
+
+           
           </form>
         </Modal>
       )}
@@ -566,12 +583,12 @@ const Perfiles = () => {
         size="xl"
         position="center"
       >
-         {errorMessage && (
-    <Alert color="failure" className="rounded-md">
-      ❌ <span className="font-medium">{errorMessage}</span>
-    </Alert>
-  )}
-        <Modal.Header>Agregar Usuario</Modal.Header>
+        {errorMessage && (
+          <Alert color="failure" className="rounded-md">
+            ❌ <span className="font-medium">{errorMessage}</span>
+          </Alert>
+        )}
+        <Modal.Header>{t("Agregar Usuario")}</Modal.Header>
         <form
           onSubmit={async (e) => {
             e.preventDefault();
@@ -619,7 +636,7 @@ const Perfiles = () => {
             <div className="space-y-4 max-h-[70vh] overflow-y-auto px-1 sm:px-4 pb-24">
               {/* Imagen */}
               <div>
-                <Label htmlFor="image" value="Cargar imagen" />
+                <Label htmlFor="image" value={t("Cargar Imagen")} />
                 <input
                   type="file"
                   accept="image/*"
@@ -646,12 +663,12 @@ const Perfiles = () => {
 
               {/* Nombre */}
               <div>
-                <Label htmlFor="usr_nombre" value="Nombre" />
+                <Label htmlFor="usr_nombre" value={t("Nombre")} />
                 <TextInput
                   id="usr_nombre"
                   value={addForm.usr_nombre}
                   required
-                  placeholder="Nombre completo"
+                  placeholder={t("Nombre completo")}
                   minLength={3}
                   maxLength={200}
                   onChange={(e) =>
@@ -662,13 +679,13 @@ const Perfiles = () => {
 
               {/* Correo */}
               <div>
-                <Label htmlFor="usr_correo" value="Correo" />
+                <Label htmlFor="usr_correo" value={t("Correo electrónico")} />
                 <TextInput
                   id="usr_correo"
                   type="email"
                   value={addForm.usr_correo}
                   required
-                  placeholder="correo@ejemplo.com"
+                  placeholder="@mssinergy.com"
                   onChange={(e) =>
                     setAddForm({ ...addForm, usr_correo: e.target.value })
                   }
@@ -677,7 +694,7 @@ const Perfiles = () => {
 
               {/* Contraseña */}
               <div>
-                <Label htmlFor="usr_credencial" value="Contraseña" />
+                <Label htmlFor="usr_credencial" value={t("Contraseña")} />
                 <TextInput
                   id="usr_credencial"
                   type="password"
@@ -695,7 +712,7 @@ const Perfiles = () => {
 
               {/* Celular */}
               <div>
-                <Label htmlFor="usr_codigo_pais" value="Celular" />
+                <Label htmlFor="usr_codigo_pais" value={t("Celular")} />
                 <div className="flex gap-2">
                   <select
                     id="usr_codigo_pais"
@@ -726,7 +743,7 @@ const Perfiles = () => {
 
               {/* Estado */}
               <div>
-                <Label htmlFor="usr_estado" value="Estado" />
+                <Label htmlFor="usr_estado" value={t("Estado")} />
                 <select
                   id="usr_estado"
                   value={addForm.usr_estado}
@@ -742,7 +759,7 @@ const Perfiles = () => {
 
               {/* Rol */}
               <div>
-                <Label htmlFor="usr_ROL" value="Rol" />
+                <Label htmlFor="usr_ROL" value={t("Rol")} />
                 <select
                   id="usr_ROL"
                   value={addForm.usr_ROL}
@@ -758,17 +775,25 @@ const Perfiles = () => {
                   <option value="SUPPORT">SUPPORT</option>
                 </select>
               </div>
+
+
+              {/* Botones */}
+              <div>
+                <div className="flex gap-2">
+                  <Button color="gray" type="button" onClick={() => setIsAddOpen(false)}>
+                    {t("Cancelar")}
+                  </Button>
+                  <Button className="bg-primary text-white" type="submit">
+                    {t("Crear")}
+                  </Button>
+                </div>
+              </div>
+
             </div>
+
           </Modal.Body>
 
-          <Modal.Footer className="sticky bottom-0 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
-            <Button color="gray" type="button" onClick={() => setIsAddOpen(false)}>
-              Cancelar
-            </Button>
-            <Button className="bg-primary text-white" type="submit">
-              Registrar
-            </Button>
-          </Modal.Footer>
+
         </form>
       </Modal>
 

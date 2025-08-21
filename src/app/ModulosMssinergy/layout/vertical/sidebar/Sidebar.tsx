@@ -27,7 +27,7 @@ interface User {
 interface Acceso {
   usr_modulo: string;
 }
- 
+
 interface MenuitemsType {
   id?: string;
   navlabel?: boolean;
@@ -130,10 +130,12 @@ const SidebarLayout = () => {
   const userPhoto = user?.usr_fotografia || "/images/profile/default.jpg";
 
   return (
+
     <Sidebar
       className="fixed top-[72px] xl:start-0 -start-[240px] z-10 transition-all menu-sidebar bg-darkgray dark:bg-darkgray px-0"
       aria-label="Sidebar with multi-level dropdown example"
     >
+
       <SimpleBar className="h-[calc(100vh_-_100px)]">
         <div className="pt-4 pb-2 mb-2 border-b border-darkborder dark:border-darkborder px-2">
           <Link
@@ -141,7 +143,7 @@ const SidebarLayout = () => {
             className="flex justify-between items-center py-3 px-1 mb-0.5"
             onClick={handleProfile}
           >
-            <div className="flex items-center hide-profile gap-3">
+            <div className="flex items-center hide-profile gap-3 overflow-hidden">
               <Image
                 src={userPhoto}
                 alt="profile-image"
@@ -150,18 +152,19 @@ const SidebarLayout = () => {
                 className="rounded-full ml-[5px]"
               />
               <span
-                className={`text-white shrink-0 whitespace-nowrap font-light hide-menu ${
-                  profileDD === "active" ? "font-medium" : ""
-                }`}
+                className={`text-white whitespace-nowrap font-light hide-menu truncate max-w-[150px] overflow-hidden text-ellipsis ${profileDD === "active" ? "font-medium" : ""
+                  }`}
+                title={userName} // 👉 Tooltip con el nombre completo
               >
                 {userName}
               </span>
             </div>
+
+
             <Icon
               icon="octicon:chevron-right-24"
-              className={`text-lg hide-menu shrink-0 transition-all text-white ${
-                profileDD === "active" ? "rotate-90" : ""
-              }`}
+              className={`text-lg hide-menu shrink-0 transition-all text-white ${profileDD === "active" ? "rotate-90" : ""
+                }`}
             />
           </Link>
 
