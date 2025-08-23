@@ -17,27 +17,37 @@ const s3 = new S3Client({
  */
 export async function uploadFileToS3(file: File, folder: string = "registro") {
   const buffer = Buffer.from(await file.arrayBuffer());
-  const ext = file.name.split('.').pop();
-  const key = `${folder}/${Date.now()}-${randomUUID()}.${ext}`;
-try{
-  const command = new PutObjectCommand({
-    Bucket: process.env.AWS_S3_BUCKET!,
-    Key: key,
-    Body: buffer,
-    ContentType: file.type,
-  });
- 
-  await s3.send(command);
 
-  const url = `https://${process.env.AWS_S3_BUCKET}.s3.amazonaws.com/${key}`;
-  
-  return url;
-    
-} catch (error) {
-  console.error("❌ Error al crear archivo de S3:", error);
-}
-}
+  // Obtener año y mes actual en zona horaria de Bogotá
+  const nowBogota = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Bogota" }));
+  const year = nowBogota.getFullYear();
+  const month = String(nowBogota.getMonth() + 1).padStart(2, "0"); // 01-12
 
+  const ext = (file.name.split(".").pop() || "").trim() || "bin";
+  const safeExt = ext.replace(/[^a-zA-Z0-9]/g, ""); // higiene mínima
+  const filename = `${Date.now()}-${randomUUID()}.${safeExt}`;
+
+  // >>> Clave con año/mes <<<
+  const key = `${folder}/${year}/${month}/${filename}`;
+
+  try {
+    const command = new PutObjectCommand({
+      Bucket: process.env.AWS_S3_BUCKET!,
+      Key: key,
+      Body: buffer,
+      ContentType: file.type || "application/octet-stream",
+    });
+
+    await s3.send(command);
+
+    // URL pública estilo virtual-hosted
+    const url = `https://${process.env.AWS_S3_BUCKET}.s3.amazonaws.com/${encodeURI(key)}`;
+    return url;
+  } catch (error) {
+    console.error("❌ Error al crear archivo de S3:", error);
+    throw error; // opcional: propagar para manejar arriba
+  }
+}
 
 
 /**

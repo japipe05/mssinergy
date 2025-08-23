@@ -23,7 +23,7 @@ export async function createBlog(blog: Blog): Promise<number> {
       blog.blg_category,
       blog.blg_coverImg,
       blog.blg_author,
-      blog.blg_videoUrl || null,
+      blog.blg_videoUrl
     ]
   );
   return result.insertId;
@@ -51,7 +51,7 @@ export async function updateBlog(id: number, blog: Blog): Promise<void> {
       blog.blg_category,
       blog.blg_coverImg,
       blog.blg_author,
-      blog.blg_videoUrl || null,
+      blog.blg_videoUrl,
       id,
     ]
   );

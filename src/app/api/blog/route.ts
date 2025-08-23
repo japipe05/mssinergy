@@ -21,11 +21,14 @@ export async function POST(req: NextRequest) {
     const blg_category = form.get('category') as string;
     const blg_author = form.get('author') as string;
     const videoUrlManual = form.get('videoUrl') as string;
-    const coverImgFile = form.get('coverImg') as File | null;
+    const coverImgManual = form.get('coverImg') as string;
+    const coverImgFile = form.get('imagen') as File | null;
     const videoFile = form.get('video') as File | null;
 
     // ✅ Subir archivos a S3 si existen
-    const coverImgUrl = coverImgFile ? await uploadFileToS3(coverImgFile, '901408258/blogs') : '';
+    const coverImgUrl = coverImgFile 
+      ? await uploadFileToS3(coverImgFile, '901408258/blogs') 
+      : coverImgManual || '';
     const videoUrl = videoFile
       ? await uploadFileToS3(videoFile, '901408258/blogs')
       : videoUrlManual || '';
@@ -35,9 +38,9 @@ export async function POST(req: NextRequest) {
       blg_title,
       blg_content,
       blg_category,
-      blg_coverImg: coverImgUrl ?? '',
+      blg_coverImg: coverImgUrl,
       blg_author,
-      blg_videoUrl: videoUrl,
+      blg_videoUrl: videoUrl 
     });
 
     return NextResponse.json({ message: 'Blog creado', id: insertId });
@@ -85,8 +88,9 @@ export async function PUT(req: NextRequest) {
     const blg_category = form.get('category') as string;
     const blg_author = form.get('author') as string;
 
-    const coverImgFile = form.get('coverImg') as File | null;
+    const coverImgFile = form.get('imagen') as File | null;
     const coverImgUrlManual = form.get('coverImgUrl') as string;
+
     const videoFile = form.get('video') as File | null;
     const videoUrlManual = form.get('videoUrl') as string;
 

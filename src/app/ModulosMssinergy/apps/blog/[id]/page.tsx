@@ -27,15 +27,15 @@ const VerBlogPage = () => {
         {blog.blg_author} • {blog.blg_category} • {new Date(blog.blg_createdAt).toLocaleDateString()}
       </p>
 
-    {blog.blg_coverImg && (
-  <div className="max-w-xs mx-auto mb-6">
-    <img
-      src={blog.blg_coverImg}
-      alt="Portada"
-      className="w-full h-auto rounded shadow"
-    />
-  </div>
-)}
+      {blog.blg_coverImg && (
+        <div className="max-w-xs mb-6">
+          <img
+            src={blog.blg_coverImg}
+            alt="Portada"
+            className="w-full h-auto rounded shadow"
+          />
+        </div>
+      )}
 
 
       <article
@@ -44,7 +44,7 @@ const VerBlogPage = () => {
       />
 
       {blog.blg_videoUrl && (
-        <div className="mt-6 max-w-md mx-auto">
+        <div className="mt-6 mx-auto">
           {blog.blg_videoUrl.includes('youtube.com') || blog.blg_videoUrl.includes('youtu.be') ? (
             <iframe
               src={`https://www.youtube.com/embed/${blog.blg_videoUrl.split('v=')[1]}`}

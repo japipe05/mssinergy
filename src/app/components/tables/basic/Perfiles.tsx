@@ -8,7 +8,11 @@ import axios from "axios";
 import { DBUser } from '@/models/usuarioData';
 import { useTranslation } from "react-i18next";
 import "@/utils/i18n";
+import { IconEdit, IconPlus } from "@tabler/icons-react";
+
 const Perfiles = () => {
+  const [loading, setLoading] = useState(false);
+
   const { t } = useTranslation();
   //filtros
   const [filters, setFilters] = useState({
@@ -373,6 +377,8 @@ const Perfiles = () => {
           <form
             onSubmit={async (e) => {
               e.preventDefault();
+              setLoading(true);
+
               const { usr_nombre, usr_correo, usr_celular } = selectedUser;
               try {
                 const formData = new FormData();
@@ -399,8 +405,10 @@ const Perfiles = () => {
                 setSuccessMessage("Usuario actualizado correctamente.");
                 setTimeout(() => setSuccessMessage(null), 2000);
                 await fetchUsers();
+                setLoading(false);
               } catch (err) {
                 console.error("❌ Error al editar usuario", err);
+                setLoading(false);
                 setAlert({ type: "error", message: "❌ Ocurrió un error al actualizar el usuario." });
               }
             }}
@@ -545,31 +553,48 @@ const Perfiles = () => {
                   </select>
                 </div>
 
+
+
                 {/* Botones */}
-              <div>
-                <div className="flex gap-2">
-                  <Button
-                type="button"
-                color="gray"
-                className="rounded-md px-4 py-1 text-sm"
-                onClick={() => setIsEditOpen(false)}
-              >
-                {t("Cancelar")}
-              </Button>
-              <button
-                type="submit"
-                className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-2 px-4 text-sm"
-              >
-                {t("Actualizar perfil")}
-              </button>
+                <div>
+                  <div className="flex justify-end gap-3 px-4 py-3">
+                    <Button
+                      onClick={() => setIsEditOpen(false)}
+                      className="min-w-[110px] rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 
+                 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 
+                 transition-colors py-1.5 px-4 text-sm"
+                      aria-label={t("Cancelar")}
+                    >
+                      {t("Cancelar")}
+                    </Button>
+
+                    <Button
+                      type="submit"
+                      className="min-w-[130px] rounded-lg bg-primary text-white hover:bg-primary/90 
+                 transition-colors flex items-center justify-center gap-2 
+                 py-1.5 px-4 text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                      disabled={loading}
+                      aria-busy={loading}
+                      aria-label={loading ? t("Cargando...") : t("Actualizar perfil")}
+                    >
+                      {loading ? (
+                        <span className="animate-pulse">{t("Cargando...")}</span>
+                      ) : (
+                        <>
+                          <IconEdit size={14} /> {t("Actualizar perfil")}
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </div>
-              </div>
+
+
 
 
               </div>
             </Modal.Body>
 
-           
+
           </form>
         </Modal>
       )}
@@ -599,7 +624,7 @@ const Perfiles = () => {
                 formData.append(key, val)
               );
               if (addFile) formData.append("file", addFile);
-
+              setLoading(true);
               await axios.post("/api/auth/register/internal", formData);
 
               setSuccessMessage("Usuario creado correctamente.");
@@ -618,6 +643,7 @@ const Perfiles = () => {
               setAddFile(null);
               setPreviewAddImage("");
               await fetchUsers();
+              setLoading(false);
             } catch (err: any) {
 
 
@@ -627,7 +653,7 @@ const Perfiles = () => {
               } else {
                 setErrorMessage("Error al registrar usuario.");
               }
-
+              setLoading(false);
               setTimeout(() => setErrorMessage(null), 3000);
             }
           }}
@@ -779,15 +805,37 @@ const Perfiles = () => {
 
               {/* Botones */}
               <div>
-                <div className="flex gap-2">
-                  <Button color="gray" type="button" onClick={() => setIsAddOpen(false)}>
+                <div className="flex justify-end gap-3 px-4 py-3">
+                  <Button
+                    onClick={() => setIsAddOpen(false)}
+                    className="min-w-[110px] rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 
+                 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 
+                 transition-colors py-1.5 px-4 text-sm"
+                    aria-label={t("Cancelar")}
+                  >
                     {t("Cancelar")}
                   </Button>
-                  <Button className="bg-primary text-white" type="submit">
-                    {t("Crear")}
+
+                  <Button
+                    type="submit"
+                    className="min-w-[130px] rounded-lg bg-primary text-white hover:bg-primary/90 
+                 transition-colors flex items-center justify-center gap-2 
+                 py-1.5 px-4 text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    disabled={loading}
+                    aria-busy={loading}
+                    aria-label={loading ? t("Cargando...") : t("Crear")}
+                  >
+                    {loading ? (
+                      <span className="animate-pulse">{t("Cargando...")}</span>
+                    ) : (
+                      <>
+                        <IconPlus size={14} /> {t("Crear")}
+                      </>
+                    )}
                   </Button>
                 </div>
               </div>
+
 
             </div>
 
