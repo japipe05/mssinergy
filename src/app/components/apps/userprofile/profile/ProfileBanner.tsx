@@ -37,6 +37,7 @@ const ProfileBanner = () => {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     axios
       .get("/api/auth/me")
@@ -137,6 +138,7 @@ const ProfileBanner = () => {
         <form
           onSubmit={async (e) => {
             e.preventDefault();
+            setLoading(true);
             try {
               const formData = new FormData();
               formData.append("usr_nombre", user.usr_nombre);
@@ -161,10 +163,12 @@ const ProfileBanner = () => {
               setSuccessMessage(t("Usuario actualizado correctamente."));
               setTimeout(() => setSuccessMessage(null), 2000);
               setIsEditOpen(false);
+              setLoading(false);
             } catch (error) {
               console.error("❌ Error actualizando usuario:", error);
               setErrorMessage(t("Error actualizando usuario."));
               setTimeout(() => setErrorMessage(null), 2000);
+              setLoading(false);
             }
           }}
         >
@@ -268,21 +272,33 @@ const ProfileBanner = () => {
               </div>
             </div>
           </Modal.Body>
-          <Modal.Footer className="bg-white dark:bg-gray-900 flex justify-end gap-2">
-            <Button
-              color="gray"
-              onClick={() => setIsEditOpen(false)}
-              className="bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
-            >
-              {t("Cancelar")}
-            </Button>
-            <Button
-              type="submit"
-              className="bg-green-600 text-white hover:bg-green-500"
-            >
-              {t("Guardar cambios")}
-            </Button>
-          </Modal.Footer>
+         <Modal.Footer className="bg-white dark:bg-gray-900 flex justify-end gap-3 px-4 py-3">
+  <Button
+    onClick={() => setIsEditOpen(false)}
+    className="min-w-[110px] rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700 transition-colors py-1.5 px-4 text-sm"
+    aria-label={t("Cancelar")}
+  >
+    {t("Cancelar")}
+  </Button>
+
+  <Button
+    type="submit"
+    className="min-w-[150px] rounded-lg bg-primary text-white hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 py-1.5 px-4 text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+    disabled={loading}
+    aria-busy={loading}
+    aria-label={loading ? t("Cargando...") : t("Actualizar perfil")}
+  >
+    {loading ? (
+      <span className="animate-pulse">{t("Cargando...")}</span>
+    ) : (
+      <>
+        <IconEdit size={14} /> {t("Actualizar perfil")}
+      </>
+    )}
+  </Button>
+</Modal.Footer>
+
+
         </form>
       </Modal>
     </>

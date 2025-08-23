@@ -29,13 +29,14 @@ const Search = () => {
 
   return (
     <div>
+     {/* search button 
       <button
         onClick={() => setOpenModal(true)}
         className="h-10 w-10 dark:text-darkmuted dark:hover:text-primary hover:text-primary hover:bg-lightprimary rounded-full flex justify-center items-center cursor-pointer"
       >
         <Icon icon="solar:magnifer-linear" height={21} />
       </button>
-
+*/}
       <Modal dismissible show={openModal} onClose={() => setOpenModal(false)}>
         <div className="p-6 border-b border-ld">
           <TextInput placeholder="Search here" value={inputVal} onChange={handleInputValue} className="form-control" sizing="md" required />

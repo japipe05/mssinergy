@@ -16,12 +16,12 @@ const AppLinks = () => {
   return (
     <>
       <div className="relative group ">
-        <span className="h-10 w-10 dark:text-darkmuted hover:bg-lightprimary rounded-full flex justify-center items-center cursor-pointer group-hover:bg-lightprimary group-hover:text-primary xl:flex hidden">
+        <span className="h-10 w-10 dark:text-darkmuted hover:bg-lightprimary rounded-full flex justify-center items-center cursor-pointer group-hover:bg-lightprimary group-hover:text-primary xl:flex">
           <Icon icon="solar:widget-3-line-duotone" height={20} />
         </span>
 
         <span
-          className="xl:hidden block dark:text-darkmuted h-10 w-10 hover:bg-lightprimary rounded-full flex justify-center items-center cursor-pointer group-hover:bg-lightprimary group-hover:text-primary "
+          className="xl:hidden block dark:text-darkmuted h-10 w-10 hover:bg-lightprimary rounded-full justify-center items-center cursor-pointer group-hover:bg-lightprimary group-hover:text-primary "
           onClick={() => setIsOpen(true)}
         >
           <Icon icon="solar:widget-3-line-duotone" height={20} />
@@ -36,7 +36,7 @@ const AppLinks = () => {
           >
             <SimpleBar className="md:h-auto h-[calc(100vh_-_50px)]">
               <div className="grid grid-cols-12 w-full">
-                <div className="xl:col-span-8 col-span-12 flex items-stretch xl:px-5 xl:pr-0 xl:px-0 px-5 py-5">
+                <div className="xl:col-span-8 col-span-12 flex items-stretch xl:px-5 xl:pr-0 px-5 py-5">
                   <div className="grid grid-cols-12 gap-3 w-full">
                     {AppsData.appsLink.map((links, index) => (
                       <div

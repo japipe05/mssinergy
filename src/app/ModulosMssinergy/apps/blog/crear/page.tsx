@@ -1,5 +1,5 @@
 'use client';
-//blg_author
+
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
@@ -12,11 +12,16 @@ import TextStyle from '@tiptap/extension-text-style';
 import BulletList from '@tiptap/extension-bullet-list';
 import OrderedList from '@tiptap/extension-ordered-list';
 import ListItem from '@tiptap/extension-list-item';
+import { useTranslation } from "react-i18next";
+import "@/utils/i18n";
+import TitleCard from "@/app/components/shared/TitleBorderCard";
 
 const MenuBar = ({ editor }: { editor: any }) => {
   if (!editor) return null;
   return (
-    <div className="flex flex-wrap gap-2 mb-3 border p-2 rounded bg-white">
+    <div className="flex flex-wrap gap-2 mb-3 border p-2 rounded 
+             bg-white text-black dark:bg-gray-800 dark:text-white 
+             border-gray-300 dark:border-gray-600">
       <button onClick={() => editor.chain().focus().toggleBold().run()} className="font-bold">B</button>
       <button onClick={() => editor.chain().focus().toggleItalic().run()} className="italic">I</button>
       <button onClick={() => editor.chain().focus().toggleUnderline().run()} className="underline">U</button>
@@ -30,6 +35,7 @@ const MenuBar = ({ editor }: { editor: any }) => {
 };
 
 const Blog = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const [form, setForm] = useState({
     title: '',
@@ -44,6 +50,8 @@ const Blog = () => {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
   const [videoPreview, setVideoPreview] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
   const editor = useEditor({
     extensions: [
@@ -69,16 +77,38 @@ const Blog = () => {
     return match ? match[1] : '';
   };
 
-  const handleSubmit = async () => {
+  const validateForm = () => {
+    let newErrors: { [key: string]: string } = {};
+
+    if (!form.content || form.content === "<p></p>") {
+      newErrors.content = t("");
+    }
+    if (!form.coverImg && !coverFile) {
+      newErrors.coverImg = t("");
+    }
+
+     if (!form.videoUrl && !coverFile) {
+      newErrors.videoUrl = t("");
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append('title', form.title);
       formData.append('content', form.content);
       formData.append('category', form.category);
       formData.append('author', form.author);
 
-      if (coverFile) formData.append('coverImg', coverFile);
-      else if (form.coverImg) formData.append('coverImgUrl', form.coverImg);
+      if (coverFile) formData.append('imagen', coverFile);
+      else if (form.coverImg) formData.append('coverImg', form.coverImg);
 
       if (videoFile) formData.append('video', videoFile);
       else if (form.videoUrl) formData.append('videoUrl', form.videoUrl);
@@ -92,140 +122,173 @@ const Blog = () => {
     } catch (err: any) {
       console.error('❌ Error al crear blog:', err);
       alert(err?.response?.data?.error || 'Error inesperado');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <>
-      <ThemeBreadcrumb title="Crear Publicación" />
-      <div className="max-w-2xl mx-auto p-6">
-        <h1 className="text-2xl font-bold mb-4">Crear Publicación</h1>
+      <ThemeBreadcrumb title={t("Crear Publicación")} />
+      <TitleCard>
+        <div className="max-w-2xl mx-auto p-6 flex flex-col min-h-screen">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            
+            {/* Título */}
+            <input
+              name="title"
+              value={form.title}
+              onChange={handleChange}
+              placeholder={t("Título")}
+              required
+              className={`w-full p-2 border rounded 
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600 ${errors.title && "border-red-500"}`}
+            />
 
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          placeholder="Título"
-          className="w-full mb-3 p-2 border rounded"
-        />
+            {/* Categoría */}
+            <select
+              name="category"
+              value={form.category}
+              onChange={handleChange}
+              required
+              className={`w-full p-2 border rounded
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600 ${errors.category && "border-red-500"}`}
+            >
+              <option value="">{t("Selecciona una categoría")}</option>
+              <option value="tecnologia">{t("Tecnología")}</option>
+              <option value="desarrollo-web">{t("Desarrollo Web")}</option>
+              <option value="diseño">{t("Diseño")}</option>
+              <option value="emprendimiento">{t("Emprendimiento")}</option>
+              <option value="vida">{t("Estilo de Vida")}</option>
+              <option value="educacion">{t("Educación")}</option>
+              <option value="salud">{t("Salud y Bienestar")}</option>
+              <option value="viajes">{t("Viajes")}</option>
+              <option value="finanzas">{t("Finanzas")}</option>
+              <option value="marketing">{t("Marketing Digital")}</option>
+            </select>
 
-        <select
-          name="category"
-          value={form.category}
-          onChange={handleChange}
-          className="w-full p-2 border rounded mb-3"
-        >
-          <option value="">Selecciona una categoría</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="desarrollo-web">Desarrollo Web</option>
-          <option value="diseño">Diseño</option>
-          <option value="emprendimiento">Emprendimiento</option>
-          <option value="vida">Estilo de Vida</option>
-          <option value="educacion">Educación</option>
-          <option value="salud">Salud y Bienestar</option>
-          <option value="viajes">Viajes</option>
-          <option value="finanzas">Finanzas</option>
-        </select>
-
-        <div className="border rounded mb-3 p-2 bg-white">
-          <MenuBar editor={editor} />
-          <EditorContent editor={editor} className="min-h-[150px] prose prose-sm max-w-none" />
-        </div>
-
-        <input
-          name="author"
-          value={form.author}
-          onChange={handleChange}
-          placeholder="Autor"
-          className="w-full mb-3 p-2 border rounded"
-        />
-
-        <label className="block font-medium mb-1">Imagen de portada</label>
-
-        <input
-          type="text"
-          name="coverImg"
-          value={form.coverImg}
-          onChange={(e) => {
-            setForm({ ...form, coverImg: e.target.value });
-            setCoverPreview(e.target.value);
-          }}
-          placeholder="URL de la imagen o sube un archivo"
-          className="w-full mb-2 p-2 border rounded"
-        />
-
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) {
-              setCoverFile(file);
-              setCoverPreview(URL.createObjectURL(file));
-            }
-          }}
-          className="mb-2"
-        />
-
-        {coverPreview && (
-          <img
-            src={coverPreview}
-            alt="Vista previa"
-            className="w-full max-h-[250px] object-cover rounded shadow mb-4"
-          />
-        )}
-
-        <label className="block font-medium mb-1 mt-4">Video</label>
-
-        <input
-          type="text"
-          name="videoUrl"
-          value={form.videoUrl}
-          onChange={handleChange}
-          placeholder="URL o sube video"
-          className="w-full mb-2 p-2 border rounded"
-        />
-
-        <input
-          type="file"
-          accept="video/*"
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) {
-              setVideoFile(file);
-              setVideoPreview(URL.createObjectURL(file));
-            }
-          }}
-          className="mb-2"
-        />
-
-        {(form.videoUrl || videoPreview) && (
-          <div className="mb-4">
-            {form.videoUrl.includes('youtube') ? (
-              <iframe
-                src={`https://www.youtube.com/embed/${extractYouTubeId(form.videoUrl)}`}
-                className="w-full aspect-video rounded border"
-                allowFullScreen
+            {/* Editor */}
+            <div className={`border rounded p-2 
+                    bg-white dark:bg-gray-900 
+                    border-gray-300 dark:border-gray-600 ${errors.content && "border-red-500"}`}>
+              <MenuBar editor={editor} />
+              <EditorContent
+                editor={editor}
+                className="min-h-[150px] prose prose-sm max-w-none dark:prose-invert"
               />
-            ) : (
-              videoPreview && (
-                <video
-                  controls
-                  src={videoPreview}
-                  className="w-full max-h-[250px] rounded border object-contain"
-                />
-              )
-            )}
-          </div>
-        )}
+            </div>
+            {errors.content && <p className="text-red-500 text-sm">{errors.content}</p>}
 
-        <button
-          onClick={handleSubmit}
-          className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-2 px-4 text-sm"
-        >
-          Publicar
-        </button>
-      </div>
+            {/* Autor */}
+            <input
+              name="author"
+              value={form.author}
+              onChange={handleChange}
+              placeholder={t("Autor")}
+              required
+              className={`w-full p-2 border rounded 
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600 ${errors.author && "border-red-500"}`}
+            />
+
+            {/* Imagen de portada */}
+            <label className="block font-medium dark:text-white">{t("Imagen de portada *")}</label>
+            <input
+              type="text"
+              name="coverImg"
+              value={form.coverImg}
+              onChange={(e) => {
+                setForm({ ...form, coverImg: e.target.value });
+                setCoverPreview(e.target.value);
+              }}
+              placeholder={t("URL de la imagen o sube un archivo")}
+              className={`w-full p-2 border rounded 
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600 ${errors.coverImg && "border-red-500"}`}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setCoverFile(file);
+                  setCoverPreview(URL.createObjectURL(file));
+                }
+              }}
+              className="dark:text-white"
+            />
+
+            {coverPreview && (
+              <img
+                src={coverPreview}
+                alt="Vista previa"
+                className="w-full max-h-[250px] object-cover rounded shadow"
+              />
+            )}
+
+            {/* Video opcional */}
+            <label className="block font-medium mt-4 dark:text-white">{t("Video (opcional)")}</label>
+            <input
+              type="text"
+              name="videoUrl"
+              value={form.videoUrl}
+              onChange={handleChange}
+              placeholder={t("URL o sube video")}
+              className="w-full p-2 border rounded 
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600"
+            />
+
+            <input
+              type="file"
+              accept="video/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setVideoFile(file);
+                  setVideoPreview(URL.createObjectURL(file));
+                }
+              }}
+              className="dark:text-white"
+            />
+
+            {(form.videoUrl || videoPreview) && (
+              <div>
+                {form.videoUrl.includes("youtube") ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${extractYouTubeId(form.videoUrl)}`}
+                    className="w-full aspect-video rounded border 
+                      border-gray-300 dark:border-gray-600"
+                    allowFullScreen
+                  />
+                ) : (
+                  videoPreview && (
+                    <video
+                      controls
+                      src={videoPreview}
+                      className="w-full max-h-[250px] rounded border object-contain
+                        border-gray-300 dark:border-gray-600"
+                    />
+                  )
+                )}
+              </div>
+            )}
+
+            {/* Botón */}
+            <button
+              type="submit"
+              disabled={loading}
+              className={`rounded-md bg-primary text-white py-2 px-4 text-sm 
+                ${loading ? "opacity-70 cursor-not-allowed" : "hover:bg-primaryemphasis dark:hover:bg-primary/80"}`}
+            >
+              {loading ? t("Cargando...") : t("Publicar")}
+            </button>
+          </form>
+        </div>
+      </TitleCard>
     </>
   );
 };

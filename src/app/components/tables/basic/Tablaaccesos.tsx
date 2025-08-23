@@ -8,8 +8,9 @@ import {
   Button,
   Label,
   Alert,
-  Badge,
+  Badge
 } from "flowbite-react";
+import { IconPlus } from "@tabler/icons-react";
 import axios from "axios";
 import { DBUser } from "@/models/usuarioData";
 import { DBAccess } from "@/models/accesoData";
@@ -20,7 +21,7 @@ import "@/utils/i18n";
 const Tablaaccesos = () => {
   const { t } = useTranslation();
 
-
+  const [loading, setLoading] = useState(false);
   // Estados de paginación
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // 👈 Cambia el número de filas por página
@@ -110,7 +111,7 @@ const Tablaaccesos = () => {
       setTimeout(() => setMessage(null), 2000);
       return;
     }
-
+    setLoading(true);
 
     try {
       const payload = {
@@ -135,6 +136,7 @@ const Tablaaccesos = () => {
       if (selectedUser.usr_id !== undefined) {
         fetchAccesos(selectedUser.usr_id);
       }
+      setLoading(false);
     } catch (err: any) {
       const msg = err.response?.data?.error;
 
@@ -145,7 +147,7 @@ const Tablaaccesos = () => {
         setMessage({ text: "❌ Error al agregar acceso 1", type: "failure" });
         setTimeout(() => setMessage(null), 2000);
       }
-
+      setLoading(false);
       setTimeout(() => setMessage(null), 2000);
       if (selectedUser.usr_id !== undefined) {
         fetchAccesos(selectedUser.usr_id);
@@ -277,7 +279,8 @@ const Tablaaccesos = () => {
                     mod_ruta: selectedMod?.mod_ruta || "",
                   });
                 }}
-                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm"
+                className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm 
+             bg-white text-black dark:bg-gray-800 dark:text-white"
                 required
               >
                 <option value="">-- Selecciona un módulo --</option>
@@ -286,6 +289,7 @@ const Tablaaccesos = () => {
                     {mod.mod_nombre}
                   </option>
                 ))}
+
               </select>
             </div>
 
@@ -305,6 +309,7 @@ const Tablaaccesos = () => {
                 value={newAccess.mod_ruta}
                 readOnly
                 required
+
               />
             </div>
 
@@ -333,9 +338,28 @@ const Tablaaccesos = () => {
             </div>
           </div>
 
-          <Button className="rounded-md bg-primary text-white hover:bg-primaryemphasis py-1 px-2 text-sm" onClick={handleAddAccess}>
-            ➕ {t("Agregar Acceso")}
+
+
+          <Button
+            className="min-w-[130px] rounded-lg bg-primary text-white hover:bg-primary/90 
+                 transition-colors flex items-center justify-center gap-2 
+                 py-1.5 px-4 text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+            onClick={handleAddAccess}
+            
+            disabled={loading}
+            aria-busy={loading}
+            aria-label={loading ? t("Cargando...") : t("Agregar Acceso")}
+
+          >
+            {loading ? (
+              <span className="animate-pulse">{t("Cargando...")}</span>
+            ) : (
+              <>
+                <IconPlus  size={14} /> {t("Agregar Acceso")}
+              </>
+            )}
           </Button>
+
           <div className="w-full">
             {/* Tabla con scroll horizontal */}
             <div className="overflow-x-auto">
