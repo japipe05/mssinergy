@@ -80,7 +80,7 @@ export async function PUT(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const id = Number(searchParams.get('id'));
     if (!id) return NextResponse.json({ error: 'ID requerido' }, { status: 400 });
-
+ 
     const form = await req.formData();
 
     const blg_title = form.get('title') as string;

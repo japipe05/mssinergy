@@ -659,7 +659,8 @@ const Perfiles = () => {
           }}
         >
           <Modal.Body>
-            <div className="space-y-4 max-h-[70vh] overflow-y-auto px-1 sm:px-4 pb-24">
+            <div className="space-y-4 overflow-y-auto max-h-[calc(70vh-64px)] px-1 sm:px-4 pb-24">
+              
               {/* Imagen */}
               <div>
                 <Label htmlFor="image" value={t("Cargar Imagen")} />

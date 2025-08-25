@@ -123,9 +123,9 @@ const EditarBlogPage = () => {
       formData.append('author', form.author);
 
       if (coverFile) {
-        formData.append('coverImg', coverFile);
+        formData.append('imagen', coverFile);
       } else {
-        formData.append('coverImgUrl', form.coverImg); // URL si no cambia la imagen
+        formData.append('coverImg', form.coverImg); // URL si no cambia la imagen
       }
 
       if (videoFile) {
@@ -258,6 +258,18 @@ const EditarBlogPage = () => {
           </div>
         )}
 
+
+ <label className="block font-medium mt-4 dark:text-white">{t("Video (opcional)")}</label>
+            <input
+              type="text"
+              name="videoUrl"
+              value={form.videoUrl}
+              onChange={handleChange}
+              placeholder={t("URL o sube video")}
+              className="w-full p-2 border rounded 
+                bg-white text-black dark:bg-gray-800 dark:text-white 
+                border-gray-300 dark:border-gray-600"
+            />
         <div className="mb-3">
           <label className="block mb-1 font-medium">Cambiar video</label>
           <input
