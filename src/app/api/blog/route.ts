@@ -78,51 +78,62 @@ export async function GET(req: NextRequest) {
 export async function PUT(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const id = Number(searchParams.get('id'));
-    if (!id) return NextResponse.json({ error: 'ID requerido' }, { status: 400 });
- 
+    const id = Number(searchParams.get("id"));
+    if (!id) return NextResponse.json({ error: "ID requerido" }, { status: 400 });
+
     const form = await req.formData();
 
-    const blg_title = form.get('title') as string;
-    const blg_content = form.get('content') as string;
-    const blg_category = form.get('category') as string;
-    const blg_author = form.get('author') as string;
+    const blg_title = form.get("title") as string;
+    const blg_content = form.get("content") as string;
+    const blg_category = form.get("category") as string;
+    const blg_author = form.get("author") as string;
 
-    const coverImgFile = form.get('imagen') as File | null;
-    const coverImgUrlManual = form.get('coverImg') as string;
+    const coverImgFile = form.get("imagen") as File | null;
+    const coverImgUrlManual = form.get("coverImg") as string | null;
 
-    const videoFile = form.get('video') as File | null;
-    const videoUrlManual = form.get('videoUrl') as string;
+    const videoFile = form.get("video") as File | null;
+    const videoUrlManual = form.get("videoUrl") as string | null;
 
     if (!blg_title || !blg_content || !blg_category || !blg_author) {
-      return NextResponse.json({ error: 'Todos los campos son obligatorios' }, { status: 400 });
+      return NextResponse.json({ error: "Todos los campos son obligatorios" }, { status: 400 });
     }
 
     const existingBlog = await getBlogById(id);
     if (!existingBlog) {
-      return NextResponse.json({ error: 'Blog no encontrado' }, { status: 404 });
+      return NextResponse.json({ error: "Blog no encontrado" }, { status: 404 });
     }
 
+    // 📌 Imagen
     let newCoverImgUrl = existingBlog.blg_coverImg;
     if (coverImgFile instanceof File) {
+      // Si subió archivo nuevo
       if (existingBlog.blg_coverImg) {
         await deleteFileFromS3(existingBlog.blg_coverImg);
       }
-      newCoverImgUrl = await uploadFileToS3(coverImgFile, '901408258/blogs') ?? '';
-    } else if (coverImgUrlManual) {
+      newCoverImgUrl = (await uploadFileToS3(coverImgFile, "901408258/blogs")) ?? "";
+    } else if (coverImgUrlManual && coverImgUrlManual !== existingBlog.blg_coverImg) {
+      // Si cambió manualmente la URL
+      if (existingBlog.blg_coverImg) {
+        await deleteFileFromS3(existingBlog.blg_coverImg);
+      }
       newCoverImgUrl = coverImgUrlManual;
     }
 
+    // 📌 Video
     let newVideoUrl = existingBlog.blg_videoUrl;
     if (videoFile instanceof File) {
       if (existingBlog.blg_videoUrl) {
         await deleteFileFromS3(existingBlog.blg_videoUrl);
       }
-      newVideoUrl = await uploadFileToS3(videoFile, '901408258/blogs') ?? '';
-    } else if (videoUrlManual) {
+      newVideoUrl = (await uploadFileToS3(videoFile, "901408258/blogs")) ?? "";
+    } else if (videoUrlManual && videoUrlManual !== existingBlog.blg_videoUrl) {
+      if (existingBlog.blg_videoUrl) {
+        await deleteFileFromS3(existingBlog.blg_videoUrl);
+      }
       newVideoUrl = videoUrlManual;
     }
 
+    // 📌 Actualizar
     await updateBlog(id, {
       blg_title,
       blg_content,
@@ -132,10 +143,13 @@ export async function PUT(req: NextRequest) {
       blg_videoUrl: newVideoUrl,
     });
 
-    return NextResponse.json({ message: 'Blog actualizado correctamente' });
+    return NextResponse.json({ message: "Blog actualizado correctamente" });
   } catch (error: any) {
-    console.error('❌ Error al actualizar blog:', error);
-    return NextResponse.json({ error: error.message || 'Error al actualizar blog' }, { status: 500 });
+    console.error("❌ Error al actualizar blog:", error);
+    return NextResponse.json(
+      { error: error.message || "Error al actualizar blog" },
+      { status: 500 }
+    );
   }
 }
 
