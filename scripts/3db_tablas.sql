@@ -12,19 +12,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
     usr_fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS usuarios_aud (
-    aud_id INT AUTO_INCREMENT PRIMARY KEY,
-    usr_id INT,
-    usr_fotografia VARCHAR(1000) ,
-    usr_nombre VARCHAR(100)  ,
-    usr_correo VARCHAR(100)   ,
-    usr_codigo_pais VARCHAR(100)   ,
-    usr_celular VARCHAR(100)   ,
-    usr_credencial VARCHAR(255)  ,
-    usr_estado VARCHAR(255),
-    usr_ROL VARCHAR(255),
-    usr_fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
 CREATE TABLE IF NOT EXISTS accesos (
   acc_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,6 +26,59 @@ CREATE TABLE IF NOT EXISTS accesos (
   usr_usuario_aud VARCHAR(100) NOT NULL,
   usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE KEY uniq_usr_modulo (usr_id, usr_modulo) 
+);
+
+
+
+CREATE TABLE IF NOT EXISTS modulos (
+  mod_id INT AUTO_INCREMENT PRIMARY KEY,
+  mod_nombre VARCHAR(100) NOT NULL,
+  mod_descripcion VARCHAR(255) NOT NULL,
+  mod_ruta VARCHAR(255) NOT NULL,
+  usr_usuario_aud VARCHAR(100) NOT NULL,
+  usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS blogs (
+  blg_id INT AUTO_INCREMENT PRIMARY KEY,
+  blg_title VARCHAR(255) NOT NULL,
+  blg_content LONGTEXT NOT NULL,
+  blg_category VARCHAR(100),
+  blg_coverImg VARCHAR(1000),
+  blg_author VARCHAR(100),
+  blg_videoUrl VARCHAR(1000),
+  blg_createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
+-- auditorias
+
+CREATE TABLE IF NOT EXISTS usuarios_aud (
+    aud_id INT AUTO_INCREMENT PRIMARY KEY,
+    usr_id INT,
+    usr_fotografia VARCHAR(1000) ,
+    usr_nombre VARCHAR(100)  ,
+    usr_correo VARCHAR(100)   ,
+    usr_codigo_pais VARCHAR(100)   ,
+    usr_celular VARCHAR(100)   ,
+    usr_credencial VARCHAR(255)  ,
+    usr_estado VARCHAR(255),
+    usr_ROL VARCHAR(255),
+    usr_fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE IF NOT EXISTS modulos_aud (
+   aud_id INT AUTO_INCREMENT PRIMARY KEY,
+  mod_id INT,
+  mod_nombre VARCHAR(100) ,
+  mod_descripcion VARCHAR(255),
+  mod_ruta VARCHAR(255),
+  usr_usuario_aud VARCHAR(100),
+  usr_fecha_aud TIMESTAMP 
 );
 
 
@@ -57,38 +97,6 @@ CREATE TABLE IF NOT EXISTS accesos_aud (
   usr_usuario_aud VARCHAR(100),
   usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE IF NOT EXISTS modulos (
-  mod_id INT AUTO_INCREMENT PRIMARY KEY,
-  mod_nombre VARCHAR(100) NOT NULL,
-  mod_descripcion VARCHAR(255) NOT NULL,
-  mod_ruta VARCHAR(255) NOT NULL,
-  usr_usuario_aud VARCHAR(100) NOT NULL,
-  usr_fecha_aud TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS modulos_aud (
-   aud_id INT AUTO_INCREMENT PRIMARY KEY,
-  mod_id INT,
-  mod_nombre VARCHAR(100) ,
-  mod_descripcion VARCHAR(255),
-  mod_ruta VARCHAR(255),
-  usr_usuario_aud VARCHAR(100),
-  usr_fecha_aud TIMESTAMP 
-);
-
-CREATE TABLE IF NOT EXISTS blogs (
-  blg_id INT AUTO_INCREMENT PRIMARY KEY,
-  blg_title VARCHAR(255) NOT NULL,
-  blg_content LONGTEXT NOT NULL,
-  blg_category VARCHAR(100),
-  blg_coverImg VARCHAR(1000),
-  blg_author VARCHAR(100),
-  blg_videoUrl VARCHAR(1000),
-  blg_createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
 CREATE TABLE IF NOT EXISTS blogs_aud (
   aud_id INT AUTO_INCREMENT PRIMARY KEY,
   blg_id INT,
