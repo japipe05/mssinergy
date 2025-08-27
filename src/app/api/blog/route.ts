@@ -89,7 +89,7 @@ export async function PUT(req: NextRequest) {
     const blg_author = form.get('author') as string;
 
     const coverImgFile = form.get('imagen') as File | null;
-    const coverImgUrlManual = form.get('coverImgUrl') as string;
+    const coverImgUrlManual = form.get('coverImg') as string;
 
     const videoFile = form.get('video') as File | null;
     const videoUrlManual = form.get('videoUrl') as string;
