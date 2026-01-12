@@ -185,3 +185,8 @@ auditar vulnerabilidadesnpm audit
 > npm audit     
 arreglar
 npm audit fix --force
+
+
+
+vulnerabilidad
+npm install next@15.3.8
