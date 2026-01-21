@@ -23,7 +23,6 @@
 *.pem
 /public/uploads/*
 
-
 # debug
 npm-debug.log*
 yarn-debug.log*
