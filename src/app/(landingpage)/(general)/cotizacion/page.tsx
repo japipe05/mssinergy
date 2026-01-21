@@ -6,15 +6,17 @@ import {
   TextInput,
   Button,
 } from "flowbite-react";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useRef } from "react";
 import TitleCard from "../../../components/shared/TitleBorderCard";
 import { HiInformationCircle, HiCheckCircle, HiExclamationCircle } from "react-icons/hi";
 import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
+import ReCAPTCHA from "react-google-recaptcha";
 import "@/utils/i18n";
 
 const Cotizacion = () => {
   const { t } = useTranslation();
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
 
   const [formData, setFormData] = useState({
     from_name: "",
@@ -29,15 +31,24 @@ const Cotizacion = () => {
     industria: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      setAlert({ type: "error", message: t("Por favor completa el CAPTCHA") });
+      return;
+    }
+
     setLoading(true);
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
@@ -47,23 +58,21 @@ const Cotizacion = () => {
 
     const templateParams = {
       from_name: "Cotización desde la web",
-      nombre_var :  `${formData.nombre} ${formData.apellido}`,
-      area: "👤 Nombre: " +formData.nombre,
-      solicitud: "👤 Apellido: "  + formData.apellido,
-      motivo: "📧 Email: "+formData.email,
-      descripcion: "📞 Telefono: "+formData.telefono,
-      nombre: "🌍 Pais: "+formData.pais,
-      empresa: "💼 Empresa: "+formData.empresa,
-      tipoDocumento: "🔧 Servicio: "+formData.servicio,
-      cargo: "📝 Cargo: "+formData.cargo,
-      numeroDocumento: "🏢 Industria:"+formData.industria,
+      nombre_var: `${formData.nombre} ${formData.apellido}`,
+      area: "👤 Nombre: " + formData.nombre,
+      solicitud: "👤 Apellido: " + formData.apellido,
+      motivo: "📧 Email: " + formData.email,
+      descripcion: "📞 Telefono: " + formData.telefono,
+      nombre: "🌍 Pais: " + formData.pais,
+      empresa: "💼 Empresa: " + formData.empresa,
+      tipoDocumento: "🔧 Servicio: " + formData.servicio,
+      cargo: "📝 Cargo: " + formData.cargo,
+      numeroDocumento: "🏢 Industria:" + formData.industria,
       reply_to: formData.email,
       to_email: toEmail,
+      captcha: captchaToken,
     };
 
-
-  
- 
     try {
       await emailjs.send(serviceId, templateId, templateParams, userId);
       setAlert({ type: "success", message: t("Correo enviado correctamente") });
@@ -79,9 +88,13 @@ const Cotizacion = () => {
         cargo: "",
         industria: "",
       });
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } catch (error) {
       console.error("Error al enviar el correo:", error);
       setAlert({ type: "error", message: t("Hubo un error al enviar el correo") });
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } finally {
       setLoading(false);
       setTimeout(() => setAlert(null), 4000);
@@ -91,61 +104,81 @@ const Cotizacion = () => {
   return (
     <section className="min-h-screen py-12 px-4 dark:bg-dark">
       <div className="max-w-4xl mx-auto">
-      <TitleCard title={t("Cotización")}>
-        <div className="pb-6 space-y-4">
-          <Alert color="lightprimary" icon={HiInformationCircle}>
-            <span className="font-medium text-base">{t("Información Cotización")}</span>
-          </Alert>
-
-          {alert && (
-            <Alert
-              color={alert.type === "success" ? "success" : "failure"}
-              icon={alert.type === "success" ? HiCheckCircle : HiExclamationCircle}
-              className="rounded-md"
-            >
-              <span className="text-sm font-medium">{alert.message}</span>
+        <TitleCard title={t("Cotización")}>
+          <div className="pb-6 space-y-4">
+            <Alert color="lightprimary" icon={HiInformationCircle}>
+              <span className="font-medium text-base">
+                {t("Información Cotización")}
+              </span>
             </Alert>
-          )}
-        </div>
 
-        <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6 text-base font-medium">
-          {[
-            { id: "nombre", label: t("Nombre") },
-            { id: "apellido", label: t("Apellido") },
-            { id: "email", label: t("Email") },
-            { id: "telefono", label: t("Teléfono") },
-            { id: "pais", label: t("País") },
-            { id: "servicio", label: t("Servicio a solicitar") },
-            { id: "empresa", label: t("Empresa") },
-            { id: "cargo", label: t("Cargo") },
-            { id: "industria", label: t("Industria") },
-          ].map((field) => (
-            <div key={field.id} className="sm:col-span-6 col-span-12">
-              <Label htmlFor={field.id} value={field.label} className="text-base font-medium dark:text-white mb-1 block" />
-              <TextInput
-                id={field.id}
-                name={field.id}
-                type="text"
-                sizing="md"
-                className="text-black dark:text-white"
-                value={formData[field.id as keyof typeof formData]}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          ))}
-
-          <div className="col-span-12">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="rounded-md bg-primary hover:bg-primaryemphasis text-white w-full py-2 transition"
-            >
-              {loading ? t("Enviando...") : t("Enviar")}
-            </Button>
+            {alert && (
+              <Alert
+                color={alert.type === "success" ? "success" : "failure"}
+                icon={alert.type === "success" ? HiCheckCircle : HiExclamationCircle}
+                className="rounded-md"
+              >
+                <span className="text-sm font-medium">{alert.message}</span>
+              </Alert>
+            )}
           </div>
-        </form>
-      </TitleCard>
+
+          <form onSubmit={handleSubmit} className="grid grid-cols-12 gap-6 text-base font-medium">
+            {[
+              { id: "nombre", label: t("Nombre") },
+              { id: "apellido", label: t("Apellido") },
+              { id: "email", label: t("Email") },
+              { id: "telefono", label: t("Teléfono") },
+              { id: "pais", label: t("País") },
+              { id: "servicio", label: t("Servicio a solicitar") },
+              { id: "empresa", label: t("Empresa") },
+              { id: "cargo", label: t("Cargo") },
+              { id: "industria", label: t("Industria") },
+            ].map((field) => (
+              <div key={field.id} className="sm:col-span-6 col-span-12">
+                <Label
+                  htmlFor={field.id}
+                  value={field.label}
+                  className="text-base font-medium dark:text-white mb-1 block"
+                />
+                <TextInput
+                  id={field.id}
+                  name={field.id}
+                  type="text"
+                  sizing="md"
+                  className="text-black dark:text-white"
+                  value={formData[field.id as keyof typeof formData]}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            ))}
+
+            <div className="col-span-12 flex justify-center">
+              {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  onChange={setCaptchaToken}
+                />
+              ) : (
+                <p className="text-red-500 text-sm text-center">
+                  ⚠️ reCAPTCHA sitekey no definido (.env.local)
+                </p>
+              )}
+            </div>
+
+            <div className="col-span-12">
+              <Button
+                type="submit"
+                disabled={loading}
+                className="rounded-md bg-primary hover:bg-primaryemphasis text-white w-full py-2 transition"
+              >
+                {loading ? t("Enviando...") : t("Enviar")}
+              </Button>
+            </div>
+          </form>
+        </TitleCard>
       </div>
     </section>
   );

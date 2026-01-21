@@ -52,7 +52,6 @@ desplegar en hositnger
 produeccion
 mails
 npm install @emailjs/browser
-https://dashboard.emailjs.com/admin/templates/mf51egn
 
 
 # url .svg
@@ -186,7 +185,11 @@ auditar vulnerabilidadesnpm audit
 arreglar
 npm audit fix --force
 
-
-
 vulnerabilidad
 npm install next@15.3.8
+
+https://dashboard.emailjs.com/admin/templates/mf51egn
+
+
+ventas@mssinergy.com
+feliperodriugez96@hotmail.com

@@ -8,16 +8,19 @@ import {
   Textarea,
   Button,
 } from "flowbite-react";
-import React, { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent, useRef } from "react";
 import TitleCard from "@/app/components/shared/TitleBorderCard";
 import { HiInformationCircle, HiCheckCircle, HiExclamationCircle } from "react-icons/hi";
 import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
+import ReCAPTCHA from "react-google-recaptcha";
 import "@/utils/i18n";
 import ThemeBreadcrumb from "@/app/components/landingpage/layout/shared/breadcrumb/ThemeBreadcrumb";
 
 const PQRS = () => {
   const { t } = useTranslation();
+  const recaptchaRef = useRef<ReCAPTCHA | null>(null);
+
   const [formData, setFormData] = useState({
     from_name: "",
     area: "",
@@ -32,15 +35,24 @@ const PQRS = () => {
     correo: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: "success" | "error"; message: string } | null>(null);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      setAlert({ type: "error", message: t("Por favor completa el CAPTCHA") });
+      return;
+    }
+
     setLoading(true);
 
     const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
@@ -62,6 +74,7 @@ const PQRS = () => {
       empresa: "🏢 Empresa: " + formData.empresa,
       reply_to: formData.correo,
       to_email: toEmail,
+      captcha: captchaToken,
     };
 
     try {
@@ -80,8 +93,12 @@ const PQRS = () => {
         empresa: "",
         correo: "",
       });
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } catch (error) {
       setAlert({ type: "error", message: t("Hubo un error al enviar el correo") });
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } finally {
       setLoading(false);
       setTimeout(() => setAlert(null), 4000);
@@ -128,16 +145,8 @@ const PQRS = () => {
                 type: "select",
                 options: [t("Petición"), t("Queja"), t("Reclamo")],
               },
-              {
-                id: "motivo",
-                label: t("Motivo"),
-                type: "text",
-              },
-              {
-                id: "descripcion",
-                label: t("Descripción de la solicitud"),
-                type: "textarea",
-              },
+              { id: "motivo", label: t("Motivo"), type: "text" },
+              { id: "descripcion", label: t("Descripción de la solicitud"), type: "textarea" },
               {
                 id: "tipoDocumento",
                 label: t("Tipo de documento"),
@@ -157,7 +166,9 @@ const PQRS = () => {
             ].map(({ id, label, type, options }) => (
               <div
                 key={id}
-                className={`${["descripcion", "motivo"].includes(id) ? "col-span-12" : "sm:col-span-6 col-span-12"}`}
+                className={`${["descripcion", "motivo"].includes(id)
+                  ? "col-span-12"
+                  : "sm:col-span-6 col-span-12"}`}
               >
                 <Label htmlFor={id} value={label} className="text-base font-medium dark:text-white" />
                 {type === "select" ? (
@@ -169,7 +180,9 @@ const PQRS = () => {
                     onChange={handleChange}
                     className="mt-1"
                   >
-                    <option value="" disabled>{t("Seleccione una opción")}</option>
+                    <option value="" disabled>
+                      {t("Seleccione una opción")}
+                    </option>
                     {options!.map((opt) => (
                       <option key={opt}>{opt}</option>
                     ))}
@@ -188,7 +201,7 @@ const PQRS = () => {
                   <TextInput
                     id={id}
                     name={id}
-                    type={type === "number" ? "number" : "text"}
+                    type={type === "mail" ? "email" : "text"}
                     required
                     value={(formData as any)[id]}
                     onChange={handleChange}
@@ -197,6 +210,20 @@ const PQRS = () => {
                 )}
               </div>
             ))}
+
+            <div className="col-span-12 flex justify-center">
+              {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                  onChange={setCaptchaToken}
+                />
+              ) : (
+                <p className="text-red-500 text-sm text-center">
+                  ⚠️ reCAPTCHA sitekey no definido (.env.local)
+                </p>
+              )}
+            </div>
 
             <div className="col-span-12">
               <Button
